@@ -150,7 +150,7 @@ func CoerceToObject(val interface{}) (interface{}, error) {
 		//TODO For now we just convert json.number to int64 or string. Make sure user can use link expression, eg: activity.result == 1
 		int64V, err := t.Int64()
 		if err != nil {
-			return t, nil
+			return nil,err
 		} else {
 			return int64V, nil
 		}
