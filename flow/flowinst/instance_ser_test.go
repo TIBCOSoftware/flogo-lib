@@ -1,16 +1,19 @@
 package flowinst
 
 import (
-	"encoding/json"
+	//"encoding/json"
+	"os"
 	"testing"
 
-	"github.com/TIBCOSoftware/flogo-lib/flow/flowdef"
-	"github.com/TIBCOSoftware/flogo-lib/flow/flowinst"
-	"github.com/TIBCOSoftware/flogo-lib/util"
+	//"github.com/TIBCOSoftware/flogo-lib/flow/flowdef"
+	//"github.com/TIBCOSoftware/flogo-lib/util"
 	"github.com/op/go-logging"
 )
 
-var log = logging.MustGetLogger("core")
+func TestMain(m *testing.M) {
+	log = logging.MustGetLogger("core")
+	os.Exit(m.Run())
+}
 
 const defJSON = `
 {
@@ -41,52 +44,52 @@ const defJSON = `
   }
 `
 
-func TestFullSerialization(t *testing.T) {
+//func TestFullSerialization(t *testing.T) {
+//
+//	defRep := &flowdef.DefinitionRep{}
+//	json.Unmarshal([]byte(defJSON), defRep)
+//
+//	log.Infof("Def Rep: %v", defRep)
+//
+//	def, _ := flowdef.NewDefinition(defRep)
+//
+//	idGen, _ := util.NewGenerator()
+//	id := idGen.NextAsString()
+//
+//	instance := NewFlowInstance(id, "uri1", def)
+//
+//	instance.Start(nil)
+//
+//	hasWork := true
+//
+//	for hasWork && instance.Status() < StatusCompleted {
+//		hasWork = instance.DoStep()
+//
+//		json, _ := json.Marshal(instance)
+//		log.Debugf("Snapshot: %s\n", string(json))
+//	}
+//}
 
-	defRep := &flowdef.DefinitionRep{}
-	json.Unmarshal([]byte(defJSON), defRep)
-
-	log.Infof("Def Rep: %v", defRep)
-
-	def, _ := flowdef.NewDefinition(defRep)
-
-	idGen, _ := util.NewGenerator()
-	id := idGen.NextAsString()
-
-	instance := flowinst.NewFlowInstance(id, "uri1", def)
-
-	instance.Start(nil)
-
-	hasWork := true
-
-	for hasWork && instance.Status() < flowinst.StatusCompleted {
-		hasWork = instance.DoStep()
-
-		json, _ := json.Marshal(instance)
-		log.Debugf("Snapshot: %s\n", string(json))
-	}
-}
-
-func TestIncrementalSerialization(t *testing.T) {
-
-	defRep := &flowdef.DefinitionRep{}
-	json.Unmarshal([]byte(defJSON), defRep)
-
-	idGen, _ := util.NewGenerator()
-	id := idGen.NextAsString()
-
-	def, _ := flowdef.NewDefinition(defRep)
-
-	instance := flowinst.NewFlowInstance(id, "uri2", def)
-
-	instance.Start(nil)
-
-	hasWork := true
-
-	for hasWork && instance.Status() < flowinst.StatusCompleted {
-		hasWork = instance.DoStep()
-
-		json, _ := json.Marshal(instance.GetChanges())
-		log.Debugf("Changes: %s\n", string(json))
-	}
-}
+//func TestIncrementalSerialization(t *testing.T) {
+//
+//	defRep := &flowdef.DefinitionRep{}
+//	json.Unmarshal([]byte(defJSON), defRep)
+//
+//	idGen, _ := util.NewGenerator()
+//	id := idGen.NextAsString()
+//
+//	def, _ := flowdef.NewDefinition(defRep)
+//
+//	instance := NewFlowInstance(id, "uri2", def)
+//
+//	instance.Start(nil)
+//
+//	hasWork := true
+//
+//	for hasWork && instance.Status() < StatusCompleted {
+//		hasWork = instance.DoStep()
+//
+//		json, _ := json.Marshal(instance.GetChanges())
+//		log.Debugf("Changes: %s\n", string(json))
+//	}
+//}
