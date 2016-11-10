@@ -15,10 +15,8 @@ type DirectRunner struct {
 }
 
 // NewDirectRunner create a new DirectRunner
-func NewDirectRunner() *DirectRunner {
-
-	var directRunner DirectRunner
-	return &directRunner
+func NewDirect() *DirectRunner {
+	return &DirectRunner{}
 }
 
 // Start will start the engine, by starting all of its workers

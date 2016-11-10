@@ -25,10 +25,10 @@ type PooledConfig struct {
 }
 
 // NewPooledRunner create a new pooled
-func NewPooledRunner(config *PooledConfig) *PooledRunner {
+func NewPooled(config *PooledConfig) *PooledRunner {
 
 	var pooledRunner PooledRunner
-	pooledRunner.directRunner = NewDirectRunner()
+	pooledRunner.directRunner = NewDirect()
 
 	// config via engine config
 	pooledRunner.numWorkers = config.NumWorkers
@@ -47,8 +47,9 @@ func (runner *PooledRunner) Start() error {
 		runner.workers = make([]*ActionWorker, runner.numWorkers)
 
 		for i := 0; i < runner.numWorkers; i++ {
-			log.Debug("Starting worker", i+1)
-			worker := NewWorker(i+1, runner.directRunner, runner.workerQueue)
+			id := i + 1
+			log.Debugf("Starting worker with id '%d'", id)
+			worker := NewWorker(id, runner.directRunner, runner.workerQueue)
 			runner.workers[i] = &worker
 			worker.Start()
 		}
@@ -57,7 +58,7 @@ func (runner *PooledRunner) Start() error {
 			for {
 				select {
 				case work := <-runner.workQueue:
-					log.Debug("Received work requeust")
+					log.Debug("Received work request")
 
 					//todo fix, this creates unbounded go routines waiting to be serviced by worker queue
 					go func() {

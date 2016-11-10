@@ -87,6 +87,7 @@ func (w ActionWorker) Start() {
 					err := actionData.action.Run(actionData.context, actionData.uri, actionData.options, handler)
 
 					if err != nil {
+						log.Debugf("worker-%d: Action Run error: %s\n", w.ID, err.Error())
 						// error so just return
 						actionData.rc <- &ActionResult{err: err}
 					} else {
@@ -95,7 +96,7 @@ func (w ActionWorker) Start() {
 						for !done {
 							select {
 							case result := <-handler.result:
-								log.Debugf("*** Worker recieved result: %v\n", result)
+								log.Debugf("*** Worker received result: %v\n", result)
 								actionData.rc <- result
 							case <-handler.done:
 								if !handler.replied {

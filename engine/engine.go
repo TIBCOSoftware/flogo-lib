@@ -34,9 +34,9 @@ func NewEngine(engineConfig *Config, triggersConfig *TriggersConfig) *Engine {
 	runnerConfig := engineConfig.RunnerConfig
 
 	if runnerConfig.Type == "direct" {
-		engine.runner = runner.NewDirectRunner()
+		engine.runner = runner.NewDirect()
 	} else {
-		engine.runner = runner.NewPooledRunner(runnerConfig.Pooled)
+		engine.runner = runner.NewPooled(runnerConfig.Pooled)
 	}
 
 	if log.IsEnabledFor(logging.DEBUG) {
