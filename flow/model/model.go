@@ -1,10 +1,5 @@
 package model
 
-import (
-	"github.com/op/go-logging"
-)
-
-var log = logging.MustGetLogger("model")
 
 // FlowModel defines the execution Model for a Flow.  It contains the
 // execution behaviors for Flows and Tasks.

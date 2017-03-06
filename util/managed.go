@@ -3,10 +3,8 @@ package util
 import (
 	"fmt"
 
-	"github.com/op/go-logging"
+	"github.com/TIBCOSoftware/flogo-lib/logger"
 )
-
-var log = logging.MustGetLogger("util")
 
 // Managed is an interface that is implemented by an object that needs to be
 // managed via start/stop
@@ -60,30 +58,30 @@ func stopManaged(managed Managed) error {
 // StartManaged starts a Managed object, handles panics and logs details
 func StartManaged(name string, managed Managed) error {
 
-	log.Debugf("%s: Starting...", name)
+	logger.Debugf("%s: Starting...", name)
 	err := managed.Start()
 
 	if err != nil {
-		log.Errorf("%s: Error Starting", name)
+		logger.Errorf("%s: Error Starting", name)
 		return err
 	}
 
-	log.Debugf("%s: Started", name)
+	logger.Debugf("%s: Started", name)
 	return nil
 }
 
 // StopManaged stops a Managed object, handles panics and logs details
 func StopManaged(name string, managed Managed) error {
 
-	log.Debugf("%s: Stopping...", name)
+	logger.Debugf("%s: Stopping...", name)
 
 	err := stopManaged(managed)
 
 	if err != nil {
-		log.Errorf("Error stopping '%s': %s", name, err.Error())
+		logger.Errorf("Error stopping '%s': %s", name, err.Error())
 		return err
 	}
 
-	log.Debugf("%s: Stopped", name)
+	logger.Debugf("%s: Stopped", name)
 	return nil
 }

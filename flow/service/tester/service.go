@@ -4,10 +4,11 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/TIBCOSoftware/flogo-lib/flow/flowinst"
 	"github.com/TIBCOSoftware/flogo-lib/flow/service"
 	"github.com/TIBCOSoftware/flogo-lib/util"
 	"github.com/julienschmidt/httprouter"
-	"github.com/TIBCOSoftware/flogo-lib/flow/flowinst"
+	"github.com/TIBCOSoftware/flogo-lib/logger"
 )
 
 // RestEngineTester is default REST implementation of the EngineTester
@@ -100,7 +101,7 @@ func (et *RestEngineTester) StartFlow(w http.ResponseWriter, r *http.Request, _ 
 	if data != nil {
 		idResponse := data.(*flowinst.IDResponse)
 
-		log.Debugf("Started Instance [ID:%s] for %s", idResponse.ID, req.FlowURI)
+		logger.Debugf("Started Instance [ID:%s] for %s", idResponse.ID, req.FlowURI)
 
 		encoder := json.NewEncoder(w)
 		encoder.Encode(data)
@@ -119,7 +120,7 @@ func (et *RestEngineTester) RestartFlow(w http.ResponseWriter, r *http.Request, 
 
 	//defer func() {
 	//	if r := recover(); r != nil {
-	//		log.Error("Unable to restart flow, make sure definition registered")
+	//		logger.Error("Unable to restart flow, make sure definition registered")
 	//	}
 	//}()
 
@@ -140,7 +141,7 @@ func (et *RestEngineTester) RestartFlow(w http.ResponseWriter, r *http.Request, 
 	if data != nil {
 		idResponse := data.(*flowinst.IDResponse)
 
-		log.Debugf("Restarted Instance [ID:%s] for %s", idResponse.ID, req.InitialState.FlowURI)
+		logger.Debugf("Restarted Instance [ID:%s] for %s", idResponse.ID, req.InitialState.FlowURI)
 
 		encoder := json.NewEncoder(w)
 		encoder.Encode(data)
@@ -159,7 +160,7 @@ func (et *RestEngineTester) ResumeFlow(w http.ResponseWriter, r *http.Request, _
 
 	defer func() {
 		if r := recover(); r != nil {
-			log.Error("Unable to resume flow, make sure definition registered")
+			logger.Error("Unable to resume flow, make sure definition registered")
 		}
 	}()
 
@@ -180,7 +181,7 @@ func (et *RestEngineTester) ResumeFlow(w http.ResponseWriter, r *http.Request, _
 	if data != nil {
 		idResponse := data.(*flowinst.IDResponse)
 
-		log.Debugf("Resumed Instance [ID:%s] for %s", idResponse.ID, req.State.FlowURI)
+		logger.Debugf("Resumed Instance [ID:%s] for %s", idResponse.ID, req.State.FlowURI)
 
 		encoder := json.NewEncoder(w)
 		encoder.Encode(data)

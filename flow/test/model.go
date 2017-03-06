@@ -3,11 +3,9 @@ package test
 import (
 	"github.com/TIBCOSoftware/flogo-lib/flow/flowdef"
 	"github.com/TIBCOSoftware/flogo-lib/flow/model"
-	"github.com/op/go-logging"
-	"github.com/TIBCOSoftware/flogo-lib/flow/activity"
+	"github.com/TIBCOSoftware/flogo-lib/logger"
 )
 
-var log = logging.MustGetLogger("test")
 
 func init() {
 	model.Register(NewTestModel())
@@ -15,7 +13,7 @@ func init() {
 
 func NewTestModel() *model.FlowModel {
 	m := model.New("test")
-	m.RegisterFlowBehavior(1, &SimpleFlowBehavior{})
+	m.RegisterFlowBehavior(&SimpleFlowBehavior{})
 	m.RegisterTaskBehavior(1, &SimpleTaskBehavior{})
 
 	return m
@@ -39,12 +37,12 @@ func (b *SimpleFlowBehavior) Resume(context model.FlowContext) bool {
 }
 
 func (b *SimpleFlowBehavior) TasksDone(context model.FlowContext, doneCode int) {
-	log.Debugf("Flow TasksDone\n")
+	logger.Debugf("Flow TasksDone\n")
 
 }
 
 func (b *SimpleFlowBehavior) Done(context model.FlowContext) {
-	log.Debugf("Flow Done\n")
+	logger.Debugf("Flow Done\n")
 
 }
 
@@ -58,7 +56,7 @@ func (b *SimpleTaskBehavior) Enter(context model.TaskContext, enterCode int) (ev
 
 	task := context.Task()
 	//check if all predecessor links are done
-	log.Debugf("Task Enter: %s\n", task.Name())
+	logger.Debugf("Task Enter: %s\n", task.Name())
 
 	context.SetState(STATE_ENTERED)
 
@@ -70,10 +68,10 @@ func (b *SimpleTaskBehavior) Enter(context model.TaskContext, enterCode int) (ev
 		ready = true
 	} else {
 
-		log.Debugf("Num Links: %d\n", len(linkContexts))
+		logger.Debugf("Num Links: %d\n", len(linkContexts))
 		for _, linkContext := range linkContexts {
 
-			log.Debugf("Task: %s, linkData: %v\n", task.Name(), linkContext)
+			logger.Debugf("Task: %s, linkData: %v\n", task.Name(), linkContext)
 			if linkContext.State() != STATE_LINK_TRUE {
 				ready = false
 				break
@@ -82,10 +80,10 @@ func (b *SimpleTaskBehavior) Enter(context model.TaskContext, enterCode int) (ev
 	}
 
 	if ready {
-		log.Debugf("Task Ready\n")
+		logger.Debugf("Task Ready\n")
 		context.SetState(STATE_READY)
 	} else {
-		log.Debugf("Task Not Ready\n")
+		logger.Debugf("Task Not Ready\n")
 	}
 
 	return ready, 0
@@ -94,10 +92,10 @@ func (b *SimpleTaskBehavior) Enter(context model.TaskContext, enterCode int) (ev
 func (b *SimpleTaskBehavior) Eval(context model.TaskContext, evalCode int) (done bool, doneCode int, err error) {
 
 	task := context.Task()
-	log.Debugf("Task Eval: %s\n", task)
+	logger.Debugf("Task Eval: %s\n", task)
 
 	if len(task.ChildTasks()) > 0 {
-		log.Debugf("Has Children\n")
+		logger.Debugf("Has Children\n")
 
 		context.SetState(STATE_WAITING)
 
@@ -119,7 +117,7 @@ func (b *SimpleTaskBehavior) Eval(context model.TaskContext, evalCode int) (done
 }
 
 func (b *SimpleTaskBehavior) PostEval(context model.TaskContext, evalCode int, data interface{}) (done bool, doneCode int, err error) {
-	log.Debugf("Task PostEval\n")
+	logger.Debugf("Task PostEval\n")
 
 	if context.HasActivity() { //and is async
 
@@ -139,7 +137,7 @@ func (b *SimpleTaskBehavior) Done(context model.TaskContext, doneCode int) (noti
 
 	task := context.Task()
 
-	log.Debugf("done task:%s\n", task.Name())
+	logger.Debugf("done task:%s\n", task.Name())
 
 	links := task.ToLinks()
 
@@ -168,7 +166,7 @@ func (b *SimpleTaskBehavior) Done(context model.TaskContext, doneCode int) (noti
 }
 
 func (b *SimpleTaskBehavior) ChildDone(context model.TaskContext, childTask *flowdef.Task, childDoneCode int) (done bool, doneCode int) {
-	log.Debugf("Task ChildDone\n")
+	logger.Debugf("Task ChildDone\n")
 
 	return true, 0
 }
@@ -181,7 +179,7 @@ type SimpleLinkBehavior struct {
 
 func (b *SimpleLinkBehavior) Eval(context model.LinkInst, evalCode int) {
 
-	log.Debugf("Link Eval\n")
+	logger.Debugf("Link Eval\n")
 
 	context.SetState(STATE_LINK_TRUE)
 }

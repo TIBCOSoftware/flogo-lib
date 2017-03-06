@@ -17,6 +17,7 @@ const (
 	ARRAY
 	PARAMS
 	ANY
+	COMPLEX_OBJECT
 )
 
 var types = [...]string{
@@ -28,6 +29,7 @@ var types = [...]string{
 	"array",
 	"params",
 	"any",
+	"complex_object",
 }
 
 var typeMap = map[string]Type{
@@ -39,10 +41,11 @@ var typeMap = map[string]Type{
 	"array":   ARRAY,
 	"params":  PARAMS,
 	"any":     ANY,
+	"complex_object" : COMPLEX_OBJECT,
 }
 
 func (t Type) String() string {
-	return types[t-1]
+	return types[t - 1]
 }
 
 // ToTypeEnum get the data type that corresponds to the specified name
@@ -70,6 +73,8 @@ func GetType(val interface{}) (Type, error) {
 		return OBJECT, nil
 	case []interface{}:
 		return ARRAY, nil
+	case ComplexObject:
+		return COMPLEX_OBJECT, nil
 	default:
 		return 0, fmt.Errorf("Unable to determine type of %#v", t)
 	}

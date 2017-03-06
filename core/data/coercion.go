@@ -28,6 +28,8 @@ func CoerceToValue(value interface{}, dataType Type) (interface{}, error) {
 		coerced, err = CoerceToArray(value)
 	case PARAMS:
 		coerced, err = CoerceToParams(value)
+	case COMPLEX_OBJECT:
+		coerced, err = CoerceToComplexObject(value)
 	case ANY:
 		coerced, err = CoerceToAny(value)
 	}
@@ -176,13 +178,13 @@ func CoerceToAny(val interface{}) (interface{}, error) {
 
 	case json.Number:
 
-		if ( strings.Contains(t.String(), ".") ) {
-			return t.Float64();
+		if strings.Contains(t.String(), ".") {
+			return t.Float64()
 		} else {
-			return t.Int64();
+			return t.Int64()
 		}
 	default:
-		return val, nil;
+		return val, nil
 	}
 }
 
@@ -236,4 +238,51 @@ func CoerceToParams(val interface{}) (map[string]string, error) {
 	default:
 		return nil, fmt.Errorf("Unable to coerce %#v to map[string]string", val)
 	}
+}
+
+// CoerceToObject coerce a value to an complex object
+func CoerceToComplexObject(val interface{}) (*ComplexObject, error) {
+	//If the val is nil then just return empty struct
+	var emptyComplexObject = &ComplexObject{Value: "{}"}
+	if val == nil {
+		return emptyComplexObject, nil
+	}
+	switch t := val.(type) {
+	case string:
+		if val == "" {
+			return emptyComplexObject, nil
+		} else {
+			complexObject := &ComplexObject{}
+			err := json.Unmarshal([]byte(t), complexObject)
+			if err != nil {
+				return nil, err
+
+			}
+			return handleComplex(complexObject), nil
+		}
+	case map[string]interface{}:
+		v, err := json.Marshal(val)
+		if err != nil {
+			return nil, err
+		}
+		complexObject := &ComplexObject{}
+		err = json.Unmarshal(v, complexObject)
+		if err != nil {
+			return nil, err
+		}
+		return handleComplex(complexObject), nil
+	case *ComplexObject:
+		return handleComplex(val.(*ComplexObject)), nil
+	default:
+		return nil, fmt.Errorf("Unable to coerce %#v to complex object", val)
+	}
+}
+
+func handleComplex(complex *ComplexObject) *ComplexObject {
+	if complex != nil {
+		if complex.Value == "" {
+			complex.Value = "{}"
+		}
+	}
+	return complex
 }

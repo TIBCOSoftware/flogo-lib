@@ -5,20 +5,16 @@ import (
 	"errors"
 
 	"github.com/TIBCOSoftware/flogo-lib/core/action"
-	"github.com/op/go-logging"
 )
 
-var log = logging.MustGetLogger("runner")
 
 // DirectRunner runs an action synchronously
 type DirectRunner struct {
 }
 
 // NewDirectRunner create a new DirectRunner
-func NewDirectRunner() *DirectRunner {
-
-	var directRunner DirectRunner
-	return &directRunner
+func NewDirect() *DirectRunner {
+	return &DirectRunner{}
 }
 
 // Start will start the engine, by starting all of its workers

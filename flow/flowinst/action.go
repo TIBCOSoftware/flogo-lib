@@ -9,7 +9,7 @@ import (
 	"github.com/TIBCOSoftware/flogo-lib/core/trigger"
 	"github.com/TIBCOSoftware/flogo-lib/flow/flowdef"
 	"github.com/TIBCOSoftware/flogo-lib/util"
-	"github.com/op/go-logging"
+	"github.com/TIBCOSoftware/flogo-lib/logger"
 )
 
 const (
@@ -86,7 +86,7 @@ func (fa *FlowAction) Run(context context.Context, uri string, options interface
 
 	switch op {
 	case AoStart:
-		flow := fa.flowProvider.GetFlow(uri)
+		flow, _ := fa.flowProvider.GetFlow(uri)
 
 		if flow == nil {
 			err := fmt.Errorf("Flow [%s] not found", uri)
@@ -94,13 +94,13 @@ func (fa *FlowAction) Run(context context.Context, uri string, options interface
 		}
 
 		instanceID := fa.idGenerator.NextAsString()
-		log.Debug("Creating Instance: ", instanceID)
+		logger.Debug("Creating Instance: ", instanceID)
 
 		instance = NewFlowInstance(instanceID, uri, flow)
 	case AoResume:
 		if ok {
 			instance = ro.InitialState
-			log.Debug("Resuming Instance: ", instance.ID())
+			logger.Debug("Resuming Instance: ", instance.ID())
 		} else {
 			return errors.New("Unable to resume instance, resume options not provided")
 		}
@@ -110,24 +110,24 @@ func (fa *FlowAction) Run(context context.Context, uri string, options interface
 			instanceID := fa.idGenerator.NextAsString()
 			instance.Restart(instanceID, fa.flowProvider)
 
-			log.Debug("Restarting Instance: ", instanceID)
+			logger.Debug("Restarting Instance: ", instanceID)
 		} else {
 			return errors.New("Unable to restart instance, restart options not provided")
 		}
 	}
 
 	if ok && ro.ExecOptions != nil {
-		log.Debugf("Applying Exec Options to instance: %s\n", instance.ID())
-		applyExecOptions(instance, ro.ExecOptions)
+		logger.Debugf("Applying Exec Options to instance: %s\n", instance.ID())
+		ApplyExecOptions(instance, ro.ExecOptions)
 	}
 
 	triggerAttrs, ok := trigger.FromContext(context)
 
-	if log.IsEnabledFor(logging.DEBUG) && ok {
+	if ok {
 		if len(triggerAttrs) > 0 {
-			log.Debug("Run Attributes:")
+			logger.Debug("Run Attributes:")
 			for _, attr := range triggerAttrs {
-				log.Debugf(" Attr:%s, Type:%s, Value:%v", attr.Name, attr.Type.String(), attr.Value)
+				logger.Debugf(" Attr:%s, Type:%s, Value:%v", attr.Name, attr.Type.String(), attr.Value)
 			}
 		}
 	}
@@ -138,7 +138,7 @@ func (fa *FlowAction) Run(context context.Context, uri string, options interface
 		instance.UpdateAttrs(triggerAttrs)
 	}
 
-	log.Debugf("Executing instance: %s\n", instance.ID())
+	logger.Debugf("Executing instance: %s\n", instance.ID())
 
 	stepCount := 0
 	hasWork := true
@@ -155,7 +155,7 @@ func (fa *FlowAction) Run(context context.Context, uri string, options interface
 
 		for hasWork && instance.Status() < StatusCompleted && stepCount < fa.actionOptions.MaxStepCount {
 			stepCount++
-			log.Debugf("Step: %d\n", stepCount)
+			logger.Debugf("Step: %d\n", stepCount)
 			hasWork = instance.DoStep()
 
 			if fa.actionOptions.Record {
@@ -168,10 +168,10 @@ func (fa *FlowAction) Run(context context.Context, uri string, options interface
 			handler.HandleResult(200, &IDResponse{ID: instance.ID()}, nil)
 		}
 
-		log.Debugf("Done Executing A.instance [%s] - Status: %d\n", instance.ID(), instance.Status())
+		logger.Debugf("Done Executing A.instance [%s] - Status: %d\n", instance.ID(), instance.Status())
 
 		if instance.Status() == StatusCompleted {
-			log.Infof("Flow [%s] Completed", instance.ID())
+			logger.Infof("Flow [%s] Completed", instance.ID())
 		}
 	}()
 

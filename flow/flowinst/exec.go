@@ -2,6 +2,7 @@ package flowinst
 
 import (
 	"github.com/TIBCOSoftware/flogo-lib/flow/support"
+	"github.com/TIBCOSoftware/flogo-lib/logger"
 )
 
 // ExecOptions are optional Patch & Interceptor to be used during instance execution
@@ -17,19 +18,19 @@ type IDGenerator interface {
 	NewFlowInstanceID() string
 }
 
-// applyExecOptions applies any execution options to the flow instance
-func applyExecOptions(instance *Instance, execOptions *ExecOptions) {
+// ApplyExecOptions applies any execution options to the flow instance
+func ApplyExecOptions(instance *Instance, execOptions *ExecOptions) {
 
 	if execOptions != nil {
 
 		if execOptions.Patch != nil {
-			log.Infof("Instance [%s] has patch", instance.ID())
+			logger.Infof("Instance [%s] has patch", instance.ID())
 			instance.Patch = execOptions.Patch
 			instance.Patch.Init()
 		}
 
 		if execOptions.Interceptor != nil {
-			log.Infof("Instance [%s] has interceptor", instance.ID)
+			logger.Infof("Instance [%s] has interceptor", instance.ID)
 			instance.Interceptor = execOptions.Interceptor
 			instance.Interceptor.Init()
 		}

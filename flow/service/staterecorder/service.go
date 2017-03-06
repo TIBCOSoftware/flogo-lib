@@ -9,10 +9,9 @@ import (
 	"github.com/TIBCOSoftware/flogo-lib/flow/flowinst"
 	"github.com/TIBCOSoftware/flogo-lib/flow/service"
 	"github.com/TIBCOSoftware/flogo-lib/util"
-	"github.com/op/go-logging"
+	"github.com/TIBCOSoftware/flogo-lib/logger"
 )
 
-var log = logging.MustGetLogger("staterecorder")
 
 // RemoteStateRecorder is an implementation of StateRecorder service
 // that can access flows via URI
@@ -66,7 +65,7 @@ func (sr *RemoteStateRecorder) init(settings map[string]string) {
 		sr.host = host + ":" + port
 	}
 
-	log.Debugf("RemoteStateRecorder: StateRecoder Server = %s", sr.host)
+	logger.Debugf("RemoteStateRecorder: StateRecoder Server = %s", sr.host)
 }
 
 // RecordSnapshot implements flowinst.StateRecorder.RecordSnapshot
@@ -82,11 +81,11 @@ func (sr *RemoteStateRecorder) RecordSnapshot(instance *flowinst.Instance) {
 
 	uri := sr.host + "/instances/snapshot"
 
-	log.Debugf("POST Snapshot: %s\n", uri)
+	logger.Debugf("POST Snapshot: %s\n", uri)
 
 	jsonReq, _ := json.Marshal(storeReq)
 
-	log.Debug("JSON: ", string(jsonReq))
+	logger.Debug("JSON: ", string(jsonReq))
 
 	req, err := http.NewRequest("POST", uri, bytes.NewBuffer(jsonReq))
 	req.Header.Set("Content-Type", "application/json")
@@ -98,7 +97,7 @@ func (sr *RemoteStateRecorder) RecordSnapshot(instance *flowinst.Instance) {
 	}
 	defer resp.Body.Close()
 
-	log.Debug("response Status:", resp.Status)
+	logger.Debug("response Status:", resp.Status)
 
 	if resp.StatusCode >= 300 {
 		//error
@@ -118,11 +117,11 @@ func (sr *RemoteStateRecorder) RecordStep(instance *flowinst.Instance) {
 
 	uri := sr.host + "/instances/steps"
 
-	log.Debugf("POST Snapshot: %s\n", uri)
+	logger.Debugf("POST Snapshot: %s\n", uri)
 
 	jsonReq, _ := json.Marshal(storeReq)
 
-	log.Debug("JSON: ", string(jsonReq))
+	logger.Debug("JSON: ", string(jsonReq))
 
 	req, err := http.NewRequest("POST", uri, bytes.NewBuffer(jsonReq))
 	req.Header.Set("Content-Type", "application/json")
@@ -134,7 +133,7 @@ func (sr *RemoteStateRecorder) RecordStep(instance *flowinst.Instance) {
 	}
 	defer resp.Body.Close()
 
-	log.Debug("response Status:", resp.Status)
+	logger.Debug("response Status:", resp.Status)
 
 	if resp.StatusCode >= 300 {
 		//error

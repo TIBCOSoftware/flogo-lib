@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/TIBCOSoftware/flogo-lib/config"
 	"github.com/TIBCOSoftware/flogo-lib/core/trigger"
 	"github.com/TIBCOSoftware/flogo-lib/engine/runner"
 	"github.com/TIBCOSoftware/flogo-lib/util"
@@ -45,9 +46,8 @@ func DefaultConfig() *Config {
 
 	var engineConfig Config
 
-	engineConfig.LogLevel = "DEBUG"
+	engineConfig.LogLevel = config.GetLogLevel()
 	engineConfig.RunnerConfig = defaultRunnerConfig()
-	//engineConfig.Services = service.DefaultServicesConfig()
 
 	return &engineConfig
 }
@@ -157,6 +157,13 @@ func LoadConfigFromFile(fileName string) *Config {
 			panic(err)
 		}
 
+		// Quick fix until we refactor the runnerConfig in flogo.json
+		if engineConfig.RunnerConfig != nil {
+			engineConfig.RunnerConfig.Pooled = NewPooledConfig()
+		}
+
+		engineConfig.LogLevel = config.GetLogLevel()
+
 		return engineConfig
 	}
 
@@ -172,6 +179,13 @@ func LoadConfigFromJSON(configJSON string) *Config {
 		err := fmt.Errorf("Error decoding %s - %s", "engineConfig", decodeErr.Error())
 		panic(err)
 	}
+
+	// Quick fix until we refactor the runnerConfig in flogo.json
+	if engineConfig.RunnerConfig != nil {
+		engineConfig.RunnerConfig.Pooled = NewPooledConfig()
+	}
+
+	engineConfig.LogLevel = config.GetLogLevel()
 
 	return engineConfig
 }
@@ -216,5 +230,10 @@ func LoadTriggersConfigFromJSON(configJSON string) *TriggersConfig {
 }
 
 func defaultRunnerConfig() *RunnerConfig {
-	return &RunnerConfig{Type: "pooled", Pooled: &runner.PooledConfig{NumWorkers: 5, WorkQueueSize: 50}}
+	return &RunnerConfig{Type: "pooled", Pooled: NewPooledConfig()}
+}
+
+//NewPooledConfig creates a new Pooled config, looks for environment variables to override default values
+func NewPooledConfig() *runner.PooledConfig {
+	return &runner.PooledConfig{NumWorkers: config.GetRunnerWorkers(), WorkQueueSize: config.GetRunnerQueueSize()}
 }

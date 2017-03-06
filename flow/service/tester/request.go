@@ -9,10 +9,9 @@ import (
 	"github.com/TIBCOSoftware/flogo-lib/engine/runner"
 	"github.com/TIBCOSoftware/flogo-lib/flow/flowinst"
 	"github.com/TIBCOSoftware/flogo-lib/flow/support"
-	"github.com/op/go-logging"
+	"github.com/TIBCOSoftware/flogo-lib/logger"
 )
 
-var log = logging.MustGetLogger("tester")
 
 // RequestProcessor processes request objects and invokes the corresponding
 // flow Manager methods
@@ -24,7 +23,7 @@ type RequestProcessor struct {
 func NewRequestProcessor() *RequestProcessor {
 
 	var rp RequestProcessor
-	rp.runner = runner.NewDirectRunner()
+	rp.runner = runner.NewDirect()
 
 	return &rp
 }
@@ -68,7 +67,7 @@ func (rp *RequestProcessor) RestartFlow(restartRequest *RestartRequest) (code in
 
 	if restartRequest.Data != nil {
 
-		log.Debugf("Updating flow attrs: %v", restartRequest.Data)
+		logger.Debugf("Updating flow attrs: %v", restartRequest.Data)
 		attrs := make([]*data.Attribute, len(restartRequest.Data))
 
 		for k, v := range restartRequest.Data {
@@ -80,7 +79,7 @@ func (rp *RequestProcessor) RestartFlow(restartRequest *RestartRequest) (code in
 
 	action := action.Get(flowinst.ActionType)
 
-	ro := &flowinst.RunOptions{Op: flowinst.AoRestart, ReturnID: true, InitialState:restartRequest.InitialState, ExecOptions: execOptions}
+	ro := &flowinst.RunOptions{Op: flowinst.AoRestart, ReturnID: true, InitialState: restartRequest.InitialState, ExecOptions: execOptions}
 	return rp.runner.Run(ctx, action, restartRequest.InitialState.FlowURI, ro)
 }
 
@@ -94,7 +93,7 @@ func (rp *RequestProcessor) ResumeFlow(resumeRequest *ResumeRequest) (code int, 
 
 	if resumeRequest.Data != nil {
 
-		log.Debugf("Updating flow attrs: %v", resumeRequest.Data)
+		logger.Debugf("Updating flow attrs: %v", resumeRequest.Data)
 		attrs := make([]*data.Attribute, len(resumeRequest.Data))
 
 		for k, v := range resumeRequest.Data {

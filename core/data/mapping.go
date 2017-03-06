@@ -3,6 +3,7 @@ package data
 import (
 	"fmt"
 	"strconv"
+	"strings"
 )
 
 // MappingType is an enum for possible Mapping Types
@@ -80,7 +81,8 @@ func (m *Mapper) Apply(inputScope Scope, outputScope Scope) {
 				} else {
 					//for now assume if we have a path, attr is "object"
 					valMap := attrValue.(map[string]interface{})
-					attrValue, exists = valMap[attrPath]
+					attrValue = GetMapValue(valMap, attrPath)
+					//attrValue, exists = valMap[attrPath]
 				}
 			}
 
@@ -152,4 +154,58 @@ func (m *Mapper) Apply(inputScope Scope, outputScope Scope) {
 			//todo implement script mapping
 		}
 	}
+}
+
+func GetMapValue(valueMap map[string]interface{}, path string) interface{} {
+
+	var pathComponents []string = strings.Split(path, ".")
+	lastPcIdx := len(pathComponents) - 1
+
+	tmpObj := valueMap
+	for pcIdx, pc := range pathComponents {
+		if strings.Index(pc, "[") > -1 {
+			//Its Array
+			bIdx := strings.Index(pc, "[")
+			arrayName := pc[:bIdx]
+			if tmpObj[arrayName] == nil {
+				panic(fmt.Sprintf("Invalid mapping [%s].", path))
+			}
+
+			switch tmpObj[arrayName].(type) {
+			case []interface{}:
+				//Array
+				arrayIdx, _ := strconv.Atoi(pc[bIdx+1 : len(pc)-1])
+				if arrayIdx >= len(tmpObj[arrayName].([]interface{})) {
+					panic(fmt.Sprintf("Invalid mapping [%s]. Index out of range.", path))
+				}
+
+				arrayObject := tmpObj[arrayName].([]interface{})[arrayIdx]
+				switch arrayObject.(type) {
+				case map[string]interface{}:
+					tmpObj = arrayObject.(map[string]interface{})
+				case interface{}:
+					return arrayObject
+				}
+			case map[string]interface{}:
+				//Object
+				tmpObj = tmpObj[arrayName].(map[string]interface{})
+			case interface{}:
+				return tmpObj[arrayName]
+			}
+		}
+		
+		if pcIdx == lastPcIdx {
+			return tmpObj[pc]
+		}
+
+		switch tmpObj[pc].(type) {
+		//todo need to throw error if not a map
+
+		case map[string]interface{}:
+			tmpObj = tmpObj[pc].(map[string]interface{})
+		}
+
+	}
+
+	return tmpObj
 }

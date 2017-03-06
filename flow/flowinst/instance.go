@@ -11,11 +11,9 @@ import (
 	"github.com/TIBCOSoftware/flogo-lib/flow/flowdef"
 	"github.com/TIBCOSoftware/flogo-lib/flow/model"
 	"github.com/TIBCOSoftware/flogo-lib/flow/support"
+	"github.com/TIBCOSoftware/flogo-lib/logger"
 	"github.com/TIBCOSoftware/flogo-lib/util"
-	"github.com/op/go-logging"
 )
-
-var log = logging.MustGetLogger("instance")
 
 const (
 	idEhTasEnv    = 0
@@ -45,6 +43,31 @@ type Instance struct {
 
 	flowProvider flowdef.Provider
 	replyHandler support.ReplyHandler
+}
+
+// New creates a new Flow Instance from the specified Flow
+func New(instanceID string, flowURI string, flow *flowdef.Definition, flowModel *model.FlowModel) *Instance {
+	var instance Instance
+	instance.id = instanceID
+	instance.stepID = 0
+	instance.FlowURI = flowURI
+	instance.Flow = flow
+	instance.FlowModel = flowModel
+	instance.status = StatusNotStarted
+	instance.WorkItemQueue = util.NewSyncQueue()
+	instance.ChangeTracker = NewInstanceChangeTracker()
+
+	var taskEnv TaskEnv
+	taskEnv.ID = idRootTaskEnv
+	taskEnv.Task = flow.RootTask()
+	taskEnv.taskID = flow.RootTask().ID()
+	taskEnv.Instance = &instance
+	taskEnv.TaskDatas = make(map[int]*TaskData)
+	taskEnv.LinkDatas = make(map[int]*LinkData)
+
+	instance.RootTaskEnv = &taskEnv
+
+	return &instance
 }
 
 // NewFlowInstance creates a new Flow Instance from the specified Flow
@@ -82,7 +105,7 @@ func (pi *Instance) SetFlowProvider(provider flowdef.Provider) {
 func (pi *Instance) Restart(id string, provider flowdef.Provider) {
 	pi.id = id
 	pi.flowProvider = provider
-	pi.Flow = pi.flowProvider.GetFlow(pi.FlowURI)
+	pi.Flow, _ = pi.flowProvider.GetFlow(pi.FlowURI)
 	pi.FlowModel = model.Get(pi.Flow.ModelID())
 	pi.RootTaskEnv.init(pi)
 }
@@ -144,7 +167,7 @@ func (pi *Instance) UpdateAttrs(attrs []*data.Attribute) {
 
 	if attrs != nil {
 
-		log.Debugf("Updating flow attrs: %v", attrs)
+		logger.Debugf("Updating flow attrs: %v", attrs)
 
 		if pi.Attrs == nil {
 			pi.Attrs = make(map[string]*data.Attribute, len(attrs))
@@ -165,7 +188,7 @@ func (pi *Instance) Start(startAttrs []*data.Attribute) bool {
 	//apply inputMapper if we have one, otherwise do default mappings
 	applyDefaultInstanceInputMappings(pi, startAttrs)
 
-	log.Debugf("FlowInstance Flow: %v", pi.FlowModel)
+	logger.Infof("FlowInstance Flow: %v", pi.FlowModel)
 	model := pi.FlowModel.GetFlowBehavior()
 
 	//todo: error if model not found
@@ -206,7 +229,7 @@ func (pi *Instance) DoStep() bool {
 		item, ok := pi.WorkItemQueue.Pop()
 
 		if ok {
-			log.Debug("popped item off queue")
+			logger.Debug("popped item off queue")
 
 			workItem := item.(*WorkItem)
 
@@ -215,7 +238,7 @@ func (pi *Instance) DoStep() bool {
 			pi.execTask(workItem)
 			hasNext = true
 		} else {
-			log.Debug("queue emtpy")
+			logger.Debug("queue emtpy")
 		}
 	}
 
@@ -243,7 +266,7 @@ func (pi *Instance) scheduleEval(taskData *TaskData, evalCode int) {
 	pi.wiCounter++
 
 	workItem := NewWorkItem(pi.wiCounter, taskData, EtEval, evalCode)
-	log.Debugf("Scheduling EVAL on task: %s\n", taskData.task.Name())
+	logger.Debugf("Scheduling EVAL on task: %s\n", taskData.task.Name())
 
 	pi.WorkItemQueue.Push(workItem)
 	pi.ChangeTracker.trackWorkItem(&WorkItemQueueChange{ChgType: CtAdd, ID: workItem.ID, WorkItem: workItem})
@@ -256,12 +279,10 @@ func (pi *Instance) execTask(workItem *WorkItem) {
 		if r := recover(); r != nil {
 
 			err := fmt.Errorf("Unhandled Error executing task '%s' : %v\n", workItem.TaskData.task.Name(), r)
-			log.Error(err)
+			logger.Error(err)
 
 			// todo: useful for debugging
-			if log.IsEnabledFor(logging.DEBUG) {
-				log.Debugf("StackTrace: %s", debug.Stack())
-			}
+			logger.Debugf("StackTrace: %s", debug.Stack())
 
 			pi.handleError(workItem.TaskData, activity.NewError(err.Error()))
 		}
@@ -309,7 +330,7 @@ func (pi *Instance) execTask(workItem *WorkItem) {
 
 			if !appliedMapper && !taskData.task.IsScope() {
 
-				log.Debug("Applying Default Output Mapping")
+				logger.Debug("Applying Default Output Mapping")
 				applyDefaultActivityOutputMappings(pi, taskData)
 			}
 		}
@@ -369,7 +390,7 @@ func (pi *Instance) handleTaskDone(taskBehavior model.TaskBehavior, taskData *Ta
 
 		for _, taskEntry := range taskEntries {
 
-			log.Debugf("execTask - TaskEntry: %v\n", taskEntry)
+			logger.Debugf("execTask - TaskEntry: %v\n", taskEntry)
 			taskToEnterBehavior := pi.FlowModel.GetTaskBehavior(taskEntry.Task.TypeID())
 
 			enterTaskData, _ := taskData.taskEnv.FindOrCreateTaskData(taskEntry.Task)
@@ -440,7 +461,7 @@ func (pi *Instance) SetAttrValue(attrName string, value interface{}) error {
 		pi.Attrs = make(map[string]*data.Attribute)
 	}
 
-	log.Debugf("SetAttr - name: %s, value:%v\n", attrName, value)
+	logger.Debugf("SetAttr - name: %s, value:%v\n", attrName, value)
 
 	existingAttr, exists := pi.GetAttr(attrName)
 
@@ -461,7 +482,7 @@ func (pi *Instance) AddAttr(attrName string, attrType data.Type, value interface
 		pi.Attrs = make(map[string]*data.Attribute)
 	}
 
-	log.Debugf("AddAttr - name: %s, type: %s, value:%v\n", attrName, attrType, value)
+	logger.Debugf("AddAttr - name: %s, type: %s, value:%v\n", attrName, attrType, value)
 
 	var attr *data.Attribute
 
@@ -641,7 +662,7 @@ func (td *TaskData) Task() *flowdef.Task {
 // FromInstLinks implements model.TaskContext.FromInstLinks
 func (td *TaskData) FromInstLinks() []model.LinkInst {
 
-	log.Debugf("FromInstLinks: task=%v\n", td.Task)
+	logger.Debugf("FromInstLinks: task=%v\n", td.Task)
 
 	links := td.task.FromLinks()
 
@@ -662,7 +683,7 @@ func (td *TaskData) FromInstLinks() []model.LinkInst {
 // ToInstLinks implements model.TaskContext.ToInstLinks,
 func (td *TaskData) ToInstLinks() []model.LinkInst {
 
-	log.Debugf("ToInstLinks: task=%v\n", td.Task)
+	logger.Debugf("ToInstLinks: task=%v\n", td.Task)
 
 	links := td.task.ToLinks()
 
@@ -733,7 +754,7 @@ func (td *TaskData) EnterChildren(taskEntries []*model.TaskEntry) {
 			enterCode = taskEntries[0].EnterCode
 		}
 
-		log.Debugf("Entering '%s' Task's %d children\n", td.task.Name(), len(td.task.ChildTasks()))
+		logger.Debugf("Entering '%s' Task's %d children\n", td.task.Name(), len(td.task.ChildTasks()))
 
 		for _, task := range td.task.ChildTasks() {
 
@@ -767,16 +788,14 @@ func (td *TaskData) EnterChildren(taskEntries []*model.TaskEntry) {
 // EvalLink implements activity.ActivityContext.EvalLink method
 func (td *TaskData) EvalLink(link *flowdef.Link) (result bool, err error) {
 
-	log.Debugf("TaskContext.EvalLink: %d\n", link.ID())
+	logger.Debugf("TaskContext.EvalLink: %d\n", link.ID())
 
 	defer func() {
 		if r := recover(); r != nil {
-			log.Warningf("Unhandled Error evaluating link '%s' : %v\n", link.ID(), r)
+			logger.Warnf("Unhandled Error evaluating link '%s' : %v\n", link.ID(), r)
 
 			// todo: useful for debugging
-			if log.IsEnabledFor(logging.DEBUG) {
-				log.Debugf("StackTrace: %s", debug.Stack())
-			}
+			logger.Debugf("StackTrace: %s", debug.Stack())
 
 			if err != nil {
 				err = fmt.Errorf("%v", r)
@@ -808,12 +827,10 @@ func (td *TaskData) EvalActivity() (done bool, evalErr error) {
 
 	defer func() {
 		if r := recover(); r != nil {
-			log.Warningf("Unhandled Error executing activity '%s'[%s] : %v\n", td.task.Name(), td.task.ActivityType(), r)
+			logger.Warnf("Unhandled Error executing activity '%s'[%s] : %v\n", td.task.Name(), td.task.ActivityType(), r)
 
 			// todo: useful for debugging
-			if log.IsEnabledFor(logging.DEBUG) {
-				log.Debugf("StackTrace: %s", debug.Stack())
-			}
+			logger.Debugf("StackTrace: %s", debug.Stack())
 
 			if evalErr == nil {
 				evalErr = activity.NewError(fmt.Sprintf("%v", r))
@@ -876,7 +893,7 @@ func (td *TaskData) OutputScope() data.Scope {
 		act := activity.Get(td.task.ActivityType())
 		td.outScope = NewFixedTaskScope(act.Metadata().Outputs, nil)
 
-		log.Debugf("OutputScope: %v\n", td.outScope)
+		logger.Debugf("OutputScope: %v\n", td.outScope)
 	} else if td.task.IsScope() {
 
 		//add flow scope
@@ -899,7 +916,7 @@ func (td *TaskData) GetInput(name string) interface{} {
 // SetOutput implements activity.Context.SetOutput
 func (td *TaskData) SetOutput(name string, value interface{}) {
 
-	log.Debugf("SET OUTPUT: %s = %v\n", name, value)
+	logger.Debugf("SET OUTPUT: %s = %v\n", name, value)
 	td.OutputScope().SetAttrValue(name, value)
 }
 

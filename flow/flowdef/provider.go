@@ -5,5 +5,5 @@ package flowdef
 type Provider interface {
 
 	// GetFlow retrieves the flow definition for the specified URI
-	GetFlow(flowURI string) *Definition
+	GetFlow(flowURI string) (*Definition, error)
 }

@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 )
 
+
 // EmbeddedFlowManager is a simple manager for embedded flows
 type EmbeddedFlowManager struct {
 	flowsAreCompressed bool

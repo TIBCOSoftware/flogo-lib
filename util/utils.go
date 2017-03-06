@@ -7,19 +7,17 @@ import (
 	"runtime/debug"
 	"strings"
 
-	"github.com/op/go-logging"
+	"github.com/TIBCOSoftware/flogo-lib/logger"
 )
 
 // HandlePanic helper method to handle panics
 func HandlePanic(name string, err *error) {
 	if r := recover(); r != nil {
 
-		log.Warningf("%s: PANIC Occurred  : %v\n", name, r)
+		logger.Warnf("%s: PANIC Occurred  : %v\n", name, r)
 
 		// todo: useful for debugging
-		if log.IsEnabledFor(logging.DEBUG) {
-			log.Debugf("StackTrace: %s", debug.Stack())
-		}
+		logger.Debugf("StackTrace: %s", debug.Stack())
 
 		if err != nil {
 			*err = fmt.Errorf("%v", r)
