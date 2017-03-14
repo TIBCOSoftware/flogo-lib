@@ -1,4 +1,5 @@
 package activity
+import "github.com/TIBCOSoftware/flogo-lib/types"
 
 // Activity is an interface for defining a custom Task Execution
 type Activity interface {
@@ -9,4 +10,8 @@ type Activity interface {
 
 	// ActivityMetadata returns the metadata of the activity
 	Metadata() *Metadata
+}
+
+type ActivityFactory interface {
+	NewActivity(config types.ActivityConfig) (Activity, error)
 }

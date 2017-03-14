@@ -8,9 +8,10 @@ import (
 
 // Metadata is the metadata for the Activity
 type Metadata struct {
-	ID      string
-	Inputs  map[string]*data.Attribute
-	Outputs map[string]*data.Attribute
+	ID       string
+	Settings map[string]*data.Attribute
+	Inputs   map[string]*data.Attribute
+	Outputs  map[string]*data.Attribute
 }
 
 // NewMetadata creates the metadata object from its json representation
@@ -39,14 +40,23 @@ func (md *Metadata) MarshalJSON() ([]byte, error) {
 		outputs = append(outputs, value)
 	}
 
+	settings := make([]*data.Attribute, 0, len(md.Settings))
+	if md.Settings != nil {
+		for _, value := range md.Settings {
+			settings = append(settings, value)
+		}
+	}
+
 	return json.Marshal(&struct {
-		Name    string            `json:"name"`
-		Inputs  []*data.Attribute `json:"inputs"`
-		Outputs []*data.Attribute `json:"outputs"`
+		Name     string            `json:"name"`
+		Settings []*data.Attribute `json:"settings"`
+		Inputs   []*data.Attribute `json:"inputs"`
+		Outputs  []*data.Attribute `json:"outputs"`
 	}{
-		Name:    md.ID,
-		Inputs:  inputs,
-		Outputs: outputs,
+		Name:     md.ID,
+		Settings: settings,
+		Inputs:   inputs,
+		Outputs:  outputs,
 	})
 }
 
@@ -55,6 +65,7 @@ func (md *Metadata) UnmarshalJSON(b []byte) error {
 
 	ser := &struct {
 		Name    string            `json:"name"`
+		Settings []*data.Attribute `json:"settings"`
 		Inputs  []*data.Attribute `json:"inputs"`
 		Outputs []*data.Attribute `json:"outputs"`
 	}{}
@@ -66,6 +77,7 @@ func (md *Metadata) UnmarshalJSON(b []byte) error {
 	md.ID = ser.Name
 	md.Inputs = make(map[string]*data.Attribute, len(ser.Inputs))
 	md.Outputs = make(map[string]*data.Attribute, len(ser.Outputs))
+	md.Settings = make(map[string]*data.Attribute, len(ser.Settings))
 
 	for _, attr := range ser.Inputs {
 		md.Inputs[attr.Name] = attr
@@ -73,6 +85,10 @@ func (md *Metadata) UnmarshalJSON(b []byte) error {
 
 	for _, attr := range ser.Outputs {
 		md.Outputs[attr.Name] = attr
+	}
+	
+	for _, attr := range ser.Settings {
+		md.Settings[attr.Name] = attr
 	}
 
 	return nil
