@@ -117,7 +117,7 @@ func addTask(def *Definition, task *Task, rep *TaskRep) {
 	if factory != nil {
 		//Create Instance and Register
 		activityCong := types.ActivityConfig{}
-		activityCong.Id = strconv.Itoa(rep.ID)
+		activityCong.Id = rep.ID
 		activityCong.Name = rep.Name
 		activityCong.FlowName = def.Name()
 		activityCong.Settings = rep.Settings

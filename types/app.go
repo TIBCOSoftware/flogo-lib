@@ -23,7 +23,7 @@ type TriggerConfig struct {
 
 // Configuration for the Activity
 type ActivityConfig struct {
-	Id       string                 `json:"id"`
+	Id       int                 `json:"id"`
 	Name     string                 `json:"name"`
 	FlowName string                 
 	Settings map[string]interface{} `json:"settings"`
