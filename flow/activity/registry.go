@@ -36,29 +36,6 @@ func Register(activity Activity) {
 	activities = newActivities
 }
 
-func RegisterInstance(id string, activity Activity) {
-	activitiesMu.Lock()
-	defer activitiesMu.Unlock()
-
-	if activity == nil {
-		panic("activity.Register: activity is nil")
-	}
-
-	if _, dup := activities[id]; dup {
-		panic("activity.Register: activity already registered " + id)
-	}
-
-	// copy on write to avoid synchronization on access
-	newActivities := make(map[string]Activity, len(activities))
-
-	for k, v := range activities {
-		newActivities[k] = v
-	}
-
-	newActivities[id] = activity
-	activities = newActivities
-}
-
 // Activities gets all the registered activities
 func Activities() []Activity {
 
