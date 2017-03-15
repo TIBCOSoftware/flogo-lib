@@ -17,6 +17,9 @@ type Context interface {
 
 	// SetOutput sets the value of the specified output attribute
 	SetOutput(name string, value interface{})
+	
+	// GetSettings returns the activity configuration values
+	GetSettings(name string) interface{}
 }
 
 // FlowDetails details of the flow that is being executed

@@ -21,14 +21,6 @@ type TriggerConfig struct {
 	Handlers []*TriggerHandler      `json:"handlers"`
 }
 
-// Configuration for the Activity
-type ActivityConfig struct {
-	Id       int                 `json:"id"`
-	Name     string                 `json:"name"`
-	FlowName string                 
-	Settings map[string]interface{} `json:"settings"`
-}
-
 // TriggerHandler is the configuration for the Trigger Handler
 type TriggerHandler struct {
 	ActionId string                 `json:"actionId"`

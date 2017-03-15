@@ -103,6 +103,7 @@ type Task struct {
 	definition *Definition
 	parent     *Task
 	attrs      map[string]*data.Attribute
+	settings   map[string]interface{}
 
 	inputMapper  data.Mapper
 	outputMapper data.Mapper
@@ -179,6 +180,10 @@ func (task *Task) OutputMapper() data.Mapper {
 	return task.outputMapper
 }
 
+// OutputMapper returns the OutputMapper of the task
+func (task *Task) Settings() map[string]interface{} {
+	return task.settings
+} 
 func (task *Task) String() string {
 	return fmt.Sprintf("Task[%d]:'%s'", task.id, task.name)
 }

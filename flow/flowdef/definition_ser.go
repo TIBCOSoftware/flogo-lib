@@ -1,12 +1,8 @@
 package flowdef
 
 import (
-	"fmt"
 	"github.com/TIBCOSoftware/flogo-lib/core/data"
-	"github.com/TIBCOSoftware/flogo-lib/flow/activity"
-	"github.com/TIBCOSoftware/flogo-lib/types"
 	"github.com/TIBCOSoftware/flogo-lib/util"
-	"strconv"
 )
 
 // DefinitionRep is a serializable representation of a flow Definition
@@ -92,6 +88,7 @@ func addTask(def *Definition, task *Task, rep *TaskRep) {
 	task.activityType = rep.ActivityType
 	task.typeID = rep.TypeID
 	task.name = rep.Name
+	task.settings = rep.Settings
 
 	//task.Definition = def
 
@@ -113,26 +110,27 @@ func addTask(def *Definition, task *Task, rep *TaskRep) {
 
 	//Check Activity Factory
 	//TODO Find better place
-	factory := activity.GetFactory(rep.ActivityType)
-	if factory != nil {
-		//Create Instance and Register
-		activityCong := types.ActivityConfig{}
-		activityCong.Id = rep.ID
-		activityCong.Name = rep.Name
-		activityCong.FlowName = def.Name()
-		activityCong.Settings = rep.Settings
-		act, err := factory.NewActivity(activityCong)
-		if err != nil {
-			panic(fmt.Sprintf("Failed to create Activity[%s] in Flow[%s] due to Error:{%s}", rep.Name, def.Name(), err.Error()))
-		}
-		//Override Activity metadata ID with FLOWNAME/ID for uniqueness across flows
-		uniqueID := def.Name() + "/" + strconv.Itoa(rep.ID)
-		act.Metadata().ID = uniqueID
-		//Register activity instance
-		activity.Register(act)
-		//Override Task ActivityType
-		task.activityType = uniqueID
-	}
+//	factory := activity.GetFactory(rep.ActivityType)
+//	if factory != nil {
+//		//Create Instance and Register
+//		activityCong := types.ActivityConfig{}
+//		activityCong.Id = rep.ID
+//		activityCong.Name = rep.Name
+//		activityCong.FlowName = def.Name()
+//		activityCong.Settings = rep.Settings
+//		act, err := factory.NewActivity(activityCong)
+//		if err != nil {
+//			panic(fmt.Sprintf("Failed to create Activity[%s] in Flow[%s] due to Error:{%s}", rep.Name, def.Name(), err.Error()))
+//		}
+//		//Override Activity metadata ID with FLOWNAME/ID for uniqueness across flows
+//		uniqueID := def.Name() + "/" + strconv.Itoa(rep.ID)
+//		act.Metadata().ID = uniqueID
+//		//Register activity instance
+//		activity.Register(act)
+//		//Override Task ActivityType
+//		task.activityType = uniqueID
+//		fmt.Println("UID#"+uniqueID)
+//	}
 	
 	def.tasks[task.id] = task
 	numTasks := len(rep.Tasks)
