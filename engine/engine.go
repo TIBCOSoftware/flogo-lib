@@ -124,7 +124,10 @@ func (e *EngineConfig) Start() {
 
 	// Start the triggers
 	for key, value := range tInstances {
-		util.StartManaged(fmt.Sprintf("Trigger [ '%s' ]", key), value.Interf)
+		err := util.StartManaged(fmt.Sprintf("Trigger [ '%s' ]", key), value.Interf)
+		if err != nil {
+			panic(err)
+		}
 	}
 
 	logger.Info("Engine: Started")
@@ -213,7 +216,9 @@ func (e *Engine) Start() {
 	// start triggers
 	for _, trigger := range triggersToStart {
 		err := util.StartManaged("Trigger [ "+trigger.Metadata().ID+" ]", trigger)
+		logger.Info("Trigger starting")
 		if err != nil {
+			logger.Info("Trigger start failed")
 			panic(err)
 		}
 	}
