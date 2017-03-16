@@ -216,9 +216,7 @@ func (e *Engine) Start() {
 	// start triggers
 	for _, trigger := range triggersToStart {
 		err := util.StartManaged("Trigger [ "+trigger.Metadata().ID+" ]", trigger)
-		logger.Info("Trigger starting")
 		if err != nil {
-			logger.Info("Trigger start failed")
 			panic(err)
 		}
 	}
