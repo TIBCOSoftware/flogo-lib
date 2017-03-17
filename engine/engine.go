@@ -126,7 +126,9 @@ func (e *EngineConfig) Start() {
 	for key, value := range tInstances {
 		err := util.StartManaged(fmt.Sprintf("Trigger [ '%s' ]", key), value.Interf)
 		if err != nil {
-			panic(err)
+			logger.Infof("Engine: StartFailed due to error [%s]", err.Error())
+			logger.Debugf("StackTrace: %s", debug.Stack())
+			os.Exit(1)
 		}
 	}
 
