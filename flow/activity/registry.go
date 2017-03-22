@@ -5,8 +5,8 @@ import (
 )
 
 var (
-	activitiesMu sync.Mutex
-	activities   = make(map[string]Activity)
+	activitiesMu    sync.Mutex
+	activities      = make(map[string]Activity)
 )
 
 // Register registers the specified activity
@@ -54,3 +54,4 @@ func Get(id string) Activity {
 	//var curActivities = activities
 	return activities[id]
 }
+

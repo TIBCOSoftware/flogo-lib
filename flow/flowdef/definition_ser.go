@@ -18,15 +18,16 @@ type DefinitionRep struct {
 
 // TaskRep is a serializable representation of a flow Task
 type TaskRep struct {
-	ID             int                `json:"id"`
-	TypeID         int                `json:"type"`
-	ActivityType   string             `json:"activityType"`
-	Name           string             `json:"name"`
-	Attributes     []*data.Attribute  `json:"attributes,omitempty"`
-	InputMappings  []*data.MappingDef `json:"inputMappings,omitempty"`
-	OutputMappings []*data.MappingDef `json:"ouputMappings,omitempty"`
-	Tasks          []*TaskRep         `json:"tasks,omitempty"`
-	Links          []*LinkRep         `json:"links,omitempty"`
+	ID             int                    `json:"id"`
+	TypeID         int                    `json:"type"`
+	ActivityType   string                 `json:"activityType"`
+	Name           string                 `json:"name"`
+	Settings       map[string]interface{} `json:"settings,omitempty"`
+	Attributes     []*data.Attribute      `json:"attributes,omitempty"`
+	InputMappings  []*data.MappingDef     `json:"inputMappings,omitempty"`
+	OutputMappings []*data.MappingDef     `json:"ouputMappings,omitempty"`
+	Tasks          []*TaskRep             `json:"tasks,omitempty"`
+	Links          []*LinkRep             `json:"links,omitempty"`
 }
 
 // LinkRep is a serializable representation of a flow Link
@@ -52,7 +53,7 @@ func NewDefinition(rep *DefinitionRep) (def *Definition, err error) {
 
 	//todo is this used or needed?
 	if rep.InputMappings != nil {
-		def.inputMapper = GetMapperFactory().NewMapper(&MapperDef{Mappings:rep.InputMappings})
+		def.inputMapper = GetMapperFactory().NewMapper(&MapperDef{Mappings: rep.InputMappings})
 	}
 
 	if len(rep.Attributes) > 0 {
@@ -87,14 +88,16 @@ func addTask(def *Definition, task *Task, rep *TaskRep) {
 	task.activityType = rep.ActivityType
 	task.typeID = rep.TypeID
 	task.name = rep.Name
+	task.settings = rep.Settings
+
 	//task.Definition = def
 
 	if rep.InputMappings != nil {
-		task.inputMapper = GetMapperFactory().NewTaskInputMapper(task, &MapperDef{Mappings:rep.InputMappings})
+		task.inputMapper = GetMapperFactory().NewTaskInputMapper(task, &MapperDef{Mappings: rep.InputMappings})
 	}
 
 	if rep.OutputMappings != nil {
-		task.outputMapper = GetMapperFactory().NewTaskOutputMapper(task, &MapperDef{Mappings:rep.OutputMappings})
+		task.outputMapper = GetMapperFactory().NewTaskOutputMapper(task, &MapperDef{Mappings: rep.OutputMappings})
 	}
 
 	if len(rep.Attributes) > 0 {
@@ -105,6 +108,30 @@ func addTask(def *Definition, task *Task, rep *TaskRep) {
 		}
 	}
 
+	//Check Activity Factory
+	//TODO Find better place
+//	factory := activity.GetFactory(rep.ActivityType)
+//	if factory != nil {
+//		//Create Instance and Register
+//		activityCong := types.ActivityConfig{}
+//		activityCong.Id = rep.ID
+//		activityCong.Name = rep.Name
+//		activityCong.FlowName = def.Name()
+//		activityCong.Settings = rep.Settings
+//		act, err := factory.NewActivity(activityCong)
+//		if err != nil {
+//			panic(fmt.Sprintf("Failed to create Activity[%s] in Flow[%s] due to Error:{%s}", rep.Name, def.Name(), err.Error()))
+//		}
+//		//Override Activity metadata ID with FLOWNAME/ID for uniqueness across flows
+//		uniqueID := def.Name() + "/" + strconv.Itoa(rep.ID)
+//		act.Metadata().ID = uniqueID
+//		//Register activity instance
+//		activity.Register(act)
+//		//Override Task ActivityType
+//		task.activityType = uniqueID
+//		fmt.Println("UID#"+uniqueID)
+//	}
+	
 	def.tasks[task.id] = task
 	numTasks := len(rep.Tasks)
 
