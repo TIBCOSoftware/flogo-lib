@@ -144,11 +144,20 @@ func CoerceToBoolean(val interface{}) (bool, error) {
 }
 
 // CoerceToObject coerce a value to an object
-func CoerceToObject(val interface{}) (map[string]interface{}, error) {
+func CoerceToObject(val interface{}) (interface{}, error) {
 
 	switch t := val.(type) {
 	case map[string]interface{}:
 		return t, nil
+	case json.Number:
+		//TODO For now we just convert json.number to int64 or string. Make sure user can use link expression, eg: activity.result == 1
+		int64V, err := t.Int64()
+		if err != nil {
+			return nil,err
+		} else {
+			return int64V, nil
+		}
+		//TODO add more case for other type
 	default:
 		return nil, fmt.Errorf("Unable to coerce %#v to map[string]interface{}", val)
 	}
