@@ -149,6 +149,10 @@ func CoerceToObject(val interface{}) (map[string]interface{}, error) {
 	switch t := val.(type) {
 	case map[string]interface{}:
 		return t, nil
+	case nil:
+		return make(map[string]interface{}), nil
+	case string:
+		return t, nil
 	default:
 		return nil, fmt.Errorf("Unable to coerce %#v to map[string]interface{}", val)
 	}
@@ -166,6 +170,17 @@ func CoerceToArray(val interface{}) ([]interface{}, error) {
 			a = append(a, v)
 		}
 		return a, nil
+	case nil:
+		return make([]interface{}, 0), nil
+	case string:
+		if len(t) <= 0 {
+			return make([]interface{}, 0), nil
+
+		} else {
+			str := make([]interface{}, 1)
+			str[0] = val
+			return str, nil
+		}
 	default:
 		return nil, fmt.Errorf("Unable to coerce %#v to []interface{}", val)
 	}
@@ -235,6 +250,15 @@ func CoerceToParams(val interface{}) (map[string]string, error) {
 			m[mKey] = mVal
 		}
 		return m, nil
+	case string:
+		if len(t) <= 0 {
+			return make(map[string]string), nil
+
+		} else {
+			return nil, fmt.Errorf("Unable to coerce %#v to map[string]string", val)
+		}
+	case nil:
+		return make(map[string]string), nil
 	default:
 		return nil, fmt.Errorf("Unable to coerce %#v to map[string]string", val)
 	}
