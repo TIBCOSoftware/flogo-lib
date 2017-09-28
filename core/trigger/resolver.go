@@ -10,7 +10,7 @@ func init() {
 
 // Resolve will resolve a trigger output value in the given scope
 func Resolve(scope data.Scope, value string) (interface{}, bool) {
-	attr, ok := scope.GetAttr("_T." + value)
+	attr, ok := scope.GetAttr("{T." + value + "}")
 	if !ok {
 		return nil, false
 	}
