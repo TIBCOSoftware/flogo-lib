@@ -10,7 +10,7 @@ func init() {
 
 // Resolve will resolve a activity output value in the given scope
 func Resolve(scope data.Scope, value string) (interface{}, bool) {
-	attr, ok := scope.GetAttr("_A." + value)
+	attr, ok := scope.GetAttr("{A." + value + "}")
 	if !ok {
 		return nil, false
 	}
