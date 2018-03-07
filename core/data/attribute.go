@@ -116,7 +116,6 @@ type ComplexObject struct {
 	Value    interface{} `json:"value"`
 }
 
-
 type IOMetadata struct {
 	Input  map[string]*Attribute
 	Output map[string]*Attribute
@@ -145,4 +144,24 @@ func (md *IOMetadata) UnmarshalJSON(b []byte) error {
 	}
 
 	return nil
+}
+
+func (md *IOMetadata) MarshalJSON() ([]byte, error) {
+	var mdInputs []*Attribute
+	var mdOutputs []*Attribute
+
+	for _, v := range md.Input {
+		mdInputs = append(mdInputs, v)
+	}
+	for _, v := range md.Output {
+		mdOutputs = append(mdOutputs, v)
+	}
+
+	return json.Marshal(&struct {
+		Input  []*Attribute `json:"input"`
+		Output []*Attribute `json:"output"`
+	}{
+		Input:  mdInputs,
+		Output: mdOutputs,
+	})
 }
