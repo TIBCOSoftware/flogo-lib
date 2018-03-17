@@ -57,7 +57,7 @@ func ToTypeEnum(typeStr string) (Type, bool) {
 		return TypeBoolean, true
 	case "object":
 		return TypeObject, true
-	case "complexObject", "complex_object":
+	case "complexobject", "complex_object":
 		return TypeComplexObject, true
 	case "array":
 		return TypeArray, true
