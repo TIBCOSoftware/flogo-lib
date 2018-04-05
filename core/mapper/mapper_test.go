@@ -34,10 +34,10 @@ func TestLiteralMapper(t *testing.T) {
 	objVal, _ = data.CoerceToObject("{\"key1\":6}")
 	outScope.SetAttrValue("Obj2", objVal)
 
-	arrVal, _ := data.CoerceToArray("[1,6,3]")
+	arrVal, _ := data.CoerceToAnyArray("[1,6,3]")
 	outScope.SetAttrValue("Array", arrVal)
 
-	arrVal, _ = data.CoerceToArray("[7,8,9]")
+	arrVal, _ = data.CoerceToAnyArray("[7,8,9]")
 	outScope.SetAttrValue("Array2", arrVal)
 
 	paramVal, _ := data.CoerceToParams("{\"param1\":\"val\"}")
@@ -98,7 +98,7 @@ func TestAssignMapper(t *testing.T) {
 	objVal, _ := data.CoerceToObject("{\"key\":1}")
 	inScope.SetAttrValue("ObjI", objVal)
 
-	arrVal, _ := data.CoerceToArray("[1,2,3]")
+	arrVal, _ := data.CoerceToAnyArray("[1,2,3]")
 	inScope.SetAttrValue("ArrayI", arrVal)
 
 	paramVal, _ := data.CoerceToParams("{\"paramKey\":\"val1\"}")
@@ -107,7 +107,7 @@ func TestAssignMapper(t *testing.T) {
 	objVal, _ = data.CoerceToObject("{\"key1\":5}")
 	outScope.SetAttrValue("ObjO", objVal)
 
-	arrVal, _ = data.CoerceToArray("[4,5,6]")
+	arrVal, _ = data.CoerceToAnyArray("[4,5,6]")
 	outScope.SetAttrValue("ArrayO", arrVal)
 
 	paramVal, _ = data.CoerceToParams("{\"param1\":\"val\"}")

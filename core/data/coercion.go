@@ -3,6 +3,7 @@ package data
 import (
 	"encoding/json"
 	"fmt"
+	"reflect"
 	"strconv"
 	"strings"
 )
@@ -202,12 +203,13 @@ func CoerceToObject(val interface{}) (map[string]interface{}, error) {
 	}
 }
 
-// CoerceToArray coerce a value to an array
-func CoerceToArray(val interface{}) ([]interface{}, error) {
+// CoerceToAnyArray coerce a value to an array
+func CoerceToAnyArray(val interface{}) ([]interface{}, error) {
 
 	switch t := val.(type) {
 	case []interface{}:
 		return t, nil
+
 	case []map[string]interface{}:
 		var a []interface{}
 		for _, v := range t {
@@ -226,11 +228,48 @@ func CoerceToArray(val interface{}) ([]interface{}, error) {
 	case nil:
 		return nil, nil
 	default:
+		s := reflect.ValueOf(val)
+		if s.Kind() == reflect.Slice {
+			a := make([]interface{}, s.Len())
+
+			for i := 0; i < s.Len(); i++ {
+				a[i] = s.Index(i).Interface()
+			}
+			return a, nil
+		}
 		return nil, fmt.Errorf("unable to coerce %#v to []interface{}", val)
 	}
 }
 
 // CoerceToArray coerce a value to an array
+func CoerceToArray(val interface{}) (interface{}, error) {
+
+	if val == nil {
+		return nil, nil
+	}
+
+	rt := reflect.TypeOf(val).Kind()
+
+	if rt == reflect.Array || rt == reflect.Slice {
+		return val, nil
+	}
+
+	switch t := val.(type) {
+	case string:
+		a := make([]interface{}, 0)
+		if t != "" {
+			err := json.Unmarshal([]byte(t), &a)
+			if err != nil {
+				return nil, fmt.Errorf("unable to coerce %#v to map[string]interface{}", val)
+			}
+		}
+		return a, nil
+	default:
+		return nil, fmt.Errorf("unable to coerce %#v to []interface{}", val)
+	}
+}
+
+// CoerceToAnyArray coerce a value to an array
 func CoerceToAny(val interface{}) (interface{}, error) {
 
 	switch t := val.(type) {
