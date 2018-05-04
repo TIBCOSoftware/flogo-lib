@@ -16,7 +16,7 @@ func TestPathGetValue(t *testing.T) {
 	assert.Equal(t, 5.0, newVal)
 
 	// Resolution of Old Trigger expression
-	arrVal, _ := CoerceToAnyArray("[1,6,3]")
+	arrVal, _ := CoerceToArray("[1,6,3]")
 	path = "[1]"
 	newVal, err = PathGetValue(arrVal, path)
 	assert.Nil(t, err)
@@ -40,7 +40,7 @@ func TestPathGetValue(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Equal(t, 1.0, newVal)
 
-	arrVal, _ = CoerceToAnyArray("[{\"nestedMap1\":1},{\"nestedMap2\":2}]")
+	arrVal, _ = CoerceToArray("[{\"nestedMap1\":1},{\"nestedMap2\":2}]")
 	path = "[1].nestedMap2"
 	newVal, err = PathGetValue(arrVal, path)
 	assert.Nil(t, err)
@@ -52,7 +52,7 @@ func TestPathGetValue(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Equal(t, 8.0, newVal)
 
-	arrVal, _ = CoerceToAnyArray("[{\"nestedMap1\":1},{\"nestedMap2\":{\"nestedArray\":[7,8,9]}}]")
+	arrVal, _ = CoerceToArray("[{\"nestedMap1\":1},{\"nestedMap2\":{\"nestedArray\":[7,8,9]}}]")
 	path = "[1].nestedMap2.nestedArray[2]"
 	newVal, err = PathGetValue(arrVal, path)
 	assert.Nil(t, err)
@@ -64,7 +64,7 @@ func TestPathGetValue(t *testing.T) {
 	assert.Nil(t, err)
 	//todo check if array
 
-	arrVal, _ = CoerceToAnyArray("[{\"nestedMap1\":1},{\"nestedMap2\":{\"nestedArray\":[7,8,9]}}]")
+	arrVal, _ = CoerceToArray("[{\"nestedMap1\":1},{\"nestedMap2\":{\"nestedArray\":[7,8,9]}}]")
 	path = "[1].nestedMap2"
 	newVal, err = PathGetValue(arrVal, path)
 	assert.Nil(t, err)
@@ -84,7 +84,7 @@ func TestPathSetValue(t *testing.T) {
 	assert.Equal(t, 6, newVal)
 
 	// Resolution of Old Trigger expression
-	arrVal, _ := CoerceToAnyArray("[1,6,3]")
+	arrVal, _ := CoerceToArray("[1,6,3]")
 	path = "[1]"
 	err = PathSetValue(arrVal, path, 4)
 	assert.Nil(t, err)
@@ -117,7 +117,7 @@ func TestPathSetValue(t *testing.T) {
 	assert.Equal(t, 7, newVal)
 
 
-	arrVal, _ = CoerceToAnyArray("[{\"nestedMap1\":1},{\"nestedMap2\":2}]")
+	arrVal, _ = CoerceToArray("[{\"nestedMap1\":1},{\"nestedMap2\":2}]")
 	path = "[1].nestedMap2"
 	err = PathSetValue(arrVal, path, 3)
 	assert.Nil(t, err)
@@ -133,7 +133,7 @@ func TestPathSetValue(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Equal(t, 1, newVal)
 
-	arrVal, _ = CoerceToAnyArray("[{\"nestedMap1\":1},{\"nestedMap2\":{\"nestedArray\":[7,8,9]}}]")
+	arrVal, _ = CoerceToArray("[{\"nestedMap1\":1},{\"nestedMap2\":{\"nestedArray\":[7,8,9]}}]")
 	path = "[1].nestedMap2.nestedArray[2]"
 	err = PathSetValue(arrVal, path, 5)
 	assert.Nil(t, err)
@@ -149,7 +149,7 @@ func TestPathSetValue(t *testing.T) {
 	//assert.Nil(t, err)
 	////todo check if array
 	//
-	//arrVal,_ = CoerceToAnyArray("[{\"nestedMap1\":1},{\"nestedMap2\":{\"nestedArray\":[7,8,9]}}]")
+	//arrVal,_ = CoerceToArray("[{\"nestedMap1\":1},{\"nestedMap2\":{\"nestedArray\":[7,8,9]}}]")
 	//path = "[1].nestedMap2"
 	//assert.Nil(t, err)
 	//err = PathSetValue(arrVal, path, 3)

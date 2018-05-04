@@ -138,7 +138,7 @@ func pathGetSetArrayValue(obj interface{}, path string, value interface{}, set b
 	arrValue, valid := obj.([]interface{})
 	if !valid {
 		//Try to convert to a array incase it is a array string
-		val, err := CoerceToAnyArray(obj)
+		val, err := CoerceToArray(obj)
 		if err != nil {
 			return nil, path, errors.New("'" + path + "' not an array")
 		}

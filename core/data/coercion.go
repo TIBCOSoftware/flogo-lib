@@ -32,7 +32,7 @@ func CoerceToValue(value interface{}, dataType Type) (interface{}, error) {
 	case TypeComplexObject:
 		coerced, err = CoerceToComplexObject(value)
 	case TypeArray:
-		coerced, err = CoerceToArray(value)
+		coerced, err = CoerceToArrayIfNecessary(value)
 	case TypeParams:
 		coerced, err = CoerceToParams(value)
 	}
@@ -203,8 +203,8 @@ func CoerceToObject(val interface{}) (map[string]interface{}, error) {
 	}
 }
 
-// CoerceToAnyArray coerce a value to an array
-func CoerceToAnyArray(val interface{}) ([]interface{}, error) {
+// CoerceToArray coerce a value to an array of empty interface values
+func CoerceToArray(val interface{}) ([]interface{}, error) {
 
 	switch t := val.(type) {
 	case []interface{}:
@@ -241,8 +241,8 @@ func CoerceToAnyArray(val interface{}) ([]interface{}, error) {
 	}
 }
 
-// CoerceToArray coerce a value to an array
-func CoerceToArray(val interface{}) (interface{}, error) {
+// CoerceToArrayIfNecessary coerce a value to an array if it isn't one already
+func CoerceToArrayIfNecessary(val interface{}) (interface{}, error) {
 
 	if val == nil {
 		return nil, nil
@@ -269,7 +269,7 @@ func CoerceToArray(val interface{}) (interface{}, error) {
 	}
 }
 
-// CoerceToAnyArray coerce a value to an array
+// CoerceToAny coerce a value to generic value
 func CoerceToAny(val interface{}) (interface{}, error) {
 
 	switch t := val.(type) {
