@@ -190,7 +190,6 @@ func startTriggers(e *engineImpl) {
 					logger.Info("Stopped")
 					os.Exit(1)
 				}
-				return
 			} else {
 				triggerInfo.Status = managed.StatusStarted
 				logger.Infof("Trigger [ %s ]: Started", name)
