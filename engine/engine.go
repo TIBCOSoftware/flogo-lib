@@ -174,13 +174,13 @@ func startTriggers(e *engineImpl) {
 	var group sync.WaitGroup
 	for key, value := range e.triggers {
 		group.Add(1)
-		go func() {
+		go func(name string, t trigger.Trigger) {
 			defer group.Done()
-			triggerInfo := &managed.Info{Name: key}
+			triggerInfo := &managed.Info{Name: name}
 			tResult := &triggerResult{}
-			err := managed.Start(fmt.Sprintf("Trigger [ %s ]", key), value)
+			err := managed.Start(fmt.Sprintf("Trigger [ %s ]", name), t)
 			if err != nil {
-				logger.Infof("Trigger [%s] failed to start due to error [%s]", key, err.Error())
+				logger.Infof("Trigger [%s] failed to start due to error [%s]", name, err.Error())
 				triggerInfo.Status = managed.StatusFailed
 				triggerInfo.Error = err
 				logger.Debugf("StackTrace: %s", debug.Stack())
@@ -193,14 +193,14 @@ func startTriggers(e *engineImpl) {
 				return
 			} else {
 				triggerInfo.Status = managed.StatusStarted
-				logger.Infof("Trigger [ %s ]: Started", key)
-				logger.Debugf("Trigger [ %s ] has ref [ %s ] and version [ %s ]", key, value.Metadata().ID, value.Metadata().Version)
+				logger.Infof("Trigger [ %s ]: Started", name)
+				logger.Debugf("Trigger [ %s ] has ref [ %s ] and version [ %s ]", name, t.Metadata().ID, t.Metadata().Version)
 			}
 			tResult.triggerInfo = triggerInfo
 			result.Lock()
 			result.triggerResults = append(result.triggerResults, tResult)
 			result.Unlock()
-		}()
+		}(key, value)
 	}
 
 	group.Wait()
