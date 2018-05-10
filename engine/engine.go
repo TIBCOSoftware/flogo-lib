@@ -3,9 +3,6 @@ package engine
 import (
 	"errors"
 	"fmt"
-	"os"
-	"runtime/debug"
-
 	"github.com/TIBCOSoftware/flogo-lib/app"
 	"github.com/TIBCOSoftware/flogo-lib/config"
 	"github.com/TIBCOSoftware/flogo-lib/core/action"
@@ -15,6 +12,9 @@ import (
 	"github.com/TIBCOSoftware/flogo-lib/logger"
 	"github.com/TIBCOSoftware/flogo-lib/util"
 	"github.com/TIBCOSoftware/flogo-lib/util/managed"
+	"os"
+	"runtime/debug"
+	"sync"
 )
 
 // Interface for the engine behaviour
@@ -151,44 +151,67 @@ func (e *engineImpl) Start() error {
 
 	// Start the triggers
 	logger.Info("Starting Triggers...")
-
-	var failed []string
-
-	for key, value := range e.triggers {
-		triggerInfo := &managed.Info{Name: key}
-		err := managed.Start(fmt.Sprintf("Trigger [ %s ]", key), value)
-		if err != nil {
-			logger.Infof("Trigger [%s] failed to start due to error [%s]", key, err.Error())
-			triggerInfo.Status = managed.StatusFailed
-			triggerInfo.Error = err
-			logger.Debugf("StackTrace: %s", debug.Stack())
-			if config.StopEngineOnError() {
-				logger.Debugf("{%s=true}. Stopping engine", config.ENV_STOP_ENGINE_ON_ERROR_KEY)
-				logger.Info("Stopped")
-				os.Exit(1)
-			}
-			failed = append(failed, key)
-		} else {
-			triggerInfo.Status = managed.StatusStarted
-			logger.Infof("Trigger [ %s ]: Started", key)
-			logger.Debugf("Trigger [ %s ] has ref [ %s ] and version [ %s ]", key, value.Metadata().ID, value.Metadata().Version)
-		}
-
-		e.triggerInfos[key] = triggerInfo
-	}
-
-	if len(failed) > 0 {
-		//remove failed trigger, we have no use for them
-		for _, triggerId := range failed {
-			delete(e.triggers, triggerId)
-		}
-	}
+	startTriggers(e)
 
 	logger.Info("Triggers Started")
 
 	logger.Info("Engine Started")
 
 	return nil
+}
+
+func startTriggers(e *engineImpl) {
+
+	type triggerResult struct {
+		err         error
+		triggerInfo *managed.Info
+	}
+
+	result := struct {
+		sync.Mutex
+		triggerResults []*triggerResult
+	}{}
+	var group sync.WaitGroup
+	for key, value := range e.triggers {
+		group.Add(1)
+		go func() {
+			defer group.Done()
+			triggerInfo := &managed.Info{Name: key}
+			tResult := &triggerResult{}
+			err := managed.Start(fmt.Sprintf("Trigger [ %s ]", key), value)
+			if err != nil {
+				logger.Infof("Trigger [%s] failed to start due to error [%s]", key, err.Error())
+				triggerInfo.Status = managed.StatusFailed
+				triggerInfo.Error = err
+				logger.Debugf("StackTrace: %s", debug.Stack())
+				tResult.err = err
+				if config.StopEngineOnError() {
+					logger.Debugf("{%s=true}. Stopping engine", config.ENV_STOP_ENGINE_ON_ERROR_KEY)
+					logger.Info("Stopped")
+					os.Exit(1)
+				}
+				return
+			} else {
+				triggerInfo.Status = managed.StatusStarted
+				logger.Infof("Trigger [ %s ]: Started", key)
+				logger.Debugf("Trigger [ %s ] has ref [ %s ] and version [ %s ]", key, value.Metadata().ID, value.Metadata().Version)
+			}
+			tResult.triggerInfo = triggerInfo
+			result.Lock()
+			result.triggerResults = append(result.triggerResults, tResult)
+			result.Unlock()
+		}()
+	}
+
+	group.Wait()
+
+	for _, r := range result.triggerResults {
+		e.triggerInfos[r.triggerInfo.Name] = r.triggerInfo
+		if r.err != nil {
+			delete(e.triggers, r.triggerInfo.Name)
+		}
+	}
+
 }
 
 func (e *engineImpl) Stop() error {
