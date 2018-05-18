@@ -37,7 +37,12 @@ func PathGetValue(value interface{}, path string) (interface{}, error) {
 			if val.Kind() == reflect.Struct {
 				fieldName,npIdx := getObjectKey(path[1:])
 				newPath = path[npIdx:]
-				return val.FieldByName(fieldName).Interface(), nil
+				f := val.FieldByName(fieldName)
+				if f.IsValid() {
+					return f.Interface(), nil
+				}
+
+				return nil, nil
 			} else {
 				return nil, fmt.Errorf("unable to evaluate path: %s", path)
 			}
