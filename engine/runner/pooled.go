@@ -61,11 +61,9 @@ func (runner *PooledRunner) Start() error {
 				select {
 				case work := <-runner.workQueue:
 					logger.Debug("Received work request")
-
 					//todo fix, this creates unbounded go routines waiting to be serviced by worker queue
 					go func() {
 						worker := <-runner.workerQueue
-
 						logger.Debug("Dispatching work request")
 						worker <- work
 					}()
@@ -124,7 +122,18 @@ func (runner *PooledRunner) Execute(ctx context.Context, act action.Action, inpu
 		runner.workQueue <- work
 		logger.Debugf("Action '%s' queued", md.ID)
 
-		reply := <-actionData.arc
+		replyChan := make(chan *ActionResult)
+		go func(reply chan *ActionResult) {
+			responsed := false
+			for ret := range actionData.arc {
+				if !responsed {
+					replyChan <- ret
+				}
+			}
+
+		}(replyChan)
+
+		reply := <-replyChan
 		logger.Debugf("Action '%s' returned", md.ID)
 
 		return reply.results, reply.err
