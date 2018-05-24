@@ -16,6 +16,7 @@ import (
 	"github.com/TIBCOSoftware/flogo-lib/logger"
 
 	//Pre registry all function for now
+	_ "github.com/TIBCOSoftware/flogo-lib/core/mapper/exprmapper/function/array/length"
 	_ "github.com/TIBCOSoftware/flogo-lib/core/mapper/exprmapper/function/number/random"
 	_ "github.com/TIBCOSoftware/flogo-lib/core/mapper/exprmapper/function/string/concat"
 	_ "github.com/TIBCOSoftware/flogo-lib/core/mapper/exprmapper/function/string/equals"
