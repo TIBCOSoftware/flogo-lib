@@ -4,7 +4,9 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"os/signal"
 	"runtime/debug"
+	"syscall"
 
 	"github.com/TIBCOSoftware/flogo-lib/app"
 	"github.com/TIBCOSoftware/flogo-lib/config"
@@ -19,7 +21,6 @@ import (
 
 // Interface for the engine behaviour
 type Engine interface {
-
 	// Init initialize the engine
 	Init(directRunner bool) error
 
@@ -234,4 +235,58 @@ func (e *engineImpl) TriggerInfos() []*managed.Info {
 	}
 
 	return infos
+}
+
+func RunEngine(e Engine) {
+
+	err := e.Start()
+
+	if err != nil {
+		fmt.Println("Error starting engine", err.Error())
+		os.Exit(1)
+	}
+
+	exitChan := setupSignalHandling()
+
+	code := <-exitChan
+
+	e.Stop()
+
+	os.Exit(code)
+}
+
+func setupSignalHandling() chan int {
+
+	signalChan := make(chan os.Signal, 1)
+	signal.Notify(signalChan,
+		syscall.SIGHUP,
+		syscall.SIGINT,
+		syscall.SIGTERM,
+		syscall.SIGQUIT)
+
+	exitChan := make(chan int)
+	go func() {
+		for {
+			s := <-signalChan
+			switch s {
+			// kill -SIGHUP
+			case syscall.SIGHUP:
+				exitChan <- 0
+				// kill -SIGINT/Ctrl+c
+			case syscall.SIGINT:
+				exitChan <- 0
+				// kill -SIGTERM
+			case syscall.SIGTERM:
+				exitChan <- 0
+				// kill -SIGQUIT
+			case syscall.SIGQUIT:
+				exitChan <- 0
+			default:
+				logger.Debug("Unknown signal.")
+				exitChan <- 1
+			}
+		}
+	}()
+
+	return exitChan
 }
