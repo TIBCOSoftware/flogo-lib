@@ -4,10 +4,13 @@ import (
 	"context"
 	"strings"
 
+	"encoding/json"
 	"github.com/TIBCOSoftware/flogo-lib/app"
 	"github.com/TIBCOSoftware/flogo-lib/core/action"
+	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/core/data"
 	"github.com/TIBCOSoftware/flogo-lib/core/trigger"
+	"reflect"
 )
 
 func toAppConfig(a *App) *app.Config {
@@ -64,8 +67,11 @@ func toActionConfig(act *Action) *action.Config {
 	}
 
 	actionCfg.Ref = act.ref
-	// convert settings to "data"
-	// action.Config struct { Data json.RawMessage  `json:"data"` }
+
+	//todo handle error
+	jsonData, _ := json.Marshal(act.Settings())
+	actionCfg.Data = jsonData
+
 	mappings := &data.IOMappings{}
 
 	if len(act.inputMappings) > 0 {
@@ -101,21 +107,23 @@ func getMappingValue(strValue string) (data.MappingType, interface{}) {
 	return data.MtExpression, strValue
 }
 
+// ProxyAction
+
 type proxyAction struct {
 	handlerFunc HandlerFunc
-	md *action.Metadata
+	metadata    *action.Metadata
 }
 
 func NewProxyAction(f HandlerFunc) action.Action {
 	return &proxyAction{
 		handlerFunc: f,
-		md: &action.Metadata{Async:false},
+		metadata:    &action.Metadata{Async: false},
 	}
 }
 
 // Metadata get the Action's metadata
-func (a *proxyAction)Metadata() *action.Metadata {
-	return a.md
+func (a *proxyAction) Metadata() *action.Metadata {
+	return a.metadata
 }
 
 // IOMetadata get the Action's IO metadata
@@ -125,4 +133,127 @@ func (a *proxyAction) IOMetadata() *data.IOMetadata {
 
 func (a *proxyAction) Run(ctx context.Context, inputs map[string]*data.Attribute) (map[string]*data.Attribute, error) {
 	return a.handlerFunc(ctx, inputs)
+}
+
+// EvalActivity
+func EvalActivity(act activity.Activity, inputs map[string]interface{}) (map[string]*data.Attribute, error) {
+
+	if act.Metadata() == nil {
+		//try loading activity with metadata
+		value := reflect.ValueOf(act)
+		value = value.Elem()
+		ref := value.Type().PkgPath()
+
+		act = activity.Get(ref)
+	}
+
+	if act.Metadata() == nil {
+		//return error
+	}
+
+	ac := &activityContext{inputScope: data.NewFixedScope(act.Metadata().Input),
+		outputScope: data.NewFixedScope(act.Metadata().Output)}
+
+	for key, value := range inputs {
+		ac.inputScope.SetAttrValue(key, value)
+	}
+
+	_, evalErr := act.Eval(ac)
+
+	if evalErr != nil {
+		return nil, evalErr
+	}
+
+	return ac.outputScope.GetAttrs(), nil
+}
+
+/////////////////////////////////////////
+// activity.Context Implementation
+
+type activityContext struct {
+	inputScope  *data.FixedScope
+	outputScope *data.FixedScope
+}
+
+func (ai *activityContext) ActivityHost() activity.Host {
+	return ai
+}
+
+func (ai *activityContext) Name() string {
+	return ""
+}
+
+func (ai *activityContext) GetSetting(setting string) (value interface{}, exists bool) {
+	return nil, false
+}
+
+func (ai *activityContext) GetInitValue(key string) (value interface{}, exists bool) {
+	return nil, false
+}
+
+// GetInput implements activity.Context.GetInput
+func (ai *activityContext) GetInput(name string) interface{} {
+
+	val, found := ai.inputScope.GetAttr(name)
+	if found {
+		return val.Value()
+	}
+
+	return nil
+}
+
+// GetOutput implements activity.Context.GetOutput
+func (ai *activityContext) GetOutput(name string) interface{} {
+
+	val, found := ai.outputScope.GetAttr(name)
+	if found {
+		return val.Value()
+	}
+
+	return nil
+}
+
+// SetOutput implements activity.Context.SetOutput
+func (ai *activityContext) SetOutput(name string, value interface{}) {
+	ai.outputScope.SetAttrValue(name, value)
+}
+
+//Deprecated
+func (ai *activityContext) TaskName() string {
+	//ignore
+	return ""
+}
+
+//Deprecated
+func (ai *activityContext) FlowDetails() activity.FlowDetails {
+	//ignore
+	return nil
+}
+
+/////////////////////////////////////////
+// activity.Host Implementation
+
+func (ai *activityContext) ID() string {
+	//ignore
+	return ""
+}
+
+func (ai *activityContext) IOMetadata() *data.IOMetadata {
+	return nil
+}
+
+func (ai *activityContext) Reply(replyData map[string]*data.Attribute, err error) {
+	// ignore
+}
+
+func (ai *activityContext) Return(returnData map[string]*data.Attribute, err error) {
+	//ignore
+}
+
+func (ai *activityContext) WorkingData() data.Scope {
+	return nil
+}
+
+func (ai *activityContext) GetResolver() data.Resolver {
+	return data.GetBasicResolver()
 }

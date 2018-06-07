@@ -1,13 +1,13 @@
 package flogo
 
 import (
+	"context"
 	"github.com/TIBCOSoftware/flogo-contrib/action/flow"
 	"github.com/TIBCOSoftware/flogo-contrib/trigger/rest"
+	"github.com/TIBCOSoftware/flogo-lib/core/data"
+	"github.com/TIBCOSoftware/flogo-lib/logger"
 	"github.com/stretchr/testify/assert"
 	"testing"
-	"github.com/TIBCOSoftware/flogo-lib/core/data"
-	"context"
-	"github.com/TIBCOSoftware/flogo-lib/logger"
 )
 
 func TestNewTrigger(t *testing.T) {
@@ -21,6 +21,7 @@ func TestNewTrigger(t *testing.T) {
 	a.SetInputMappings("in1='blah'", "in2=1")
 	a.SetOutputMappings("out1='blah'", "out2=$.flowOut")
 
+	//app.AddResource("flow:myflow", flowJson)
 	e, err := NewEngine(app)
 
 	assert.Nil(t, err)
@@ -52,7 +53,7 @@ func TestTrigger_NewFuncHandler(t *testing.T) {
 	assert.Nil(t, err)
 }
 
-func LogMessage(ctx context.Context, inputs map[string]*data.Attribute) (map[string]*data.Attribute, error)  {
+func LogMessage(ctx context.Context, inputs map[string]*data.Attribute) (map[string]*data.Attribute, error) {
 	logger.Infof("#v", inputs)
 	return nil, nil
 }

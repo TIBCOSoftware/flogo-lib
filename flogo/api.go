@@ -96,7 +96,7 @@ func (t *Trigger) NewHandler(settings map[string]interface{}) *Handler {
 func (t *Trigger) NewFuncHandler(settings map[string]interface{}, handlerFunc HandlerFunc) *Handler {
 
 	newHandler := &Handler{settings: settings}
-	newAct := &Action{act:NewProxyAction(handlerFunc)}
+	newAct := &Action{act: NewProxyAction(handlerFunc)}
 	newHandler.actions = append(newHandler.actions, newAct)
 
 	t.handlers = append(t.handlers, newHandler)
