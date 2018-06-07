@@ -92,7 +92,9 @@ func (g *Container) Search(hierarchy ...string) *Container {
 
 	object = g.object
 	for target := 0; target < len(hierarchy); target++ {
-		if mmap, ok := object.(map[string]interface{}); ok {
+		if mmap, ok := object.(map[string]string); ok {
+			object = mmap[hierarchy[target]]
+		} else if mmap, ok := object.(map[string]interface{}); ok {
 			object = mmap[hierarchy[target]]
 		} else if marray, ok := object.([]interface{}); ok {
 			tmpArray := []interface{}{}
