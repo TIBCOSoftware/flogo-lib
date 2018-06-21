@@ -13,6 +13,7 @@ import (
 	"reflect"
 )
 
+// toAppConfig converts an App to the core app configuration model
 func toAppConfig(a *App) *app.Config {
 
 	appCfg := &app.Config{}
@@ -32,6 +33,7 @@ func toAppConfig(a *App) *app.Config {
 	return appCfg
 }
 
+// toTriggerConfig converts Trigger to the core Trigger configuration model
 func toTriggerConfig(trg *Trigger) *trigger.Config {
 
 	triggerConfig := &trigger.Config{Ref: trg.ref, Settings: trg.Settings()}
@@ -58,6 +60,7 @@ func toTriggerConfig(trg *Trigger) *trigger.Config {
 	return triggerConfig
 }
 
+// toActionConfig converts Action to the core Action configuration model
 func toActionConfig(act *Action) *action.Config {
 	actionCfg := &action.Config{}
 
@@ -131,11 +134,12 @@ func (a *proxyAction) IOMetadata() *data.IOMetadata {
 	return nil
 }
 
+// Run implementation of action.SyncAction.Run
 func (a *proxyAction) Run(ctx context.Context, inputs map[string]*data.Attribute) (map[string]*data.Attribute, error) {
 	return a.handlerFunc(ctx, inputs)
 }
 
-// EvalActivity
+// EvalActivity evaluates the specified activity using the provided inputs
 func EvalActivity(act activity.Activity, inputs map[string]interface{}) (map[string]*data.Attribute, error) {
 
 	if act.Metadata() == nil {
