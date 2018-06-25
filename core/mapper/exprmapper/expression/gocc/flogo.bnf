@@ -20,7 +20,7 @@ _float_lit : ( _number '.' _number _float_exp )
 
 float : (_float_lit);
 number : (_number);
-_character_digit:  'a'-'z' | 'A'-'Z' | '0'-'9' | ':' | '.' | '_' | '-';
+_function_name:  'a'-'z' | 'A'-'Z' | '0'-'9' | '.' | '_' | '-';
 
 /*Expression Operator*/
 /*
@@ -45,7 +45,7 @@ _ref : 'a'-'z' | 'A'-'Z' | '.' | '0'-'9' | '-' | '[' | ']' | '_' | ' ' | '$' | '
 _flogostring : {_ref};
 
 //Static function name, such as concat, substring, len etc...
-function_name : {_character_digit} ;
+function_name : {_function_name} ;
 _quotedpair : '\\' . ;
 
 //Double quotes strings

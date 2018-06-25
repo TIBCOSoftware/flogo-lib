@@ -3,16 +3,18 @@
 package lexer
 
 import (
+	"fmt"
 	"io/ioutil"
 	"unicode/utf8"
 
+	"github.com/TIBCOSoftware/flogo-lib/core/mapper/exprmapper/expression/gocc/util"
 	"github.com/TIBCOSoftware/flogo-lib/core/mapper/exprmapper/expression/gocc/token"
 )
 
 const (
 	NoState    = -1
 	NumStates  = 65
-	NumSymbols = 74
+	NumSymbols = 73
 )
 
 type Lexer struct {
@@ -41,6 +43,7 @@ func NewLexerFile(fpath string) (*Lexer, error) {
 }
 
 func (l *Lexer) Scan() (tok *token.Token) {
+	fmt.Printf("Lexer.Scan() pos=%d\n", l.pos)
 	tok = new(token.Token)
 	if l.pos >= len(l.src) {
 		tok.Type = token.EOF
@@ -51,6 +54,7 @@ func (l *Lexer) Scan() (tok *token.Token) {
 	tok.Type = token.INVALID
 	state, rune1, size := 0, rune(-1), 0
 	for state != -1 {
+		fmt.Printf("\tpos=%d, line=%d, col=%d, state=%d\n", l.pos, l.line, l.column, state)
 		if l.pos >= len(l.src) {
 			rune1 = -1
 		} else {
@@ -61,6 +65,11 @@ func (l *Lexer) Scan() (tok *token.Token) {
 		nextState := -1
 		if rune1 != -1 {
 			nextState = TransTab[state](rune1)
+		}
+		fmt.Printf("\tS%d, : tok=%s, rune == %s(%x), next state == %d\n", state, token.TokMap.Id(tok.Type), util.RuneToString(rune1), rune1, nextState)
+		fmt.Printf("\t\tpos=%d, size=%d, start=%d, end=%d\n", l.pos, size, start, end)
+		if nextState != -1 {
+			fmt.Printf("\t\taction:%s\n", ActTab[nextState].String())
 		}
 		state = nextState
 
@@ -103,6 +112,7 @@ func (l *Lexer) Scan() (tok *token.Token) {
 		tok.Lit = []byte{}
 	}
 	tok.Pos.Offset, tok.Pos.Line, tok.Pos.Column = start, startLine, startColumn
+	fmt.Printf("Token at %s: %s \"%s\"\n", tok.String(), token.TokMap.Id(tok.Type), tok.Lit)
 
 	return
 }
@@ -148,43 +158,42 @@ Lexer symbols:
 32: '.'
 33: '.'
 34: '.'
-35: ':'
-36: '.'
-37: '_'
-38: '-'
-39: '>'
-40: '<'
-41: '|'
-42: '&'
-43: '!'
-44: '='
-45: '+'
-46: '-'
-47: '*'
-48: '/'
-49: ' '
-50: '['
-51: ']'
-52: '.'
-53: '-'
-54: '['
-55: ']'
-56: '_'
-57: ' '
-58: '$'
-59: '{'
-60: '}'
-61: '\'
-62: ' '
-63: '\t'
-64: '\n'
-65: '\r'
-66: '0'-'9'
-67: 'a'-'z'
-68: 'A'-'Z'
-69: '0'-'9'
-70: 'a'-'z'
-71: 'A'-'Z'
-72: '0'-'9'
-73: .
+35: '.'
+36: '_'
+37: '-'
+38: '>'
+39: '<'
+40: '|'
+41: '&'
+42: '!'
+43: '='
+44: '+'
+45: '-'
+46: '*'
+47: '/'
+48: ' '
+49: '['
+50: ']'
+51: '.'
+52: '-'
+53: '['
+54: ']'
+55: '_'
+56: ' '
+57: '$'
+58: '{'
+59: '}'
+60: '\'
+61: ' '
+62: '\t'
+63: '\n'
+64: '\r'
+65: '0'-'9'
+66: 'a'-'z'
+67: 'A'-'Z'
+68: '0'-'9'
+69: 'a'-'z'
+70: 'A'-'Z'
+71: '0'-'9'
+72: .
 */

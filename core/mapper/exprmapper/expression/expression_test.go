@@ -44,6 +44,21 @@ func TestExpressionTernaryString(t *testing.T) {
 	fmt.Println("Result:", result)
 }
 
+func TestExpressionTernaryString3(t *testing.T) {
+	v, err := ParseExpression(`200>100?true:false`)
+	if err != nil {
+		t.Fatal(err)
+		t.Failed()
+	}
+	result, err := v.EvalWithScope(nil, nil)
+	if err != nil {
+		t.Fatal(err)
+		t.Failed()
+	}
+	assert.Equal(t, true, result)
+	fmt.Println("Result:", result)
+}
+
 func TestExpressionString(t *testing.T) {
 	v, err := ParseExpression(`$activity[C].result==3`)
 	if err != nil {
