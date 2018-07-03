@@ -2,6 +2,7 @@ package tostring
 
 import (
 	"fmt"
+
 	"github.com/TIBCOSoftware/flogo-lib/core/mapper/exprmapper/expression/function"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
 )
@@ -25,6 +26,6 @@ func (s *ToString) GetCategory() string {
 func (s *ToString) Eval(inp interface{}) string {
 
 	result := fmt.Sprintf("%v", inp)
-	log.Debugf(`Converts value to a simple string" `, result)
+	log.Debugf(`Converts value to a simple string: "%s" `, result)
 	return result
 }
