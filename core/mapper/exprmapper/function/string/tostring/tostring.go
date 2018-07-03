@@ -7,7 +7,7 @@ import (
 	"github.com/TIBCOSoftware/flogo-lib/logger"
 )
 
-var log = logger.GetLogger("equals-function")
+var log = logger.GetLogger("tostring-function")
 
 type ToString struct {
 }
