@@ -95,6 +95,7 @@ func (c *Config) GetSetting(setting string) string {
 
 type HandlerConfig struct {
 	parent   *Config
+	Name     string `json:"name,omitempty"`
 	Settings map[string]interface{} `json:"settings"`
 	Output   map[string]interface{} `json:"output"`
 	Action   *action.Config

@@ -96,7 +96,8 @@ func (h *Handler) Handle(ctx context.Context, triggerData map[string]interface{}
 		return nil, err
 	}
 
-	results, err := h.runner.Execute(ctx, h.act, inputs)
+	newCtx := NewHandlerContext(ctx, h.config)
+	results, err := h.runner.Execute(newCtx, h.act, inputs)
 
 	if err != nil {
 		return nil, err
