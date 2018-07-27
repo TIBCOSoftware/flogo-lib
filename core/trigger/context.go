@@ -15,7 +15,7 @@ type HandlerInfo struct {
 
 // NewHandlerContext add the handler info to a new child context
 func NewHandlerContext(parentCtx context.Context, config *HandlerConfig) context.Context {
-	if config.Name != "" {
+	if config != nil && config.Name != "" {
 		return context.WithValue(parentCtx, handlerKey, &HandlerInfo{name:config.Name})
 	}
 	return parentCtx
