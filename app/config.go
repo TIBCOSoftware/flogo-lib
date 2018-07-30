@@ -22,9 +22,7 @@ type Config struct {
 	Properties  []*data.Attribute  `json:"properties"`
 	Triggers    []*trigger.Config  `json:"triggers"`
 	Resources   []*resource.Config `json:"resources"`
-
-	//for backwards compatibility
-	Actions []*action.Config `json:"actions"`
+	Actions     []*action.Config   `json:"actions"`
 }
 
 // defaultConfigProvider implementation of ConfigProvider
@@ -132,41 +130,43 @@ func GetProperties(properties []*data.Attribute) (map[string]interface{}, error)
 	return props, nil
 }
 
-func FixUpApp(cfg *Config) {
+//used for old action config
 
-	if cfg.Resources != nil || cfg.Actions == nil {
-		//already new app format
-		return
-	}
-
-	idToAction := make(map[string]*action.Config)
-	for _, act := range cfg.Actions {
-		idToAction[act.Id] = act
-	}
-
-	for _, trg := range cfg.Triggers {
-		for _, handler := range trg.Handlers {
-
-			oldAction := idToAction[handler.ActionId]
-
-			newAction := &action.Config{Ref: oldAction.Ref}
-
-			if oldAction != nil {
-				newAction.Mappings = oldAction.Mappings
-			} else {
-				if handler.ActionInputMappings != nil {
-					newAction.Mappings = &data.IOMappings{}
-					newAction.Mappings.Input = handler.ActionInputMappings
-					newAction.Mappings.Output = handler.ActionOutputMappings
-				}
-			}
-
-			newAction.Data = oldAction.Data
-			newAction.Metadata = oldAction.Metadata
-
-			handler.Action = newAction
-		}
-	}
-
-	cfg.Actions = nil
-}
+//func FixUpApp(cfg *Config) {
+//
+//	if cfg.Resources != nil || cfg.Actions == nil {
+//		//already new app format
+//		return
+//	}
+//
+//	idToAction := make(map[string]*action.Config)
+//	for _, act := range cfg.Actions {
+//		idToAction[act.Id] = act
+//	}
+//
+//	for _, trg := range cfg.Triggers {
+//		for _, handler := range trg.Handlers {
+//
+//			oldAction := idToAction[handler.ActionId]
+//
+//			newAction := &action.Config{Ref: oldAction.Ref}
+//
+//			if oldAction != nil {
+//				newAction.Mappings = oldAction.Mappings
+//			} else {
+//				if handler.ActionInputMappings != nil {
+//					newAction.Mappings = &data.IOMappings{}
+//					newAction.Mappings.Input = handler.ActionInputMappings
+//					newAction.Mappings.Output = handler.ActionOutputMappings
+//				}
+//			}
+//
+//			newAction.Data = oldAction.Data
+//			newAction.Metadata = oldAction.Metadata
+//
+//			handler.Action = newAction
+//		}
+//	}
+//
+//	cfg.Actions = nil
+//}

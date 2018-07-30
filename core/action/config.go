@@ -8,14 +8,18 @@ import (
 
 // Config is the configuration for the Action
 type Config struct {
+	//inline action
 	Ref      string           `json:"ref"`
 	Data     json.RawMessage  `json:"data"`
-	Mappings *data.IOMappings `json:"mappings"`
 
-	Act      Action
+	//referenced action
+	Id       string           `json:"id"`
 
-	// Deprecated: No longer used
-	Id string `json:"id"`
+	//Mappings *data.IOMappings `json:"mappings"`
+	//
+	//Act Action
+	//
+
 	// Deprecated: No longer used
 	Metadata *data.IOMetadata `json:"metadata"`
 }

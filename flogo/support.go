@@ -11,6 +11,7 @@ import (
 	"github.com/TIBCOSoftware/flogo-lib/core/data"
 	"github.com/TIBCOSoftware/flogo-lib/core/trigger"
 	"reflect"
+	"strconv"
 )
 
 // toAppConfig converts an App to the core app configuration model
@@ -23,9 +24,9 @@ func toAppConfig(a *App) *app.Config {
 	appCfg.Resources = a.resources
 
 	var triggerConfigs []*trigger.Config
-	for _, trg := range a.Triggers() {
+	for id, trg := range a.Triggers() {
 
-		triggerConfigs = append(triggerConfigs, toTriggerConfig(trg))
+		triggerConfigs = append(triggerConfigs, toTriggerConfig(strconv.Itoa(id+1), trg))
 	}
 
 	appCfg.Triggers = triggerConfigs
@@ -34,9 +35,9 @@ func toAppConfig(a *App) *app.Config {
 }
 
 // toTriggerConfig converts Trigger to the core Trigger configuration model
-func toTriggerConfig(trg *Trigger) *trigger.Config {
+func toTriggerConfig(id string, trg *Trigger) *trigger.Config {
 
-	triggerConfig := &trigger.Config{Ref: trg.ref, Settings: trg.Settings()}
+	triggerConfig := &trigger.Config{Id:id, Ref: trg.ref, Settings: trg.Settings()}
 
 	//todo add output
 	//trigger.Config struct { Output   map[string]interface{} `json:"output"` }
@@ -61,8 +62,8 @@ func toTriggerConfig(trg *Trigger) *trigger.Config {
 }
 
 // toActionConfig converts Action to the core Action configuration model
-func toActionConfig(act *Action) *action.Config {
-	actionCfg := &action.Config{}
+func toActionConfig(act *Action) *trigger.ActionConfig {
+	actionCfg := &trigger.ActionConfig{}
 
 	if act.act != nil {
 		actionCfg.Act = act.act

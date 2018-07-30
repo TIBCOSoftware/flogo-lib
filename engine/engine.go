@@ -62,7 +62,7 @@ func New(appCfg *app.Config) (Engine, error) {
 	}
 
 	//fix up app configuration if it is older
-	app.FixUpApp(appCfg)
+	//app.FixUpApp(appCfg)
 
 	logLevel := config.GetLogLevel()
 
@@ -104,7 +104,16 @@ func (e *engineImpl) Init(directRunner bool) error {
 			return err
 		}
 
-		triggers, err := app.CreateTriggers(e.app.Triggers, e.actionRunner)
+		actions, err := app.CreateSharedActions(e.app.Actions)
+		if err != nil {
+			errorMsg := fmt.Sprintf("Error creating shared action instances - %s", err.Error())
+			logger.Error(errorMsg)
+			panic(errorMsg)
+		}
+
+		//todo add all actions to engine (will make cleanup easier)
+
+		triggers, err := app.CreateTriggers(e.app.Triggers, actions, e.actionRunner)
 		e.triggerInfos = make(map[string]*managed.Info)
 
 		if err != nil {
