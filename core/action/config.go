@@ -15,11 +15,6 @@ type Config struct {
 	//referenced action
 	Id       string           `json:"id"`
 
-	//Mappings *data.IOMappings `json:"mappings"`
-	//
-	//Act Action
-	//
-
 	// Deprecated: No longer used
 	Metadata *data.IOMetadata `json:"metadata"`
 }
