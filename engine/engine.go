@@ -17,6 +17,7 @@ import (
 	"github.com/TIBCOSoftware/flogo-lib/logger"
 	"github.com/TIBCOSoftware/flogo-lib/util"
 	"github.com/TIBCOSoftware/flogo-lib/util/managed"
+	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 )
 
 // Interface for the engine behaviour
@@ -229,6 +230,13 @@ func (e *engineImpl) Stop() error {
 		logger.Error("Error Stopping Services - " + err.Error())
 	} else {
 		logger.Info("Stopped Services")
+	}
+
+	// Let activities do cleanup
+	for _, contribAct := range activity.Activities() {
+		if cleanupRequired, ok := contribAct.(activity.Cleanup); ok {
+			cleanupRequired.Cleanup()
+		}
 	}
 
 	logger.Info("Engine Stopped")
