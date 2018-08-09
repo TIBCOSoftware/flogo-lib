@@ -23,8 +23,9 @@ type Context interface {
 	// SetOutput sets the value of the specified output attribute
 	SetOutput(name string, value interface{})
 
-	// GetSharedData get shared data for activity
-	GetSharedData() map[string]interface{}
+	// GetSharedTempData get shared temporary data for activity, lifespan
+	// of the data dependent on the activity host implementation
+	GetSharedTempData() map[string]interface{}
 
 	/////////////////
 	// Deprecated
