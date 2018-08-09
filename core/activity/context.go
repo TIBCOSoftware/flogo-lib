@@ -2,7 +2,7 @@ package activity
 
 import (
 	"github.com/TIBCOSoftware/flogo-lib/core/data"
-)
+	)
 
 // Context describes the execution context for an Activity.
 // It provides access to attributes, task and Flow information.
@@ -23,9 +23,9 @@ type Context interface {
 	// SetOutput sets the value of the specified output attribute
 	SetOutput(name string, value interface{})
 
-	// GetSharedTempData get shared temporary data for activity, lifespan
-	// of the data dependent on the activity host implementation
-	GetSharedTempData() map[string]interface{}
+	//// GetSharedTempData get shared temporary data for activity, lifespan
+	//// of the data dependent on the activity host implementation
+	//GetSharedTempData() map[string]interface{}
 
 	/////////////////
 	// Deprecated
@@ -88,3 +88,18 @@ type FlowDetails interface {
 	ReplyHandler() ReplyHandler
 }
 
+//SharedTempDataSupport - temporary interface until we transition this to activity.Context
+//Deprecated
+type SharedTempDataSupport interface {
+
+	// GetSharedTempData get shared temporary data for activity, lifespan
+	// of the data dependent on the activity host implementation
+	GetSharedTempData() map[string]interface{}
+}
+
+// GetSharedTempDataSupport for the activity
+func GetSharedTempDataSupport(ctx Context) (SharedTempDataSupport, bool) {
+
+	ts, ok :=  ctx.(SharedTempDataSupport)
+	return ts, ok
+}
