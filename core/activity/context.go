@@ -14,12 +14,6 @@ type Context interface {
 	//Name the name of the activity that is currently executing
 	Name() string
 
-	// GetSetting gets the value of the specified setting
-	GetSetting(setting string) (value interface{}, exists bool)
-
-	// GetInitValue gets the specified initialization value
-	GetInitValue(key string) (value interface{}, exists bool)
-
 	// GetInput gets the value of the specified input attribute
 	GetInput(name string) interface{}
 
@@ -29,11 +23,27 @@ type Context interface {
 	// SetOutput sets the value of the specified output attribute
 	SetOutput(name string, value interface{})
 
+	// GetSharedData get shared data for activity
+	GetSharedData() map[string]interface{}
+
+	/////////////////
+	// Deprecated
+
+	// GetSetting gets the value of the specified setting
+	// Deprecated
+	GetSetting(setting string) (value interface{}, exists bool)
+
+	// GetInitValue gets the specified initialization value
+	// Deprecated
+	GetInitValue(key string) (value interface{}, exists bool)
+
 	// Deprecated: Use ActivityHost().Name() instead.
 	TaskName() string
 
 	// Deprecated: Use ActivityHost() instead.
 	FlowDetails() FlowDetails
+
+	/////////////////
 }
 
 type Host interface {
@@ -63,17 +73,6 @@ type Host interface {
 	//GetDetails() map[string]string
 }
 
-//type InitContext interface {
-//
-//	// GetSetting gets the value of the specified setting
-//	GetSetting(setting string) (value interface{}, exists bool)
-//
-//	// GetResolver gets the resolver associated with the activity host
-//	GetResolver() data.Resolver
-//
-//	// SetInitValue sets the value associated with this initialization
-//	SetInitValue(key string, value interface{})
-//}
 
 // Deprecated: Use ActivityHost() instead.
 type FlowDetails interface {
@@ -87,3 +86,4 @@ type FlowDetails interface {
 	// ReplyHandler returns the reply handler for the flow Instance
 	ReplyHandler() ReplyHandler
 }
+

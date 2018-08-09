@@ -180,26 +180,26 @@ type activityContext struct {
 	outputScope *data.FixedScope
 }
 
-func (ai *activityContext) ActivityHost() activity.Host {
-	return ai
+func (aCtx *activityContext) ActivityHost() activity.Host {
+	return aCtx
 }
 
-func (ai *activityContext) Name() string {
+func (aCtx *activityContext) Name() string {
 	return ""
 }
 
-func (ai *activityContext) GetSetting(setting string) (value interface{}, exists bool) {
+func (aCtx *activityContext) GetSetting(setting string) (value interface{}, exists bool) {
 	return nil, false
 }
 
-func (ai *activityContext) GetInitValue(key string) (value interface{}, exists bool) {
+func (aCtx *activityContext) GetInitValue(key string) (value interface{}, exists bool) {
 	return nil, false
 }
 
 // GetInput implements activity.Context.GetInput
-func (ai *activityContext) GetInput(name string) interface{} {
+func (aCtx *activityContext) GetInput(name string) interface{} {
 
-	val, found := ai.inputScope.GetAttr(name)
+	val, found := aCtx.inputScope.GetAttr(name)
 	if found {
 		return val.Value()
 	}
@@ -208,9 +208,9 @@ func (ai *activityContext) GetInput(name string) interface{} {
 }
 
 // GetOutput implements activity.Context.GetOutput
-func (ai *activityContext) GetOutput(name string) interface{} {
+func (aCtx *activityContext) GetOutput(name string) interface{} {
 
-	val, found := ai.outputScope.GetAttr(name)
+	val, found := aCtx.outputScope.GetAttr(name)
 	if found {
 		return val.Value()
 	}
@@ -219,18 +219,22 @@ func (ai *activityContext) GetOutput(name string) interface{} {
 }
 
 // SetOutput implements activity.Context.SetOutput
-func (ai *activityContext) SetOutput(name string, value interface{}) {
-	ai.outputScope.SetAttrValue(name, value)
+func (aCtx *activityContext) SetOutput(name string, value interface{}) {
+	aCtx.outputScope.SetAttrValue(name, value)
+}
+
+func (aCtx *activityContext) GetSharedData() map[string]interface{} {
+	return nil
 }
 
 //Deprecated
-func (ai *activityContext) TaskName() string {
+func (aCtx *activityContext) TaskName() string {
 	//ignore
 	return ""
 }
 
 //Deprecated
-func (ai *activityContext) FlowDetails() activity.FlowDetails {
+func (aCtx *activityContext) FlowDetails() activity.FlowDetails {
 	//ignore
 	return nil
 }
@@ -238,27 +242,27 @@ func (ai *activityContext) FlowDetails() activity.FlowDetails {
 /////////////////////////////////////////
 // activity.Host Implementation
 
-func (ai *activityContext) ID() string {
+func (aCtx *activityContext) ID() string {
 	//ignore
 	return ""
 }
 
-func (ai *activityContext) IOMetadata() *data.IOMetadata {
+func (aCtx *activityContext) IOMetadata() *data.IOMetadata {
 	return nil
 }
 
-func (ai *activityContext) Reply(replyData map[string]*data.Attribute, err error) {
+func (aCtx *activityContext) Reply(replyData map[string]*data.Attribute, err error) {
 	// ignore
 }
 
-func (ai *activityContext) Return(returnData map[string]*data.Attribute, err error) {
+func (aCtx *activityContext) Return(returnData map[string]*data.Attribute, err error) {
 	//ignore
 }
 
-func (ai *activityContext) WorkingData() data.Scope {
+func (aCtx *activityContext) WorkingData() data.Scope {
 	return nil
 }
 
-func (ai *activityContext) GetResolver() data.Resolver {
+func (aCtx *activityContext) GetResolver() data.Resolver {
 	return data.GetBasicResolver()
 }
