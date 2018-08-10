@@ -18,6 +18,7 @@ import (
 	"github.com/TIBCOSoftware/flogo-lib/util"
 	"github.com/TIBCOSoftware/flogo-lib/util/managed"
 	"sync"
+	"github.com/TIBCOSoftware/flogo-lib/engine/channels"
 )
 
 var managedServices []managed.Managed
@@ -107,6 +108,16 @@ func (e *engineImpl) Init(directRunner bool) error {
 				if err := initializable.Init(); err != nil {
 					return err
 				}
+			}
+		}
+
+		//add engine channels
+		channelNames := e.app.Channels
+		if len(channelNames) > 0 {
+			for _, channelName := range channelNames {
+
+				logger.Debugf("Creating Engine Channel '%s'", channelName)
+				channels.Add(channelName)
 			}
 		}
 
@@ -224,6 +235,11 @@ func (e *engineImpl) Start() error {
 
 func (e *engineImpl) Stop() error {
 	logger.Info("Engine Stopping...")
+
+	if channels.Count() > 0 {
+		logger.Info("Closing Engine Channels...")
+		channels.Close()
+	}
 
 	logger.Info("Stopping Triggers...")
 

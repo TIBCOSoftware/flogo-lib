@@ -19,7 +19,9 @@ type Config struct {
 	Type        string             `json:"type"`
 	Version     string             `json:"version"`
 	Description string             `json:"description"`
+
 	Properties  []*data.Attribute  `json:"properties"`
+	Channels    []string           `json:"channels"`
 	Triggers    []*trigger.Config  `json:"triggers"`
 	Resources   []*resource.Config `json:"resources"`
 	Actions     []*action.Config   `json:"actions"`
