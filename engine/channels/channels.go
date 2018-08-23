@@ -1,78 +1,140 @@
 package channels
 
 import (
-	"strings"
-	"strconv"
-	"github.com/TIBCOSoftware/flogo-lib/logger"
 	"errors"
+	"fmt"
+
+	"github.com/TIBCOSoftware/flogo-lib/logger"
 )
 
-var channels = make(map[string]chan interface{})
+var channels = make(map[string]*channelImpl)
+var active bool
 
-// Count returns the number of channels
-func Count() int {
-	return len(channels)
+type Channel interface {
+	Name() string
+	AddListener(callback OnMessage) error
+	Publish(msg interface{})
+	PublishNoWait(msg interface{}) bool
 }
 
-// Add adds an engine channel, assumes these are created before startup
-func Add(name string){
-	//todo add size?
-	idx := strings.Index(name,":")
-	buffSize := 0
-	chanName := name
+type OnMessage func(msg interface{})
 
-	if idx > 0 {
-		bSize, err:= strconv.Atoi(name[idx+1:])
+// Creates a new channel, channels have to be created before the engine starts
+func New(name string, bufferSize int) (Channel, error) {
+
+	if active {
+		return nil, errors.New("cannot create channel after engine has been started")
+	}
+
+	if _, dup := channels[name]; dup {
+		return nil, errors.New("channel already exists: " + name)
+	}
+
+	channel := &channelImpl{name: name, ch: make(chan interface{}, bufferSize)}
+	channels[name] = channel
+
+	return channel, nil
+
+}
+
+func Start() error {
+	active = true
+
+	var started []*channelImpl
+
+	for _, channel := range channels {
+		err := channel.Start()
 		if err != nil {
-			logger.Warnf("invalid channel buffer size '%s', defaulting to buffer size of %d", name[idx+1:], buffSize)
-		} else {
-			buffSize = bSize
+			for _, startedChannel := range started {
+				startedChannel.Stop()
+			}
+			return fmt.Errorf("failed to start channel '%s', error: %s", channel.name, err.Error())
 		}
 
-		chanName = name[:idx]
+		started = append(started, channel)
 	}
 
-	channels[chanName] = make(chan interface{}, buffSize)
-}
-
-// Get gets the named channel
-func Get(name string) chan interface{} {
-	return channels[name]
-}
-
-//Close closes all the channels, assumes it is called on shutdown
-func Close()  {
-	for _, value := range channels {
-		close(value)
-	}
-	channels = make(map[string]chan interface{})
-}
-
-func Publish(channelName string, data interface{}) error {
-
-	ch, exists := channels[channelName]
-	if !exists {
-		return errors.New("unknown channel: " + channelName)
-	}
-
-	ch <- data
 	return nil
 }
 
-func PublishNoWait(channelName string, data interface{}) (bool, error) {
-
-	ch, exists := channels[channelName]
-	if !exists {
-		return false, errors.New("unknown channel: " + channelName)
+func Stop() error {
+	for _, channel := range channels {
+		err := channel.Stop()
+		if err != nil {
+			logger.Warnf("error stopping channel '%s', error: %s", channel.name, err.Error())
+		}
 	}
+
+	active = false
+
+	return nil
+}
+
+type channelImpl struct {
+	name      string
+	callbacks []OnMessage
+	ch        chan interface{}
+	active    bool
+}
+
+func (c *channelImpl) Start() error {
+	c.active = true
+	go c.processEvents()
+
+	return nil
+}
+
+func (c *channelImpl) Stop() error {
+	close(c.ch)
+	c.active = false
+
+	return nil
+}
+
+func (c *channelImpl) AddListener(callback OnMessage) error {
+
+	if c.active {
+		return errors.New("cannot add listener after channel has been started")
+	}
+
+	c.callbacks = append(c.callbacks, callback)
+	return nil
+}
+
+func (c *channelImpl) Name() string {
+	return c.name
+}
+
+func (c *channelImpl) Publish(msg interface{}) {
+	c.ch <- msg
+}
+
+func (c *channelImpl) PublishNoWait(msg interface{}) bool {
 
 	sent := false
 	select {
-	case ch <- data:
+	case c.ch <- msg:
 		sent = true
 	default:
 		sent = false
 	}
 
-	return sent, nil
+	return sent
+}
+
+func (c *channelImpl) processEvents() {
+
+	for {
+		select {
+		case val, ok := <-c.ch:
+			if !ok {
+				//channel closed, so return
+				return
+			}
+
+			for _, callback := range c.callbacks {
+				go callback(val)
+			}
+		}
+	}
 }
