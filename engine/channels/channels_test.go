@@ -39,7 +39,8 @@ func TestChannel_Name(t *testing.T) {
 	active = false
 	channel, err := New("test1", 5)
 	assert.Nil(t, err)
-	assert.Equal(t, "test1", channel.Name())
+	cImpl := channel.(*channelImpl)
+	assert.Equal(t, "test1", cImpl.name)
 }
 
 func TestStart(t *testing.T) {
@@ -99,7 +100,7 @@ func TestChannel_AddListenerStarted(t *testing.T) {
 	cImpl := channel.(*channelImpl)
 	cImpl.Start()
 
-	err = cImpl.AddListener(func(msg interface{}) {
+	err = cImpl.RegisterCallback(func(msg interface{}) {
 		//dummy
 	})
 	assert.NotNil(t, err)
@@ -114,7 +115,7 @@ func TestChannel_AddListener(t *testing.T) {
 
 	cImpl := channel.(*channelImpl)
 
-	err = cImpl.AddListener(func(msg interface{}) {
+	err = cImpl.RegisterCallback(func(msg interface{}) {
 		//dummy
 	})
 	assert.Equal(t, 1, len(cImpl.callbacks))
@@ -141,7 +142,7 @@ func TestChannel_Callback(t *testing.T) {
 	cImpl := channel.(*channelImpl)
 
 	cbt := &cbTester{}
-	err = cImpl.AddListener(cbt.onMessage)
+	err = cImpl.RegisterCallback(cbt.onMessage)
 	Start()
 
 	channel.Publish(22)
