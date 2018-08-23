@@ -4,13 +4,12 @@ import (
 	"strings"
 	"strconv"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
-	"errors"
 )
 
 var channelsOld = make(map[string]chan interface{})
 
 // Count returns the number of channels
-func Count() int {
+func CountOld() int {
 	return len(channelsOld)
 }
 
@@ -46,33 +45,4 @@ func Close()  {
 		close(value)
 	}
 	channelsOld = make(map[string]chan interface{})
-}
-
-func Publish(channelName string, data interface{}) error {
-
-	ch, exists := channelsOld[channelName]
-	if !exists {
-		return errors.New("unknown channel: " + channelName)
-	}
-
-	ch <- data
-	return nil
-}
-
-func PublishNoWait(channelName string, data interface{}) (bool, error) {
-
-	ch, exists := channelsOld[channelName]
-	if !exists {
-		return false, errors.New("unknown channel: " + channelName)
-	}
-
-	sent := false
-	select {
-	case ch <- data:
-		sent = true
-	default:
-		sent = false
-	}
-
-	return sent, nil
 }

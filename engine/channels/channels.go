@@ -5,6 +5,8 @@ import (
 	"fmt"
 
 	"github.com/TIBCOSoftware/flogo-lib/logger"
+	"strings"
+	"strconv"
 )
 
 var channels = make(map[string]*channelImpl)
@@ -12,7 +14,7 @@ var active bool
 
 type Channel interface {
 	Name() string
-	AddListener(callback OnMessage) error
+	RegisterCallback(callback OnMessage) error
 	Publish(msg interface{})
 	PublishNoWait(msg interface{}) bool
 }
@@ -35,6 +37,16 @@ func New(name string, bufferSize int) (Channel, error) {
 
 	return channel, nil
 
+}
+
+// Count returns the number of channels
+func Count() int {
+	return len(channels)
+}
+
+// Get gets the named channel
+func GetChannel(name string) Channel {
+	return channels[name]
 }
 
 func Start() error {
@@ -137,4 +149,24 @@ func (c *channelImpl) processEvents() {
 			}
 		}
 	}
+}
+
+// Decode decodes the channel descriptor
+func Decode(channelDescriptor string) (string, int){
+	idx := strings.Index(channelDescriptor,":")
+	buffSize := 0
+	chanName := channelDescriptor
+
+	if idx > 0 {
+		bSize, err:= strconv.Atoi(channelDescriptor[idx+1:])
+		if err != nil {
+			logger.Warnf("invalid channel buffer size '%s', defaulting to buffer size of %d", channelDescriptor[idx+1:], buffSize)
+		} else {
+			buffSize = bSize
+		}
+
+		chanName = channelDescriptor[:idx]
+	}
+
+	return chanName, buffSize
 }
