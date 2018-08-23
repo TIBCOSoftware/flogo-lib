@@ -13,7 +13,6 @@ var channels = make(map[string]*channelImpl)
 var active bool
 
 type Channel interface {
-	Name() string
 	RegisterCallback(callback OnMessage) error
 	Publish(msg interface{})
 	PublishNoWait(msg interface{}) bool
@@ -103,7 +102,7 @@ func (c *channelImpl) Stop() error {
 	return nil
 }
 
-func (c *channelImpl) AddListener(callback OnMessage) error {
+func (c *channelImpl) RegisterCallback(callback OnMessage) error {
 
 	if c.active {
 		return errors.New("cannot add listener after channel has been started")
@@ -111,10 +110,6 @@ func (c *channelImpl) AddListener(callback OnMessage) error {
 
 	c.callbacks = append(c.callbacks, callback)
 	return nil
-}
-
-func (c *channelImpl) Name() string {
-	return c.name
 }
 
 func (c *channelImpl) Publish(msg interface{}) {
