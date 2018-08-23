@@ -119,9 +119,6 @@ func (e *engineImpl) Init(directRunner bool) error {
 
 				logger.Debugf("Creating Engine Channel '%s'", name)
 				channels.New(name, buffSize)
-
-				//todo old remove
-				channels.Add(descriptor)
 			}
 		}
 
@@ -250,7 +247,6 @@ func (e *engineImpl) Stop() error {
 		logger.Info("Stopping Engine Channels...")
 		channels.Stop()
 		logger.Info("Engine Channels Stopped...")
-		channels.Close()
 	}
 
 	logger.Info("Stopping Triggers...")

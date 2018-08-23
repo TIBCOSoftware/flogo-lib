@@ -44,7 +44,7 @@ func Count() int {
 }
 
 // Get gets the named channel
-func GetChannel(name string) Channel {
+func Get(name string) Channel {
 	return channels[name]
 }
 
@@ -61,7 +61,7 @@ func Start() error {
 			}
 			return fmt.Errorf("failed to start channel '%s', error: %s", channel.name, err.Error())
 		}
-
+		logger.Debugf("Started Engine Channel: %s", channel.name)
 		started = append(started, channel)
 	}
 
