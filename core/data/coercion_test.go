@@ -4,9 +4,16 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"os"
+	"github.com/TIBCOSoftware/flogo-lib/config"
 )
 
 func TestCoerceToString(t *testing.T) {
+
+	os.Setenv(config.ENV_DATA_SECRET_KEY_KEY, "SecretKey")
+	defer func() {
+		os.Unsetenv(config.ENV_DATA_SECRET_KEY_KEY)
+	}()
 
 	var valInt interface{} = 2
 	cval, _ := CoerceToString(valInt)

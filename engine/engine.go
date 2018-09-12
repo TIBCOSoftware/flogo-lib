@@ -17,7 +17,12 @@ import (
 	"github.com/TIBCOSoftware/flogo-lib/logger"
 	"github.com/TIBCOSoftware/flogo-lib/util"
 	"github.com/TIBCOSoftware/flogo-lib/util/managed"
+	"sync"
+	"github.com/TIBCOSoftware/flogo-lib/engine/channels"
 )
+
+var managedServices []managed.Managed
+var lock = &sync.Mutex{}
 
 // Interface for the engine behaviour
 type Engine interface {
@@ -33,6 +38,13 @@ type Engine interface {
 	// TriggerInfos get info for the triggers
 	TriggerInfos() []*managed.Info
 }
+
+func LifeCycle(managedEntity managed.Managed)  {
+	defer lock.Unlock()
+	lock.Lock()
+	managedServices = append(managedServices, managedEntity)
+}
+
 
 // engineImpl is the type for the Default Engine Implementation
 type engineImpl struct {
@@ -62,7 +74,7 @@ func New(appCfg *app.Config) (Engine, error) {
 	}
 
 	//fix up app configuration if it is older
-	app.FixUpApp(appCfg)
+	//app.FixUpApp(appCfg)
 
 	logLevel := config.GetLogLevel()
 
@@ -99,12 +111,32 @@ func (e *engineImpl) Init(directRunner bool) error {
 			}
 		}
 
+		//add engine channels
+		channelDescriptors := e.app.Channels
+		if len(channelDescriptors) > 0 {
+			for _, descriptor := range channelDescriptors {
+				name, buffSize := channels.Decode(descriptor)
+
+				logger.Debugf("Creating Engine Channel '%s'", name)
+				channels.New(name, buffSize)
+			}
+		}
+
 		err = app.RegisterResources(e.app.Resources)
 		if err != nil {
 			return err
 		}
 
-		triggers, err := app.CreateTriggers(e.app.Triggers, e.actionRunner)
+		actions, err := app.CreateSharedActions(e.app.Actions)
+		if err != nil {
+			errorMsg := fmt.Sprintf("Error creating shared action instances - %s", err.Error())
+			logger.Error(errorMsg)
+			panic(errorMsg)
+		}
+
+		//todo add all actions to engine (will make cleanup easier)
+
+		triggers, err := app.CreateTriggers(e.app.Triggers, actions, e.actionRunner)
 		e.triggerInfos = make(map[string]*managed.Info)
 
 		if err != nil {
@@ -150,6 +182,16 @@ func (e *engineImpl) Start() error {
 		logger.Info("Started Services")
 	}
 
+	if len(managedServices) > 0 {
+		for _, mService := range managedServices {
+			err = mService.Start()
+			if err != nil {
+				logger.Error("Error Starting Services - " + err.Error())
+				//TODO Should we exit here?
+			}
+		}
+	}
+
 	// Start the triggers
 	logger.Info("Starting Triggers...")
 
@@ -187,6 +229,12 @@ func (e *engineImpl) Start() error {
 
 	logger.Info("Triggers Started")
 
+	if channels.Count() > 0 {
+		logger.Info("Starting Engine Channels...")
+		channels.Start()
+		logger.Info("Engine Channels Started")
+	}
+
 	logger.Info("Engine Started")
 
 	return nil
@@ -194,6 +242,12 @@ func (e *engineImpl) Start() error {
 
 func (e *engineImpl) Stop() error {
 	logger.Info("Engine Stopping...")
+
+	if channels.Count() > 0 {
+		logger.Info("Stopping Engine Channels...")
+		channels.Stop()
+		logger.Info("Engine Channels Stopped...")
+	}
 
 	logger.Info("Stopping Triggers...")
 
@@ -220,6 +274,15 @@ func (e *engineImpl) Stop() error {
 		logger.Error("Error Stopping Services - " + err.Error())
 	} else {
 		logger.Info("Stopped Services")
+	}
+
+	if len(managedServices) > 0 {
+		for _, mService := range managedServices {
+			err = mService.Stop()
+			if err != nil {
+				logger.Error("Error Stopping Services - " + err.Error())
+			}
+		}
 	}
 
 	logger.Info("Engine Stopped")
