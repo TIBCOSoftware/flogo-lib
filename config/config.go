@@ -10,6 +10,8 @@ const (
 	ENV_LOG_DATE_FORMAT_KEY      = "FLOGO_LOG_DTFORMAT"
 	LOG_DATE_FORMAT_DEFAULT      = "2006-01-02 15:04:05.000"
 	ENV_LOG_LEVEL_KEY            = "FLOGO_LOG_LEVEL"
+	ENV_LOG_FORMAT               = "FLOGO_LOG_FORMAT"
+	LOG_FORMAT_DEFAULT     		 = "TEXT"
 	LOG_LEVEL_DEFAULT            = "INFO"
 	ENV_APP_CONFIG_LOCATION_KEY  = "FLOGO_CONFIG_PATH"
 	APP_CONFIG_LOCATION_DEFAULT  = "flogo.json"
@@ -40,6 +42,15 @@ func GetLogLevel() string {
 		return logLevelEnv
 	}
 	return defaultLogLevel
+}
+
+//GetLogLevel returns the log level
+func GetLogFormat() string {
+	logFormatEnv := os.Getenv(ENV_LOG_FORMAT)
+	if len(logFormatEnv) > 0 {
+		return logFormatEnv
+	}
+	return LOG_FORMAT_DEFAULT
 }
 
 func GetLogDateTimeFormat() string {

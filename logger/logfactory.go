@@ -11,6 +11,7 @@ import (
 var loggerMap = make(map[string]Logger)
 var mutex = &sync.RWMutex{}
 var logLevel = InfoLevel
+var logFormat = "TEXT"
 
 type DefaultLoggerFactory struct {
 }
@@ -27,12 +28,17 @@ func init() {
 	} else {
 		logLevel = getLogLevel
 	}
+
+	logFormat = config.GetLogFormat()
 }
 
 type DefaultLogger struct {
 	loggerName string
 	loggerImpl *logrus.Logger
 }
+
+
+
 
 type LogFormatter struct {
 	loggerName string
@@ -42,6 +48,8 @@ func (f *LogFormatter) Format(entry *logrus.Entry) ([]byte, error) {
 	logEntry := fmt.Sprintf("%s %-6s [%s] - %s\n", entry.Time.Format(config.GetLogDateTimeFormat()), getLevel(entry.Level), f.loggerName, entry.Message)
 	return []byte(logEntry), nil
 }
+
+
 
 func getLevel(level logrus.Level) string {
 	switch level {
@@ -150,9 +158,15 @@ func (logfactory *DefaultLoggerFactory) GetLogger(name string) Logger {
 	mutex.RUnlock()
 	if l == nil {
 		logImpl := logrus.New()
-		logImpl.Formatter = &LogFormatter{
-			loggerName: name,
+
+		if logFormat == "JSON" {
+			logImpl.Formatter = &logrus.JSONFormatter{}
+		} else {
+			logImpl.Formatter = &LogFormatter{
+				loggerName: name,
+			}
 		}
+
 		l = &DefaultLogger{
 			loggerName: name,
 			loggerImpl: logImpl,
