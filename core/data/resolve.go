@@ -25,8 +25,8 @@ func (r *BasicResolver) Resolve(toResolve string, scope Scope) (value interface{
 
 	var details *ResolutionDetails
 
-	if customResolver := GetCustomResolver(toResolve);  customResolver != nil {
-		return customResolver.Resolve(toResolve, scope)
+	if customResolver := GetCustomValueResolver(toResolve);  customResolver != nil {
+		return customResolver.ResolveValue(toResolve, scope)
 	} else if strings.HasPrefix(toResolve, "${") {
 		details, err = GetResolutionDetailsOld(toResolve)
 	} else if strings.HasPrefix(toResolve, "$") {
