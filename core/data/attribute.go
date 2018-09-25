@@ -99,6 +99,19 @@ func (a *Attribute) UnmarshalJSON(data []byte) error {
 	}
 	a.dataType = dt
 
+	strValue, ok := ser.Value.(string)
+	if ok {
+		if strValue != "" && strValue[0] == '$' {
+			// Let resolver resolve value
+			val, err := GetBasicResolver().Resolve(strValue, nil)
+			if err != nil {
+				return err
+			}
+			// Set resolved value
+			ser.Value = val
+		}
+	}
+
 	val, err := CoerceToValue(ser.Value, a.dataType)
 
 	if err != nil {
