@@ -2,7 +2,6 @@ package trigger
 
 import (
 	"context"
-
 	"fmt"
 
 	"github.com/TIBCOSoftware/flogo-lib/core/action"
@@ -12,6 +11,75 @@ import (
 )
 
 type Handler struct {
+	internal HandlerInf
+	config   *HandlerConfig
+	act      action.Action
+}
+
+type HandlerInf interface {
+	Handle(ctx context.Context, triggerData map[string]interface{}) (map[string]*data.Attribute, error)
+
+	GetSetting(setting string) (interface{}, bool)
+
+	GetOutput() (map[string]interface{})
+
+	GetStringSetting(setting string) string
+
+	String() string
+}
+
+func NewHandler(config *HandlerConfig, act action.Action, outputMd map[string]*data.Attribute, replyMd map[string]*data.Attribute, runner action.Runner) *Handler {
+	helper := &handlerHelperImpl{config: config, act: act, outputMd: outputMd, replyMd: replyMd, runner: runner}
+	handler := &Handler{internal: helper, config: config, act: act}
+
+	if config != nil {
+		if config.Action.Mappings != nil {
+			if len(config.Action.Mappings.Input) > 0 {
+				helper.actionInputMapper = mapper.GetFactory().NewMapper(&data.MapperDef{Mappings: config.Action.Mappings.Input}, nil)
+			}
+			if len(config.Action.Mappings.Output) > 0 {
+				helper.actionOutputMapper = mapper.GetFactory().NewMapper(&data.MapperDef{Mappings: config.Action.Mappings.Output}, nil)
+			}
+		} else if config.ActionMappings != nil {
+			// temporary for backwards compatibility
+			if len(config.ActionMappings.Input) > 0 {
+				helper.actionInputMapper = mapper.GetFactory().NewMapper(&data.MapperDef{Mappings: config.ActionMappings.Input}, nil)
+			}
+			if len(config.ActionMappings.Output) > 0 {
+				helper.actionOutputMapper = mapper.GetFactory().NewMapper(&data.MapperDef{Mappings: config.ActionMappings.Output}, nil)
+			}
+		}
+	}
+
+	return handler
+}
+
+func (h *Handler) GetSetting(setting string) (interface{}, bool) {
+	return h.GetSetting(setting)
+}
+
+func (h *Handler) GetOutput() (map[string]interface{}) {
+	return h.internal.GetOutput()
+}
+
+func (h *Handler) GetStringSetting(setting string) string {
+	return h.internal.GetStringSetting(setting)
+}
+
+func (h *Handler) Handle(ctx context.Context, triggerData map[string]interface{}) (map[string]*data.Attribute, error) {
+
+	return h.internal.Handle(ctx, triggerData)
+}
+
+func (h *Handler) String() string {
+	return h.internal.String()
+}
+
+func NewHandlerAlt(internal HandlerInf) *Handler {
+	return &Handler{internal:internal}
+}
+
+type handlerHelperImpl struct {
 	runner action.Runner
 	act    action.Action
 
@@ -24,32 +92,7 @@ type Handler struct {
 	actionOutputMapper data.Mapper
 }
 
-func NewHandler(config *HandlerConfig, act action.Action, outputMd map[string]*data.Attribute, replyMd map[string]*data.Attribute, runner action.Runner) *Handler {
-	handler := &Handler{config: config, act: act, outputMd: outputMd, replyMd: replyMd, runner: runner}
-
-	if config != nil {
-		if config.Action.Mappings != nil {
-			if len(config.Action.Mappings.Input) > 0 {
-				handler.actionInputMapper = mapper.GetFactory().NewMapper(&data.MapperDef{Mappings: config.Action.Mappings.Input}, nil)
-			}
-			if len(config.Action.Mappings.Output) > 0 {
-				handler.actionOutputMapper = mapper.GetFactory().NewMapper(&data.MapperDef{Mappings: config.Action.Mappings.Output}, nil)
-			}
-		} else if config.ActionMappings != nil {
-			// temporary for backwards compatibility
-			if len(config.ActionMappings.Input) > 0 {
-				handler.actionInputMapper = mapper.GetFactory().NewMapper(&data.MapperDef{Mappings: config.ActionMappings.Input}, nil)
-			}
-			if len(config.ActionMappings.Output) > 0 {
-				handler.actionOutputMapper = mapper.GetFactory().NewMapper(&data.MapperDef{Mappings: config.ActionMappings.Output}, nil)
-			}
-		}
-	}
-
-	return handler
-}
-
-func (h *Handler) GetSetting(setting string) (interface{}, bool) {
+func (h *handlerHelperImpl) GetSetting(setting string) (interface{}, bool) {
 
 	if h.config == nil {
 		return nil, false
@@ -64,7 +107,7 @@ func (h *Handler) GetSetting(setting string) (interface{}, bool) {
 	return val, exists
 }
 
-func (h *Handler) GetOutput() (map[string]interface{}) {
+func (h *handlerHelperImpl) GetOutput() (map[string]interface{}) {
 
 	if h.config == nil {
 		return nil
@@ -72,7 +115,7 @@ func (h *Handler) GetOutput() (map[string]interface{}) {
 	return h.config.Output
 }
 
-func (h *Handler) GetStringSetting(setting string) string {
+func (h *handlerHelperImpl) GetStringSetting(setting string) string {
 	val, exists := h.GetSetting(setting)
 
 	if !exists {
@@ -88,8 +131,7 @@ func (h *Handler) GetStringSetting(setting string) string {
 	return strVal
 }
 
-func (h *Handler) Handle(ctx context.Context, triggerData map[string]interface{}) (map[string]*data.Attribute, error) {
-
+func (h *handlerHelperImpl) Handle(ctx context.Context, triggerData map[string]interface{}) (map[string]*data.Attribute, error) {
 	inputs, err := h.generateInputs(triggerData)
 
 	if err != nil {
@@ -108,7 +150,7 @@ func (h *Handler) Handle(ctx context.Context, triggerData map[string]interface{}
 	return retValue, err
 }
 
-func (h *Handler) dataToAttrs(triggerData map[string]interface{}) ([]*data.Attribute, error) {
+func (h *handlerHelperImpl) dataToAttrs(triggerData map[string]interface{}) ([]*data.Attribute, error) {
 	attrs := make([]*data.Attribute, 0, len(h.outputMd))
 
 	for k, a := range h.outputMd {
@@ -133,7 +175,7 @@ func (h *Handler) dataToAttrs(triggerData map[string]interface{}) ([]*data.Attri
 	return attrs, nil
 }
 
-func (h *Handler) generateInputs(triggerData map[string]interface{}) (map[string]*data.Attribute, error) {
+func (h *handlerHelperImpl) generateInputs(triggerData map[string]interface{}) (map[string]*data.Attribute, error) {
 
 	triggerAttrs, err := h.dataToAttrs(triggerData)
 
@@ -223,7 +265,7 @@ func (h *Handler) generateInputs(triggerData map[string]interface{}) (map[string
 	return inputs, nil
 }
 
-func (h *Handler) generateOutputs(actionResults map[string]*data.Attribute) (map[string]*data.Attribute, error) {
+func (h *handlerHelperImpl) generateOutputs(actionResults map[string]*data.Attribute) (map[string]*data.Attribute, error) {
 
 	if len(actionResults) == 0 {
 		return nil, nil
@@ -252,6 +294,6 @@ func (h *Handler) generateOutputs(actionResults map[string]*data.Attribute) (map
 	return actionResults, nil
 }
 
-func (h *Handler) String() string {
+func (h *handlerHelperImpl) String() string {
 	return fmt.Sprintf("Handler[action:%s]", h.config.Action.Ref)
 }
