@@ -177,7 +177,7 @@ func getLogLevel(loggerName string) Level {
 		// Find overridden log level
 		for name, loglevel := range overrideLogLevelMap {
 			// Look for logger which matches given name
-			if strings.Contains(loggerName, name) {
+			if strings.Contains(strings.ToLower(loggerName), strings.ToLower(name)) {
 				return loglevel
 			}
 		}
