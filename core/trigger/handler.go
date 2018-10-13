@@ -55,7 +55,7 @@ func NewHandler(config *HandlerConfig, act action.Action, outputMd map[string]*d
 }
 
 func (h *Handler) GetSetting(setting string) (interface{}, bool) {
-	return h.GetSetting(setting)
+	return h.internal.GetSetting(setting)
 }
 
 func (h *Handler) GetOutput() (map[string]interface{}) {
