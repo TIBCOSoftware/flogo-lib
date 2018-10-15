@@ -156,7 +156,7 @@ func (e *engineImpl) Start() error {
 
 	logger.SetDefaultLogger("engine")
 
-	logger.Debugf("Starting app [ %s ] with version [ %s ]", e.app.Name, e.app.Version)
+	logger.Info("Starting app [ %s ] with version [ %s ]", e.app.Name, e.app.Version)
 	logger.Info("Engine Starting...")
 
 	// Todo document RunnerType for engine configuration
