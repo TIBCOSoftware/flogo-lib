@@ -3,8 +3,7 @@ package trigger
 import (
 	"github.com/TIBCOSoftware/flogo-lib/core/action"
 	"github.com/TIBCOSoftware/flogo-lib/core/data"
-	"strconv"
-	"time"
+	"github.com/TIBCOSoftware/flogo-lib/util"
 )
 
 // Config is the configuration for a Trigger
@@ -43,6 +42,8 @@ func (c *Config) FixUp(metadata *Metadata) {
 		}
 	}
 
+	idGen, _ := util.NewGenerator()
+
 	// fix up handler outputs
 	for _, hc := range c.Handlers {
 
@@ -50,7 +51,7 @@ func (c *Config) FixUp(metadata *Metadata) {
 
 		//for backwards compatibility
 		if hc.ActionId == "" {
-			hc.ActionId = strconv.Itoa(time.Now().Nanosecond())
+			hc.ActionId = idGen.NextAsString()
 		}
 
 		//for backwards compatibility
