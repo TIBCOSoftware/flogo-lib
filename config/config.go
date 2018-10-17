@@ -20,6 +20,7 @@ const (
 	DATA_SECRET_KEY_DEFAULT       = "flogo"
 	ENV_APP_PROPERTY_OVERRIDE_KEY = "FLOGO_APP_PROPS_OVERRIDE"
 	ENV_APP_PROPERTY_RESOLVER_KEY = "FLOGO_APP_PROPS_VALUE_RESOLVER"
+	ENV_LOG_LEVEL_OVERRIDE_KEY    = "FLOGO_CONTRIB_LOG_LEVEL_OVERRIDE"
 )
 
 var defaultLogLevel = LOG_LEVEL_DEFAULT
@@ -90,6 +91,14 @@ func GetAppPropertiesOverride() string {
 
 func GetAppPropertiesValueResolver() string {
 	key := os.Getenv(ENV_APP_PROPERTY_RESOLVER_KEY)
+	if len(key) > 0 {
+		return key
+	}
+	return ""
+}
+
+func GetContribLogLevelOverride() string {
+	key := os.Getenv(ENV_LOG_LEVEL_OVERRIDE_KEY)
 	if len(key) > 0 {
 		return key
 	}

@@ -59,7 +59,7 @@ func GetLogger(name string) Logger {
 func GetLevelForName(name string) (Level, error) {
 	levelForName, ok := levelNames[name]
 	if !ok {
-		return 0, fmt.Errorf("unsupported Log Level '%s'", name)
+		return 0, fmt.Errorf("unsupported Log Level '%s'. supported values - [DEBUG ERROR INFO WARN]", name)
 	}
 	return levelForName, nil
 }
