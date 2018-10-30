@@ -10,7 +10,7 @@ import (
 
 var rootLogger Logger
 
-func init() {
+func initRootLogger() {
 	zl, lvl, _ := newZapLogger()
 	rootLogger = &zapLoggerImpl{loggerLevel: lvl, mainLogger: zl.Sugar()}
 }

@@ -24,12 +24,6 @@ func init() {
 
 	envLoggerImpl := os.Getenv("LOGGER_IMPL")
 
-	if strings.EqualFold(envLoggerImpl, "zap") {
-		RegisterLoggerFactory(&ZapLoggerFactory{})
-	} else {
-		RegisterLoggerFactory(&DefaultLoggerFactory{})
-	}
-
 	logLevelName := config.GetLogLevel()
 	// Get log level for name
 	getLogLevel, err := GetLevelForName(logLevelName)
@@ -37,6 +31,14 @@ func init() {
 		println("Unsupported Log Level - [" + logLevelName + "]. Set to Log Level - [" + defaultLogLevel + "]")
 	} else {
 		logLevel = getLogLevel
+	}
+
+	if strings.EqualFold(envLoggerImpl, "zap") {
+		initRootLogger()
+		RegisterLoggerFactory(&ZapLoggerFactory{})
+		rootLogger.SetLogLevel(logLevel)
+	} else {
+		RegisterLoggerFactory(&DefaultLoggerFactory{})
 	}
 }
 
