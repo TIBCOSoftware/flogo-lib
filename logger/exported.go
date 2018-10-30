@@ -5,53 +5,58 @@ import (
 )
 
 func Debug(args ...interface{}) {
-	GetDefaultLogger().Debug(args...)
+	defaultLogger.Debug(args...)
 }
 
 func Debugf(format string, args ...interface{}) {
-	GetDefaultLogger().Debugf(format, args...)
+	defaultLogger.Debugf(format, args...)
 }
 
 func Info(args ...interface{}) {
-	GetDefaultLogger().Info(args...)
+	defaultLogger.Info(args...)
 }
 
 func Infof(format string, args ...interface{}) {
-	GetDefaultLogger().Infof(format, args...)
+	defaultLogger.Infof(format, args...)
 }
 
 func Warn(args ...interface{}) {
-	GetDefaultLogger().Warn(args...)
+	defaultLogger.Warn(args...)
 }
 
 func Warnf(format string, args ...interface{}) {
-	GetDefaultLogger().Warnf(format, args...)
+	defaultLogger.Warnf(format, args...)
 }
 
 func Error(args ...interface{}) {
-	GetDefaultLogger().Error(args...)
+	defaultLogger.Error(args...)
 }
 
 func Errorf(format string, args ...interface{}) {
-	GetDefaultLogger().Errorf(format, args...)
+	defaultLogger.Errorf(format, args...)
 }
 
 func SetLogLevel(level Level) {
-	GetDefaultLogger().SetLogLevel(level)
+	defaultLogger.SetLogLevel(level)
 }
 
 func GetLogLevel() Level {
-	return GetDefaultLogger().GetLogLevel()
+	return defaultLogger.GetLogLevel()
 }
 
 var defaultLoggerName = "flogo"
 var defaultLogLevel = "INFO"
+var defaultLogger Logger
 
 func SetDefaultLogger(name string) {
 	defaultLoggerName = name
 }
 
 func GetDefaultLogger() Logger {
+	return defaultLogger
+}
+
+func getDefaultLogger() Logger {
 	defLogger := GetLogger(defaultLoggerName)
 	if defLogger == nil {
 		errorMsg := fmt.Sprintf("error getting default logger '%s'", defaultLoggerName)

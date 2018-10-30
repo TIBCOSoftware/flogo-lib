@@ -40,6 +40,7 @@ func init() {
 	} else {
 		RegisterLoggerFactory(&DefaultLoggerFactory{})
 	}
+	defaultLogger = getDefaultLogger()
 }
 
 type DefaultLogger struct {
