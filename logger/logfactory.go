@@ -22,7 +22,7 @@ func init() {
 
 	logFormat = config.GetLogFormat()
 
-	envLoggerImpl := os.Getenv("LOGGER_IMPL")
+	envLoggerImpl := os.Getenv("FLOGO_LOGGER_IMPL")
 
 	logLevelName := config.GetLogLevel()
 	// Get log level for name
