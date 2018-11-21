@@ -72,6 +72,7 @@ argument : '$' _flogostring ;
 Flogo
     : BaseExpr
     | TernaryExpr
+    | IfExpr
     ;
 
 BaseExpr
@@ -93,8 +94,9 @@ Expr
     : ExprArg Operator ExprArg                   <<direction.NewExpression($0, $1, $2) >>
     ;
 ExprArg
-    : ExprParam                                  <<direction.NewExpressionField($0)>>
-    | "(" Expr ")"                               <<direction.NewExpressionField($1) >>
+    : "(" Expr ")"                               <<direction.NewExpressionField($1) >>
+    | Expr                                       <<direction.NewExpressionField($0) >>
+    | ExprParam                                  <<direction.NewExpressionField($0)>>
     ;
 Operator
     : operator_charactor
@@ -102,6 +104,30 @@ Operator
 TernaryExpr
     : BaseExpr "?" BaseExpr ":" BaseExpr     <<direction.NewTernaryExpression($0, $2, $4)>>
     ;
+
+/*
+ What would be if function possible looks like
+ if Expr ("123") elseif Expr("123") elseif Expr else ("123")
+
+If Expr then Statement else Statement
+
+Statement:
+    If Expr then Statement
+    If Expr then Statement else Statement
+    Flogo
+ */
+
+IfExpr
+    : "if" BaseExpr "then" Statement                     <<direction.NewIFF($1, $3)>>
+    | "if" BaseExpr "then" Statement "else" Statement    <<direction.NewIFFElse($1, $3, $5)>>
+    ;
+
+Statement
+    : "if" BaseExpr "then" Statement                       <<direction.NewIFF($1, $3)>>
+    | "if" BaseExpr "then" Statement "else" Statement      <<direction.NewIFFElse($1, $3, $5)>>
+    |  BaseExpr
+    | TernaryExpr
+;
 
 ExprParam
     : Param                                      <<direction.NewExpressionField($0)>>

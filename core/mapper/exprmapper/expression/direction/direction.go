@@ -2,6 +2,7 @@ package direction
 
 import (
 	"errors"
+	"github.com/TIBCOSoftware/flogo-lib/core/mapper/exprmapper/expression/iff"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
 	"reflect"
 	"strconv"
@@ -276,6 +277,52 @@ func NewTernaryExpression(first Attribute, second Attribute, third Attribute) (A
 	log.Debugf("third [%+v] and type [%s]", third, reflect.TypeOf(third))
 	ternaryExp := &expr.TernaryExpressio{First: first, Second: second, Third: third}
 	return ternaryExp, nil
+}
+
+func NewIFF(ifExpr Attribute, statement Attribute) (interface{}, error) {
+	var ifE, statementE expr.Expr
+	switch t := ifExpr.(type) {
+	case expr.Expr:
+		ifE = t
+	default:
+		ifE = iff.NewIffExpr(t)
+	}
+
+	switch t := statement.(type) {
+	case expr.Expr:
+		statementE = t
+	default:
+		statementE = iff.NewIffExpr(t)
+	}
+
+	return iff.NewIff(ifE, statementE), nil
+}
+
+func NewIFFElse(ifExpr Attribute, statement, elseS Attribute) (interface{}, error) {
+	var ifE, statementE, elseE expr.Expr
+	switch t := ifExpr.(type) {
+	case expr.Expr:
+		ifE = t
+	default:
+		ifE = iff.NewIffExpr(t)
+	}
+
+	switch t := statement.(type) {
+	case expr.Expr:
+		statementE = t
+	default:
+		statementE = iff.NewIffExpr(t)
+	}
+
+	switch t := elseS.(type) {
+	case expr.Expr:
+		elseE = t
+	default:
+		elseE = iff.NewIffExpr(t)
+
+	}
+
+	return iff.NewIffElse(ifE, statementE, elseE), nil
 }
 
 func RemoveQuote(quoteStr string) string {

@@ -44,6 +44,21 @@ func TestExpressionTernaryString(t *testing.T) {
 	fmt.Println("Result:", result)
 }
 
+func TestExpressionNested(t *testing.T) {
+	v, err := ParseExpression(`(1 < 2) && (2 > 3) && (4 > 5) && (6 > 7)`)
+	if err != nil {
+		t.Fatal(err)
+		t.Failed()
+	}
+	result, err := v.EvalWithScope(nil, nil)
+	if err != nil {
+		t.Fatal(err)
+		t.Failed()
+	}
+	assert.Equal(t, false, result)
+	fmt.Println("Result:", result)
+}
+
 func TestExpressionTernaryString3(t *testing.T) {
 	v, err := ParseExpression(`200>100?true:false`)
 	if err != nil {
@@ -254,7 +269,7 @@ func TestExpressionFunction(t *testing.T) {
 }
 
 func TestExpressionAnd(t *testing.T) {
-	e, err := ParseExpression(`("dddddd" == "dddd3dd") && ("133" == "123")`)
+	e, err := ParseExpression(`((("dddddd" == "dddd3dd") && ("133" == "123")) && ("133" == "123")) && ("ssss"=="ssss")`)
 	if err != nil {
 		t.Fatal(err)
 		t.Failed()
