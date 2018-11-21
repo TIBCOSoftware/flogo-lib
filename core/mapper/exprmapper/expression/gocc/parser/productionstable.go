@@ -191,43 +191,43 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `IfExpr : "if" BaseExpr "then" Statement	<< direction.NewIFF(X[1], X[3]) >>`,
+		String: `IfExpr : "if" BaseExpr "{" Statement "}"	<< direction.NewIFF(X[1], X[3]) >>`,
 		Id:         "IfExpr",
 		NTType:     9,
 		Index:      17,
-		NumSymbols: 4,
+		NumSymbols: 5,
 		ReduceFunc: func(X []Attrib) (Attrib, error) {
 			return direction.NewIFF(X[1], X[3])
 		},
 	},
 	ProdTabEntry{
-		String: `IfExpr : "if" BaseExpr "then" Statement "else" Statement	<< direction.NewIFFElse(X[1], X[3], X[5]) >>`,
+		String: `IfExpr : "if" BaseExpr "{" Statement "}" "else" "{" Statement "}"	<< direction.NewIFFElse(X[1], X[3], X[7]) >>`,
 		Id:         "IfExpr",
 		NTType:     9,
 		Index:      18,
-		NumSymbols: 6,
+		NumSymbols: 9,
 		ReduceFunc: func(X []Attrib) (Attrib, error) {
-			return direction.NewIFFElse(X[1], X[3], X[5])
+			return direction.NewIFFElse(X[1], X[3], X[7])
 		},
 	},
 	ProdTabEntry{
-		String: `Statement : "if" BaseExpr "then" Statement	<< direction.NewIFF(X[1], X[3]) >>`,
+		String: `Statement : "if" BaseExpr "{" Statement "}"	<< direction.NewIFF(X[1], X[3]) >>`,
 		Id:         "Statement",
 		NTType:     10,
 		Index:      19,
-		NumSymbols: 4,
+		NumSymbols: 5,
 		ReduceFunc: func(X []Attrib) (Attrib, error) {
 			return direction.NewIFF(X[1], X[3])
 		},
 	},
 	ProdTabEntry{
-		String: `Statement : "if" BaseExpr "then" Statement "else" Statement	<< direction.NewIFFElse(X[1], X[3], X[5]) >>`,
+		String: `Statement : "if" BaseExpr "{" Statement "}" "else" "{" Statement "}"	<< direction.NewIFFElse(X[1], X[3], X[7]) >>`,
 		Id:         "Statement",
 		NTType:     10,
 		Index:      20,
-		NumSymbols: 6,
+		NumSymbols: 9,
 		ReduceFunc: func(X []Attrib) (Attrib, error) {
-			return direction.NewIFFElse(X[1], X[3], X[5])
+			return direction.NewIFFElse(X[1], X[3], X[7])
 		},
 	},
 	ProdTabEntry{

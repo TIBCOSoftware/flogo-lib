@@ -118,13 +118,13 @@ Statement:
  */
 
 IfExpr
-    : "if" BaseExpr "then" Statement                     <<direction.NewIFF($1, $3)>>
-    | "if" BaseExpr "then" Statement "else" Statement    <<direction.NewIFFElse($1, $3, $5)>>
+    : "if" BaseExpr "{" Statement "}"                            <<direction.NewIFF($1, $3)>>
+    | "if" BaseExpr "{" Statement "}" "else" "{" Statement "}"   <<direction.NewIFFElse($1, $3, $7)>>
     ;
 
 Statement
-    : "if" BaseExpr "then" Statement                       <<direction.NewIFF($1, $3)>>
-    | "if" BaseExpr "then" Statement "else" Statement      <<direction.NewIFFElse($1, $3, $5)>>
+    : "if" BaseExpr "{" Statement "}"                            <<direction.NewIFF($1, $3)>>
+    | "if" BaseExpr "{" Statement "}" "else" "{" Statement "}"   <<direction.NewIFFElse($1, $3, $7)>>
     |  BaseExpr
     | TernaryExpr
 ;

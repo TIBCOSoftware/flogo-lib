@@ -6,7 +6,11 @@ import (
 )
 
 func TestIFf(t *testing.T) {
-	e, err := ParseExpression(`if 2>1 then "hello"`)
+	ifExpr := `
+if 2>1 {
+	"hello"
+}`
+	e, err := ParseExpression(ifExpr)
 	assert.Nil(t, err)
 	v, err := e.Eval()
 	assert.Nil(t, err)
@@ -14,7 +18,7 @@ func TestIFf(t *testing.T) {
 }
 
 func TestIFfExprTrue(t *testing.T) {
-	e, err := ParseExpression(`if true then "hello"`)
+	e, err := ParseExpression(`if true { "hello" }`)
 	assert.Nil(t, err)
 	v, err := e.Eval()
 	assert.Nil(t, err)
@@ -23,7 +27,7 @@ func TestIFfExprTrue(t *testing.T) {
 }
 
 func TestIFfExprStatmentExpr(t *testing.T) {
-	e, err := ParseExpression(`if true then 1 > 3`)
+	e, err := ParseExpression(`if true { 1 > 3 }`)
 	assert.Nil(t, err)
 	v, err := e.Eval()
 	assert.Nil(t, err)
@@ -32,7 +36,7 @@ func TestIFfExprStatmentExpr(t *testing.T) {
 }
 
 func TestIFfExprStatmentNestIf(t *testing.T) {
-	e, err := ParseExpression(`if true then if 2>1 then "yes" `)
+	e, err := ParseExpression(`if true { if 2>1 { "yes" } }`)
 	assert.Nil(t, err)
 	v, err := e.Eval()
 	assert.Nil(t, err)
@@ -40,7 +44,7 @@ func TestIFfExprStatmentNestIf(t *testing.T) {
 }
 
 func TestIFfElse(t *testing.T) {
-	e, err := ParseExpression(`if 1>2 then "yes" else "no"`)
+	e, err := ParseExpression(`if 1>2 { "yes" } else { "no" }`)
 	assert.Nil(t, err)
 	v, err := e.Eval()
 	assert.Nil(t, err)
@@ -49,25 +53,40 @@ func TestIFfElse(t *testing.T) {
 }
 
 func TestIFfElseAllNest(t *testing.T) {
-	e, err := ParseExpression(`if (2>1) && (4>3) && (6>5) then if (6>5) && (8 > 7) then "good" else "no" else "no"`)
+	e, err := ParseExpression(`if (2>1) && (4>3) && (6>5) { if (6>5) && (8 > 7) { "good" } else  { "no" } } else { "no" }`)
 	assert.Nil(t, err)
 	v, err := e.Eval()
 	assert.Nil(t, err)
 	assert.Equal(t, "good", v)
 
-	e, err = ParseExpression(`if (2>1) && (4>3) && (6>5) then if (6>5) && (8 < 7) then "good" else "no" else "no"`)
+	e, err = ParseExpression(`if (2>1) && (4>3) && (6>5) {  if (6>5) && (8 < 7) { "good" } else {"no" } } else {"no"}`)
 	assert.Nil(t, err)
 	v, err = e.Eval()
 	assert.Nil(t, err)
 	assert.Equal(t, "no", v)
 
-	e, err = ParseExpression(`if (2>1) && (4>3) && (6>5) then if (6>5) && (8 < 7) then "good" else "no" else if (6>5) && (8 < 7) then "good" else "no"`)
+	e, err = ParseExpression(`if (2>1) && (4>3) && (6>5) { if (6>5) && (8 < 7) { "good" } else { "no"} } else { if (6>5) && (8 < 7) { "good" } else { "no" } }`)
 	assert.Nil(t, err)
 	v, err = e.Eval()
 	assert.Nil(t, err)
 	assert.Equal(t, "no", v)
 
-	e, err = ParseExpression(`if (2>1) && (4>3) && (6 < 5) then if (6>5) && (8 < 7) then "good" else "no" else if (6>5) && (8 < 7) then "good" else "no"`)
+	ifExpr := `
+if (2>1) && (4>3) && (6 < 5) { 
+	if (6>5) && (8 < 7) {
+		 "good"
+    } else {
+    	 "no"
+    }
+} else {
+	if (6>5) && (8 < 7) { 
+		"good"
+	} else {
+		"no"
+	}
+}
+`
+	e, err = ParseExpression(ifExpr)
 	assert.Nil(t, err)
 	v, err = e.Eval()
 	assert.Nil(t, err)

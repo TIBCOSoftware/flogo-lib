@@ -5291,26 +5291,26 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S240
-		-1,  // S'
-		-1,  // Flogo
-		260, // BaseExpr
-		5,   // Func
-		-1,  // Args
-		6,   // Expr
-		11,  // ExprArg
-		-1,  // Operator
-		261, // TernaryExpr
-		-1,  // IfExpr
-		263, // Statement
-		10,  // ExprParam
-		7,   // Param
-		16,  // DoubleQString
-		17,  // SingleQString
-		13,  // Int
-		18,  // MappingRef
-		15,  // Bool
-		14,  // Float
-		19,  // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // BaseExpr
+		-1, // Func
+		-1, // Args
+		-1, // Expr
+		-1, // ExprArg
+		-1, // Operator
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Statement
+		-1, // ExprParam
+		-1, // Param
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S241
 		-1, // S'
@@ -5361,7 +5361,7 @@ var gotoTab = gotoTable{
 		-1,  // Flogo
 		-1,  // BaseExpr
 		99,  // Func
-		265, // Args
+		262, // Args
 		-1,  // Expr
 		-1,  // ExprArg
 		-1,  // Operator
@@ -5404,16 +5404,16 @@ var gotoTab = gotoTable{
 		-1,  // S'
 		-1,  // Flogo
 		-1,  // BaseExpr
-		266, // Func
+		263, // Func
 		-1,  // Args
-		267, // Expr
-		271, // ExprArg
+		264, // Expr
+		268, // ExprArg
 		-1,  // Operator
 		-1,  // TernaryExpr
 		-1,  // IfExpr
 		-1,  // Statement
-		270, // ExprParam
-		268, // Param
+		267, // ExprParam
+		265, // Param
 		208, // DoubleQString
 		209, // SingleQString
 		205, // Int
@@ -5648,7 +5648,7 @@ var gotoTab = gotoTable{
 		-1,  // BaseExpr
 		32,  // Func
 		-1,  // Args
-		276, // Expr
+		273, // Expr
 		36,  // ExprArg
 		-1,  // Operator
 		-1,  // TernaryExpr
@@ -5719,7 +5719,7 @@ var gotoTab = gotoTable{
 		-1,  // Operator
 		168, // TernaryExpr
 		-1,  // IfExpr
-		277, // Statement
+		274, // Statement
 		10,  // ExprParam
 		171, // Param
 		179, // DoubleQString
@@ -5775,26 +5775,26 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S262
-		-1,  // S'
-		-1,  // Flogo
-		278, // BaseExpr
-		56,  // Func
-		-1,  // Args
-		57,  // Expr
-		60,  // ExprArg
-		-1,  // Operator
-		-1,  // TernaryExpr
-		-1,  // IfExpr
-		-1,  // Statement
-		10,  // ExprParam
-		58,  // Param
-		64,  // DoubleQString
-		65,  // SingleQString
-		61,  // Int
-		66,  // MappingRef
-		63,  // Bool
-		62,  // Float
-		67,  // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // BaseExpr
+		-1, // Func
+		-1, // Args
+		-1, // Expr
+		-1, // ExprArg
+		-1, // Operator
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Statement
+		-1, // ExprParam
+		-1, // Param
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S263
 		-1, // S'
@@ -5863,26 +5863,26 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S266
-		-1, // S'
-		-1, // Flogo
-		-1, // BaseExpr
-		-1, // Func
-		-1, // Args
-		-1, // Expr
-		-1, // ExprArg
-		-1, // Operator
-		-1, // TernaryExpr
-		-1, // IfExpr
-		-1, // Statement
-		-1, // ExprParam
-		-1, // Param
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // BaseExpr
+		32,  // Func
+		-1,  // Args
+		277, // Expr
+		36,  // ExprArg
+		-1,  // Operator
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Statement
+		10,  // ExprParam
+		34,  // Param
+		40,  // DoubleQString
+		41,  // SingleQString
+		37,  // Int
+		42,  // MappingRef
+		39,  // Bool
+		38,  // Float
+		43,  // Nil
 	},
 	gotoRow{ // S267
 		-1, // S'
@@ -5907,6 +5907,28 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S268
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // BaseExpr
+		-1,  // Func
+		-1,  // Args
+		-1,  // Expr
+		-1,  // ExprArg
+		245, // Operator
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Statement
+		-1,  // ExprParam
+		-1,  // Param
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S269
 		-1, // S'
 		-1, // Flogo
 		-1, // BaseExpr
@@ -5927,28 +5949,6 @@ var gotoTab = gotoTable{
 		-1, // Bool
 		-1, // Float
 		-1, // Nil
-	},
-	gotoRow{ // S269
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // BaseExpr
-		32,  // Func
-		-1,  // Args
-		280, // Expr
-		36,  // ExprArg
-		-1,  // Operator
-		-1,  // TernaryExpr
-		-1,  // IfExpr
-		-1,  // Statement
-		10,  // ExprParam
-		34,  // Param
-		40,  // DoubleQString
-		41,  // SingleQString
-		37,  // Int
-		42,  // MappingRef
-		39,  // Bool
-		38,  // Float
-		43,  // Nil
 	},
 	gotoRow{ // S270
 		-1, // S'
@@ -5975,24 +5975,24 @@ var gotoTab = gotoTable{
 	gotoRow{ // S271
 		-1,  // S'
 		-1,  // Flogo
-		-1,  // BaseExpr
-		-1,  // Func
+		278, // BaseExpr
+		279, // Func
 		-1,  // Args
-		-1,  // Expr
-		-1,  // ExprArg
-		245, // Operator
+		280, // Expr
+		283, // ExprArg
+		-1,  // Operator
 		-1,  // TernaryExpr
 		-1,  // IfExpr
 		-1,  // Statement
-		-1,  // ExprParam
-		-1,  // Param
-		-1,  // DoubleQString
-		-1,  // SingleQString
-		-1,  // Int
-		-1,  // MappingRef
-		-1,  // Bool
-		-1,  // Float
-		-1,  // Nil
+		10,  // ExprParam
+		281, // Param
+		287, // DoubleQString
+		288, // SingleQString
+		284, // Int
+		289, // MappingRef
+		286, // Bool
+		285, // Float
+		290, // Nil
 	},
 	gotoRow{ // S272
 		-1, // S'
@@ -6039,28 +6039,6 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S274
-		-1,  // S'
-		-1,  // Flogo
-		281, // BaseExpr
-		282, // Func
-		-1,  // Args
-		283, // Expr
-		286, // ExprArg
-		-1,  // Operator
-		-1,  // TernaryExpr
-		-1,  // IfExpr
-		-1,  // Statement
-		10,  // ExprParam
-		284, // Param
-		290, // DoubleQString
-		291, // SingleQString
-		287, // Int
-		292, // MappingRef
-		289, // Bool
-		288, // Float
-		293, // Nil
-	},
-	gotoRow{ // S275
 		-1, // S'
 		-1, // Flogo
 		-1, // BaseExpr
@@ -6081,6 +6059,28 @@ var gotoTab = gotoTable{
 		-1, // Bool
 		-1, // Float
 		-1, // Nil
+	},
+	gotoRow{ // S275
+		-1,  // S'
+		-1,  // Flogo
+		167, // BaseExpr
+		169, // Func
+		-1,  // Args
+		170, // Expr
+		173, // ExprArg
+		-1,  // Operator
+		168, // TernaryExpr
+		-1,  // IfExpr
+		302, // Statement
+		10,  // ExprParam
+		171, // Param
+		179, // DoubleQString
+		180, // SingleQString
+		176, // Int
+		181, // MappingRef
+		178, // Bool
+		177, // Float
+		182, // Nil
 	},
 	gotoRow{ // S276
 		-1, // S'
@@ -6237,26 +6237,26 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S283
-		-1, // S'
-		-1, // Flogo
-		-1, // BaseExpr
-		-1, // Func
-		-1, // Args
-		-1, // Expr
-		-1, // ExprArg
-		-1, // Operator
-		-1, // TernaryExpr
-		-1, // IfExpr
-		-1, // Statement
-		-1, // ExprParam
-		-1, // Param
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // BaseExpr
+		-1,  // Func
+		-1,  // Args
+		-1,  // Expr
+		-1,  // ExprArg
+		306, // Operator
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Statement
+		-1,  // ExprParam
+		-1,  // Param
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
 	},
 	gotoRow{ // S284
 		-1, // S'
@@ -6303,26 +6303,26 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S286
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // BaseExpr
-		-1,  // Func
-		-1,  // Args
-		-1,  // Expr
-		-1,  // ExprArg
-		309, // Operator
-		-1,  // TernaryExpr
-		-1,  // IfExpr
-		-1,  // Statement
-		-1,  // ExprParam
-		-1,  // Param
-		-1,  // DoubleQString
-		-1,  // SingleQString
-		-1,  // Int
-		-1,  // MappingRef
-		-1,  // Bool
-		-1,  // Float
-		-1,  // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // BaseExpr
+		-1, // Func
+		-1, // Args
+		-1, // Expr
+		-1, // ExprArg
+		-1, // Operator
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Statement
+		-1, // ExprParam
+		-1, // Param
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S287
 		-1, // S'
@@ -6701,48 +6701,26 @@ var gotoTab = gotoTable{
 	gotoRow{ // S304
 		-1,  // S'
 		-1,  // Flogo
-		167, // BaseExpr
-		169, // Func
-		-1,  // Args
-		170, // Expr
-		173, // ExprArg
+		-1,  // BaseExpr
+		99,  // Func
+		309, // Args
+		-1,  // Expr
+		-1,  // ExprArg
 		-1,  // Operator
-		168, // TernaryExpr
+		-1,  // TernaryExpr
 		-1,  // IfExpr
-		310, // Statement
-		10,  // ExprParam
-		171, // Param
-		179, // DoubleQString
-		180, // SingleQString
-		176, // Int
-		181, // MappingRef
-		178, // Bool
-		177, // Float
-		182, // Nil
+		-1,  // Statement
+		103, // ExprParam
+		100, // Param
+		107, // DoubleQString
+		108, // SingleQString
+		104, // Int
+		109, // MappingRef
+		106, // Bool
+		105, // Float
+		110, // Nil
 	},
 	gotoRow{ // S305
-		-1,  // S'
-		-1,  // Flogo
-		167, // BaseExpr
-		169, // Func
-		-1,  // Args
-		170, // Expr
-		173, // ExprArg
-		-1,  // Operator
-		168, // TernaryExpr
-		-1,  // IfExpr
-		311, // Statement
-		10,  // ExprParam
-		171, // Param
-		179, // DoubleQString
-		180, // SingleQString
-		176, // Int
-		181, // MappingRef
-		178, // Bool
-		177, // Float
-		182, // Nil
-	},
-	gotoRow{ // S306
 		-1, // S'
 		-1, // Flogo
 		-1, // BaseExpr
@@ -6764,27 +6742,49 @@ var gotoTab = gotoTable{
 		-1, // Float
 		-1, // Nil
 	},
-	gotoRow{ // S307
+	gotoRow{ // S306
 		-1,  // S'
 		-1,  // Flogo
 		-1,  // BaseExpr
-		99,  // Func
-		312, // Args
-		-1,  // Expr
-		-1,  // ExprArg
+		310, // Func
+		-1,  // Args
+		311, // Expr
+		315, // ExprArg
 		-1,  // Operator
 		-1,  // TernaryExpr
 		-1,  // IfExpr
 		-1,  // Statement
-		103, // ExprParam
-		100, // Param
-		107, // DoubleQString
-		108, // SingleQString
-		104, // Int
-		109, // MappingRef
-		106, // Bool
-		105, // Float
-		110, // Nil
+		314, // ExprParam
+		312, // Param
+		287, // DoubleQString
+		288, // SingleQString
+		284, // Int
+		289, // MappingRef
+		286, // Bool
+		285, // Float
+		290, // Nil
+	},
+	gotoRow{ // S307
+		-1, // S'
+		-1, // Flogo
+		-1, // BaseExpr
+		-1, // Func
+		-1, // Args
+		-1, // Expr
+		-1, // ExprArg
+		-1, // Operator
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Statement
+		-1, // ExprParam
+		-1, // Param
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S308
 		-1, // S'
@@ -6809,26 +6809,26 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S309
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // BaseExpr
-		313, // Func
-		-1,  // Args
-		314, // Expr
-		318, // ExprArg
-		-1,  // Operator
-		-1,  // TernaryExpr
-		-1,  // IfExpr
-		-1,  // Statement
-		317, // ExprParam
-		315, // Param
-		290, // DoubleQString
-		291, // SingleQString
-		287, // Int
-		292, // MappingRef
-		289, // Bool
-		288, // Float
-		293, // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // BaseExpr
+		-1, // Func
+		-1, // Args
+		-1, // Expr
+		-1, // ExprArg
+		-1, // Operator
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Statement
+		-1, // ExprParam
+		-1, // Param
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S310
 		-1, // S'
@@ -6897,26 +6897,26 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S313
-		-1, // S'
-		-1, // Flogo
-		-1, // BaseExpr
-		-1, // Func
-		-1, // Args
-		-1, // Expr
-		-1, // ExprArg
-		-1, // Operator
-		-1, // TernaryExpr
-		-1, // IfExpr
-		-1, // Statement
-		-1, // ExprParam
-		-1, // Param
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // BaseExpr
+		32,  // Func
+		-1,  // Args
+		318, // Expr
+		36,  // ExprArg
+		-1,  // Operator
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Statement
+		10,  // ExprParam
+		34,  // Param
+		40,  // DoubleQString
+		41,  // SingleQString
+		37,  // Int
+		42,  // MappingRef
+		39,  // Bool
+		38,  // Float
+		43,  // Nil
 	},
 	gotoRow{ // S314
 		-1, // S'
@@ -6941,48 +6941,48 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S315
-		-1, // S'
-		-1, // Flogo
-		-1, // BaseExpr
-		-1, // Func
-		-1, // Args
-		-1, // Expr
-		-1, // ExprArg
-		-1, // Operator
-		-1, // TernaryExpr
-		-1, // IfExpr
-		-1, // Statement
-		-1, // ExprParam
-		-1, // Param
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // BaseExpr
+		-1,  // Func
+		-1,  // Args
+		-1,  // Expr
+		-1,  // ExprArg
+		306, // Operator
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Statement
+		-1,  // ExprParam
+		-1,  // Param
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
 	},
 	gotoRow{ // S316
 		-1,  // S'
 		-1,  // Flogo
-		-1,  // BaseExpr
-		32,  // Func
+		167, // BaseExpr
+		169, // Func
 		-1,  // Args
-		321, // Expr
-		36,  // ExprArg
+		170, // Expr
+		173, // ExprArg
 		-1,  // Operator
-		-1,  // TernaryExpr
+		168, // TernaryExpr
 		-1,  // IfExpr
-		-1,  // Statement
+		319, // Statement
 		10,  // ExprParam
-		34,  // Param
-		40,  // DoubleQString
-		41,  // SingleQString
-		37,  // Int
-		42,  // MappingRef
-		39,  // Bool
-		38,  // Float
-		43,  // Nil
+		171, // Param
+		179, // DoubleQString
+		180, // SingleQString
+		176, // Int
+		181, // MappingRef
+		178, // Bool
+		177, // Float
+		182, // Nil
 	},
 	gotoRow{ // S317
 		-1, // S'
@@ -7007,48 +7007,48 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S318
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // BaseExpr
-		-1,  // Func
-		-1,  // Args
-		-1,  // Expr
-		-1,  // ExprArg
-		309, // Operator
-		-1,  // TernaryExpr
-		-1,  // IfExpr
-		-1,  // Statement
-		-1,  // ExprParam
-		-1,  // Param
-		-1,  // DoubleQString
-		-1,  // SingleQString
-		-1,  // Int
-		-1,  // MappingRef
-		-1,  // Bool
-		-1,  // Float
-		-1,  // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // BaseExpr
+		-1, // Func
+		-1, // Args
+		-1, // Expr
+		-1, // ExprArg
+		-1, // Operator
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Statement
+		-1, // ExprParam
+		-1, // Param
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S319
-		-1,  // S'
-		-1,  // Flogo
-		260, // BaseExpr
-		5,   // Func
-		-1,  // Args
-		6,   // Expr
-		11,  // ExprArg
-		-1,  // Operator
-		261, // TernaryExpr
-		-1,  // IfExpr
-		322, // Statement
-		10,  // ExprParam
-		7,   // Param
-		16,  // DoubleQString
-		17,  // SingleQString
-		13,  // Int
-		18,  // MappingRef
-		15,  // Bool
-		14,  // Float
-		19,  // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // BaseExpr
+		-1, // Func
+		-1, // Args
+		-1, // Expr
+		-1, // ExprArg
+		-1, // Operator
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Statement
+		-1, // ExprParam
+		-1, // Param
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S320
 		-1, // S'
@@ -7073,50 +7073,6 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S321
-		-1, // S'
-		-1, // Flogo
-		-1, // BaseExpr
-		-1, // Func
-		-1, // Args
-		-1, // Expr
-		-1, // ExprArg
-		-1, // Operator
-		-1, // TernaryExpr
-		-1, // IfExpr
-		-1, // Statement
-		-1, // ExprParam
-		-1, // Param
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
-	},
-	gotoRow{ // S322
-		-1, // S'
-		-1, // Flogo
-		-1, // BaseExpr
-		-1, // Func
-		-1, // Args
-		-1, // Expr
-		-1, // ExprArg
-		-1, // Operator
-		-1, // TernaryExpr
-		-1, // IfExpr
-		-1, // Statement
-		-1, // ExprParam
-		-1, // Param
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
-	},
-	gotoRow{ // S323
 		-1, // S'
 		-1, // Flogo
 		-1, // BaseExpr

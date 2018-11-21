@@ -25,7 +25,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			shift(12), /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			shift(20), /* doublequotes_string */
 			shift(21), /* singlequote_string */
@@ -52,7 +53,8 @@ var actionTab = actionTable{
 			nil,          /* ? */
 			nil,          /* : */
 			nil,          /* if */
-			nil,          /* then */
+			nil,          /* { */
+			nil,          /* } */
 			nil,          /* else */
 			nil,          /* doublequotes_string */
 			nil,          /* singlequote_string */
@@ -79,7 +81,8 @@ var actionTab = actionTable{
 			shift(29), /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -106,7 +109,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -133,7 +137,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -160,7 +165,8 @@ var actionTab = actionTable{
 			reduce(4),  /* ?, reduce: BaseExpr */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -187,7 +193,8 @@ var actionTab = actionTable{
 			reduce(5),  /* ?, reduce: BaseExpr */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -214,7 +221,8 @@ var actionTab = actionTable{
 			reduce(6),  /* ?, reduce: BaseExpr */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -241,7 +249,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -268,7 +277,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			shift(44), /* doublequotes_string */
 			shift(45), /* singlequote_string */
@@ -295,7 +305,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -322,7 +333,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -349,7 +361,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			shift(68), /* doublequotes_string */
 			shift(69), /* singlequote_string */
@@ -376,7 +389,8 @@ var actionTab = actionTable{
 			reduce(25), /* ?, reduce: Param */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -403,7 +417,8 @@ var actionTab = actionTable{
 			reduce(26), /* ?, reduce: Param */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -430,7 +445,8 @@ var actionTab = actionTable{
 			reduce(27), /* ?, reduce: Param */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -457,7 +473,8 @@ var actionTab = actionTable{
 			reduce(28), /* ?, reduce: Param */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -484,7 +501,8 @@ var actionTab = actionTable{
 			reduce(29), /* ?, reduce: Param */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -511,7 +529,8 @@ var actionTab = actionTable{
 			reduce(30), /* ?, reduce: Param */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -538,7 +557,8 @@ var actionTab = actionTable{
 			reduce(31), /* ?, reduce: Param */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -565,7 +585,8 @@ var actionTab = actionTable{
 			reduce(32), /* ?, reduce: DoubleQString */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -592,7 +613,8 @@ var actionTab = actionTable{
 			reduce(33), /* ?, reduce: SingleQString */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -619,7 +641,8 @@ var actionTab = actionTable{
 			reduce(34), /* ?, reduce: Int */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -646,7 +669,8 @@ var actionTab = actionTable{
 			reduce(35), /* ?, reduce: MappingRef */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -673,7 +697,8 @@ var actionTab = actionTable{
 			reduce(36), /* ?, reduce: Bool */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -700,7 +725,8 @@ var actionTab = actionTable{
 			reduce(37), /* ?, reduce: Bool */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -727,7 +753,8 @@ var actionTab = actionTable{
 			reduce(38), /* ?, reduce: Float */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -754,7 +781,8 @@ var actionTab = actionTable{
 			reduce(39), /* ?, reduce: Nil */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -781,7 +809,8 @@ var actionTab = actionTable{
 			reduce(40), /* ?, reduce: Nil */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -808,7 +837,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			shift(90), /* doublequotes_string */
 			shift(91), /* singlequote_string */
@@ -835,7 +865,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			shift(111), /* doublequotes_string */
 			shift(112), /* singlequote_string */
@@ -862,7 +893,8 @@ var actionTab = actionTable{
 			reduce(8), /* ?, reduce: Func */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -889,7 +921,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -916,7 +949,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -943,7 +977,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -970,7 +1005,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -997,7 +1033,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -1024,7 +1061,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1051,7 +1089,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1078,7 +1117,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1105,7 +1145,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1132,7 +1173,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1159,7 +1201,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1186,7 +1229,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1213,7 +1257,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1240,7 +1285,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1267,7 +1313,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1294,7 +1341,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1321,7 +1369,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1348,7 +1397,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1375,7 +1425,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1402,7 +1453,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1429,7 +1481,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1456,7 +1509,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			shift(20),  /* doublequotes_string */
 			shift(21),  /* singlequote_string */
@@ -1483,7 +1537,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			reduce(15), /* doublequotes_string, reduce: Operator */
 			reduce(15), /* singlequote_string, reduce: Operator */
@@ -1510,7 +1565,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			shift(130), /* then */
+			shift(130), /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1537,7 +1593,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(4),  /* then, reduce: BaseExpr */
+			reduce(4),  /* {, reduce: BaseExpr */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1564,7 +1621,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(5),  /* then, reduce: BaseExpr */
+			reduce(5),  /* {, reduce: BaseExpr */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1591,7 +1649,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(6),  /* then, reduce: BaseExpr */
+			reduce(6),  /* {, reduce: BaseExpr */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1618,7 +1677,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1645,7 +1705,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -1672,7 +1733,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(25), /* then, reduce: Param */
+			reduce(25), /* {, reduce: Param */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1699,7 +1761,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(26), /* then, reduce: Param */
+			reduce(26), /* {, reduce: Param */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1726,7 +1789,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(27), /* then, reduce: Param */
+			reduce(27), /* {, reduce: Param */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1753,7 +1817,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(28), /* then, reduce: Param */
+			reduce(28), /* {, reduce: Param */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1780,7 +1845,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(29), /* then, reduce: Param */
+			reduce(29), /* {, reduce: Param */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1807,7 +1873,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(30), /* then, reduce: Param */
+			reduce(30), /* {, reduce: Param */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1834,7 +1901,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(31), /* then, reduce: Param */
+			reduce(31), /* {, reduce: Param */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1861,7 +1929,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(32), /* then, reduce: DoubleQString */
+			reduce(32), /* {, reduce: DoubleQString */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1888,7 +1957,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(33), /* then, reduce: SingleQString */
+			reduce(33), /* {, reduce: SingleQString */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1915,7 +1985,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(34), /* then, reduce: Int */
+			reduce(34), /* {, reduce: Int */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1942,7 +2013,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(35), /* then, reduce: MappingRef */
+			reduce(35), /* {, reduce: MappingRef */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1969,7 +2041,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(36), /* then, reduce: Bool */
+			reduce(36), /* {, reduce: Bool */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -1996,7 +2069,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(37), /* then, reduce: Bool */
+			reduce(37), /* {, reduce: Bool */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2023,7 +2097,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(38), /* then, reduce: Float */
+			reduce(38), /* {, reduce: Float */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2050,7 +2125,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(39), /* then, reduce: Nil */
+			reduce(39), /* {, reduce: Nil */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2077,7 +2153,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(40), /* then, reduce: Nil */
+			reduce(40), /* {, reduce: Nil */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2104,7 +2181,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			shift(134), /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2131,7 +2209,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(4),  /* :, reduce: BaseExpr */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2158,7 +2237,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(5),  /* :, reduce: BaseExpr */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2185,7 +2265,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(6),  /* :, reduce: BaseExpr */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2212,7 +2293,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2239,7 +2321,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -2266,7 +2349,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(25), /* :, reduce: Param */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2293,7 +2377,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(26), /* :, reduce: Param */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2320,7 +2405,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(27), /* :, reduce: Param */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2347,7 +2433,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(28), /* :, reduce: Param */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2374,7 +2461,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(29), /* :, reduce: Param */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2401,7 +2489,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(30), /* :, reduce: Param */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2428,7 +2517,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(31), /* :, reduce: Param */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2455,7 +2545,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(32), /* :, reduce: DoubleQString */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2482,7 +2573,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(33), /* :, reduce: SingleQString */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2509,7 +2601,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(34), /* :, reduce: Int */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2536,7 +2629,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(35), /* :, reduce: MappingRef */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2563,7 +2657,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(36), /* :, reduce: Bool */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2590,7 +2685,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(37), /* :, reduce: Bool */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2617,7 +2713,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(38), /* :, reduce: Float */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2644,7 +2741,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(39), /* :, reduce: Nil */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2671,7 +2769,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(40), /* :, reduce: Nil */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2698,7 +2797,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2725,7 +2825,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2752,7 +2853,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2779,7 +2881,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2806,7 +2909,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -2833,7 +2937,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2860,7 +2965,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2887,7 +2993,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2914,7 +3021,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2941,7 +3049,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2968,7 +3077,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -2995,7 +3105,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -3022,7 +3133,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -3049,7 +3161,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -3076,7 +3189,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -3103,7 +3217,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -3130,7 +3245,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -3157,7 +3273,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -3184,7 +3301,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -3211,7 +3329,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -3238,7 +3357,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -3265,7 +3385,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -3292,7 +3413,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			shift(111), /* doublequotes_string */
 			shift(112), /* singlequote_string */
@@ -3319,7 +3441,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -3346,7 +3469,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			shift(157), /* doublequotes_string */
 			shift(158), /* singlequote_string */
@@ -3373,7 +3497,8 @@ var actionTab = actionTable{
 			reduce(24), /* ?, reduce: ExprParam */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -3400,7 +3525,8 @@ var actionTab = actionTable{
 			reduce(13), /* ?, reduce: ExprArg */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -3427,7 +3553,8 @@ var actionTab = actionTable{
 			reduce(23), /* ?, reduce: ExprParam */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -3454,7 +3581,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			shift(44), /* doublequotes_string */
 			shift(45), /* singlequote_string */
@@ -3481,7 +3609,8 @@ var actionTab = actionTable{
 			reduce(14), /* ?, reduce: ExprArg */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -3508,7 +3637,8 @@ var actionTab = actionTable{
 			reduce(11), /* ?, reduce: Expr */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -3535,7 +3665,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			shift(174), /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			shift(183), /* doublequotes_string */
 			shift(184), /* singlequote_string */
@@ -3562,7 +3693,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			shift(111), /* doublequotes_string */
 			shift(112), /* singlequote_string */
@@ -3589,7 +3721,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			reduce(8), /* then, reduce: Func */
+			reduce(8), /* {, reduce: Func */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -3616,7 +3749,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			shift(68),  /* doublequotes_string */
 			shift(69),  /* singlequote_string */
@@ -3643,7 +3777,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			shift(212), /* doublequotes_string */
 			shift(213), /* singlequote_string */
@@ -3670,7 +3805,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			shift(111), /* doublequotes_string */
 			shift(112), /* singlequote_string */
@@ -3697,7 +3833,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			reduce(8), /* :, reduce: Func */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -3724,7 +3861,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			shift(90),  /* doublequotes_string */
 			shift(91),  /* singlequote_string */
@@ -3751,7 +3889,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			shift(111), /* doublequotes_string */
 			shift(112), /* singlequote_string */
@@ -3778,7 +3917,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -3805,7 +3945,8 @@ var actionTab = actionTable{
 			reduce(7), /* ?, reduce: Func */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -3832,7 +3973,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			shift(111), /* doublequotes_string */
 			shift(112), /* singlequote_string */
@@ -3859,7 +4001,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -3886,7 +4029,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -3913,7 +4057,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -3940,7 +4085,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -3967,7 +4113,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -3994,7 +4141,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			shift(44), /* doublequotes_string */
 			shift(45), /* singlequote_string */
@@ -4021,7 +4169,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -4048,7 +4197,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -4075,7 +4225,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -4102,7 +4253,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -4129,7 +4281,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -4156,7 +4309,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -4183,7 +4337,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -4210,7 +4365,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -4237,7 +4393,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -4264,7 +4421,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -4291,7 +4449,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -4318,7 +4477,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -4345,7 +4505,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -4372,7 +4533,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -4399,7 +4561,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -4426,7 +4589,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -4453,7 +4617,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -4480,7 +4645,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -4507,7 +4673,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -4524,7 +4691,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(21), /* $, reduce: Statement */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -4534,8 +4701,9 @@ var actionTab = actionTable{
 			shift(235), /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(21), /* else, reduce: Statement */
+			nil,        /* { */
+			reduce(21), /* }, reduce: Statement */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -4551,7 +4719,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(22), /* $, reduce: Statement */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -4561,8 +4729,9 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(22), /* else, reduce: Statement */
+			nil,        /* { */
+			reduce(22), /* }, reduce: Statement */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -4578,7 +4747,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(4),  /* $, reduce: BaseExpr */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -4588,8 +4757,9 @@ var actionTab = actionTable{
 			reduce(4),  /* ?, reduce: BaseExpr */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(4),  /* else, reduce: BaseExpr */
+			nil,        /* { */
+			reduce(4),  /* }, reduce: BaseExpr */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -4605,7 +4775,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(5),  /* $, reduce: BaseExpr */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -4615,8 +4785,9 @@ var actionTab = actionTable{
 			reduce(5),  /* ?, reduce: BaseExpr */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(5),  /* else, reduce: BaseExpr */
+			nil,        /* { */
+			reduce(5),  /* }, reduce: BaseExpr */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -4632,7 +4803,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(6),  /* $, reduce: BaseExpr */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -4642,8 +4813,9 @@ var actionTab = actionTable{
 			reduce(6),  /* ?, reduce: BaseExpr */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(6),  /* else, reduce: BaseExpr */
+			nil,        /* { */
+			reduce(6),  /* }, reduce: BaseExpr */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -4669,7 +4841,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -4696,7 +4869,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -4723,7 +4897,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			shift(68), /* doublequotes_string */
 			shift(69), /* singlequote_string */
@@ -4740,7 +4915,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(17), /* $, reduce: IfExpr */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -4750,8 +4925,9 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			shift(240), /* else */
+			nil,        /* { */
+			shift(240), /* } */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -4767,7 +4943,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(25), /* $, reduce: Param */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -4777,8 +4953,9 @@ var actionTab = actionTable{
 			reduce(25), /* ?, reduce: Param */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(25), /* else, reduce: Param */
+			nil,        /* { */
+			reduce(25), /* }, reduce: Param */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -4794,7 +4971,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(26), /* $, reduce: Param */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -4804,8 +4981,9 @@ var actionTab = actionTable{
 			reduce(26), /* ?, reduce: Param */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(26), /* else, reduce: Param */
+			nil,        /* { */
+			reduce(26), /* }, reduce: Param */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -4821,7 +4999,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(27), /* $, reduce: Param */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -4831,8 +5009,9 @@ var actionTab = actionTable{
 			reduce(27), /* ?, reduce: Param */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(27), /* else, reduce: Param */
+			nil,        /* { */
+			reduce(27), /* }, reduce: Param */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -4848,7 +5027,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(28), /* $, reduce: Param */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -4858,8 +5037,9 @@ var actionTab = actionTable{
 			reduce(28), /* ?, reduce: Param */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(28), /* else, reduce: Param */
+			nil,        /* { */
+			reduce(28), /* }, reduce: Param */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -4875,7 +5055,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(29), /* $, reduce: Param */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -4885,8 +5065,9 @@ var actionTab = actionTable{
 			reduce(29), /* ?, reduce: Param */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(29), /* else, reduce: Param */
+			nil,        /* { */
+			reduce(29), /* }, reduce: Param */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -4902,7 +5083,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(30), /* $, reduce: Param */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -4912,8 +5093,9 @@ var actionTab = actionTable{
 			reduce(30), /* ?, reduce: Param */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(30), /* else, reduce: Param */
+			nil,        /* { */
+			reduce(30), /* }, reduce: Param */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -4929,7 +5111,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(31), /* $, reduce: Param */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -4939,8 +5121,9 @@ var actionTab = actionTable{
 			reduce(31), /* ?, reduce: Param */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(31), /* else, reduce: Param */
+			nil,        /* { */
+			reduce(31), /* }, reduce: Param */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -4956,7 +5139,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(32), /* $, reduce: DoubleQString */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -4966,8 +5149,9 @@ var actionTab = actionTable{
 			reduce(32), /* ?, reduce: DoubleQString */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(32), /* else, reduce: DoubleQString */
+			nil,        /* { */
+			reduce(32), /* }, reduce: DoubleQString */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -4983,7 +5167,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(33), /* $, reduce: SingleQString */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -4993,8 +5177,9 @@ var actionTab = actionTable{
 			reduce(33), /* ?, reduce: SingleQString */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(33), /* else, reduce: SingleQString */
+			nil,        /* { */
+			reduce(33), /* }, reduce: SingleQString */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -5010,7 +5195,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(34), /* $, reduce: Int */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -5020,8 +5205,9 @@ var actionTab = actionTable{
 			reduce(34), /* ?, reduce: Int */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(34), /* else, reduce: Int */
+			nil,        /* { */
+			reduce(34), /* }, reduce: Int */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -5037,7 +5223,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(35), /* $, reduce: MappingRef */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -5047,8 +5233,9 @@ var actionTab = actionTable{
 			reduce(35), /* ?, reduce: MappingRef */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(35), /* else, reduce: MappingRef */
+			nil,        /* { */
+			reduce(35), /* }, reduce: MappingRef */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -5064,7 +5251,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(36), /* $, reduce: Bool */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -5074,8 +5261,9 @@ var actionTab = actionTable{
 			reduce(36), /* ?, reduce: Bool */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(36), /* else, reduce: Bool */
+			nil,        /* { */
+			reduce(36), /* }, reduce: Bool */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -5091,7 +5279,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(37), /* $, reduce: Bool */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -5101,8 +5289,9 @@ var actionTab = actionTable{
 			reduce(37), /* ?, reduce: Bool */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(37), /* else, reduce: Bool */
+			nil,        /* { */
+			reduce(37), /* }, reduce: Bool */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -5118,7 +5307,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(38), /* $, reduce: Float */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -5128,8 +5317,9 @@ var actionTab = actionTable{
 			reduce(38), /* ?, reduce: Float */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(38), /* else, reduce: Float */
+			nil,        /* { */
+			reduce(38), /* }, reduce: Float */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -5145,7 +5335,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(39), /* $, reduce: Nil */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -5155,8 +5345,9 @@ var actionTab = actionTable{
 			reduce(39), /* ?, reduce: Nil */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(39), /* else, reduce: Nil */
+			nil,        /* { */
+			reduce(39), /* }, reduce: Nil */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -5172,7 +5363,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(40), /* $, reduce: Nil */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -5182,8 +5373,9 @@ var actionTab = actionTable{
 			reduce(40), /* ?, reduce: Nil */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(40), /* else, reduce: Nil */
+			nil,        /* { */
+			reduce(40), /* }, reduce: Nil */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -5209,7 +5401,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5236,7 +5429,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(24), /* then, reduce: ExprParam */
+			reduce(24), /* {, reduce: ExprParam */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5263,7 +5457,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(13), /* then, reduce: ExprArg */
+			reduce(13), /* {, reduce: ExprArg */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5290,7 +5485,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(23), /* then, reduce: ExprParam */
+			reduce(23), /* {, reduce: ExprParam */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5317,7 +5513,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			shift(44), /* doublequotes_string */
 			shift(45), /* singlequote_string */
@@ -5344,7 +5541,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(14), /* then, reduce: ExprArg */
+			reduce(14), /* {, reduce: ExprArg */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5371,7 +5569,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(11), /* then, reduce: Expr */
+			reduce(11), /* {, reduce: Expr */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5398,7 +5597,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5425,7 +5625,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5452,7 +5653,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5479,7 +5681,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5506,7 +5709,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5533,7 +5737,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -5560,7 +5765,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5587,7 +5793,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5614,7 +5821,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5641,7 +5849,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5668,7 +5877,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5695,7 +5905,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5722,7 +5933,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5749,7 +5961,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5776,7 +5989,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5803,7 +6017,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5830,7 +6045,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5857,7 +6073,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5884,7 +6101,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5911,7 +6129,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5938,7 +6157,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5965,7 +6185,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -5992,7 +6213,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -6019,7 +6241,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(24), /* :, reduce: ExprParam */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -6046,7 +6269,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(13), /* :, reduce: ExprArg */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -6073,7 +6297,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(23), /* :, reduce: ExprParam */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -6100,7 +6325,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			shift(44), /* doublequotes_string */
 			shift(45), /* singlequote_string */
@@ -6127,7 +6353,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(14), /* :, reduce: ExprArg */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -6154,7 +6381,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(11), /* :, reduce: Expr */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -6181,7 +6409,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -6208,7 +6437,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -6235,7 +6465,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -6262,7 +6493,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			shift(111), /* doublequotes_string */
 			shift(112), /* singlequote_string */
@@ -6289,7 +6521,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -6316,7 +6549,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -6343,7 +6577,8 @@ var actionTab = actionTable{
 			reduce(12), /* ?, reduce: ExprArg */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -6370,7 +6605,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			shift(90), /* doublequotes_string */
 			shift(91), /* singlequote_string */
@@ -6397,7 +6633,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			shift(111), /* doublequotes_string */
 			shift(112), /* singlequote_string */
@@ -6414,7 +6651,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,       /* INVALID */
-			reduce(8), /* $, reduce: Func */
+			nil,       /* $ */
 			nil,       /* function_name */
 			nil,       /* ( */
 			nil,       /* ) */
@@ -6424,8 +6661,9 @@ var actionTab = actionTable{
 			reduce(8), /* ?, reduce: Func */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
-			reduce(8), /* else, reduce: Func */
+			nil,       /* { */
+			reduce(8), /* }, reduce: Func */
+			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
 			nil,       /* number */
@@ -6451,7 +6689,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			shift(183), /* doublequotes_string */
 			shift(184), /* singlequote_string */
@@ -6478,7 +6717,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			shift(259), /* then */
+			shift(259), /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -6495,27 +6735,28 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			nil,        /* $ */
-			shift(8),   /* function_name */
-			shift(9),   /* ( */
+			reduce(17), /* $, reduce: IfExpr */
+			nil,        /* function_name */
+			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
 			nil,        /* operator_charactor */
 			nil,        /* ? */
 			nil,        /* : */
-			shift(262), /* if */
-			nil,        /* then */
-			nil,        /* else */
-			shift(20),  /* doublequotes_string */
-			shift(21),  /* singlequote_string */
-			shift(22),  /* number */
-			shift(23),  /* argument */
-			shift(24),  /* true */
-			shift(25),  /* false */
-			shift(26),  /* float */
-			shift(27),  /* nil */
-			shift(28),  /* null */
+			nil,        /* if */
+			nil,        /* { */
+			nil,        /* } */
+			shift(260), /* else */
+			nil,        /* doublequotes_string */
+			nil,        /* singlequote_string */
+			nil,        /* number */
+			nil,        /* argument */
+			nil,        /* true */
+			nil,        /* false */
+			nil,        /* float */
+			nil,        /* nil */
+			nil,        /* null */
 		},
 	},
 	actionRow{ // S241
@@ -6532,7 +6773,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			reduce(7), /* then, reduce: Func */
+			reduce(7), /* {, reduce: Func */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -6552,14 +6794,15 @@ var actionTab = actionTable{
 			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
-			shift(264), /* ) */
+			shift(261), /* ) */
 			nil,        /* () */
 			nil,        /* , */
 			reduce(13), /* operator_charactor, reduce: ExprArg */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -6586,7 +6829,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			shift(111), /* doublequotes_string */
 			shift(112), /* singlequote_string */
@@ -6613,7 +6857,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -6632,7 +6877,7 @@ var actionTab = actionTable{
 			nil,        /* INVALID */
 			nil,        /* $ */
 			shift(203), /* function_name */
-			shift(269), /* ( */
+			shift(266), /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
@@ -6640,7 +6885,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			shift(212), /* doublequotes_string */
 			shift(213), /* singlequote_string */
@@ -6667,7 +6913,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			reduce(7), /* :, reduce: Func */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -6687,14 +6934,15 @@ var actionTab = actionTable{
 			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
-			shift(272), /* ) */
+			shift(269), /* ) */
 			nil,        /* () */
 			nil,        /* , */
 			reduce(13), /* operator_charactor, reduce: ExprArg */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -6721,7 +6969,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -6741,14 +6990,15 @@ var actionTab = actionTable{
 			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
-			shift(273), /* ) */
+			shift(270), /* ) */
 			nil,        /* () */
 			shift(141), /* , */
 			nil,        /* operator_charactor */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -6775,7 +7025,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -6800,9 +7051,10 @@ var actionTab = actionTable{
 			nil,        /* , */
 			nil,        /* operator_charactor */
 			nil,        /* ? */
-			shift(274), /* : */
+			shift(271), /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -6822,14 +7074,15 @@ var actionTab = actionTable{
 			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
-			shift(275), /* ) */
+			shift(272), /* ) */
 			nil,        /* () */
 			shift(141), /* , */
 			nil,        /* operator_charactor */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -6846,7 +7099,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(24), /* $, reduce: ExprParam */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -6856,8 +7109,9 @@ var actionTab = actionTable{
 			reduce(24), /* ?, reduce: ExprParam */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(24), /* else, reduce: ExprParam */
+			nil,        /* { */
+			reduce(24), /* }, reduce: ExprParam */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -6873,7 +7127,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(13), /* $, reduce: ExprArg */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -6883,8 +7137,9 @@ var actionTab = actionTable{
 			reduce(13), /* ?, reduce: ExprArg */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(13), /* else, reduce: ExprArg */
+			nil,        /* { */
+			reduce(13), /* }, reduce: ExprArg */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -6900,7 +7155,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(23), /* $, reduce: ExprParam */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -6910,8 +7165,9 @@ var actionTab = actionTable{
 			reduce(23), /* ?, reduce: ExprParam */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(23), /* else, reduce: ExprParam */
+			nil,        /* { */
+			reduce(23), /* }, reduce: ExprParam */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -6937,7 +7193,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			shift(44), /* doublequotes_string */
 			shift(45), /* singlequote_string */
@@ -6954,7 +7211,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(14), /* $, reduce: ExprArg */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -6964,8 +7221,9 @@ var actionTab = actionTable{
 			reduce(14), /* ?, reduce: ExprArg */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(14), /* else, reduce: ExprArg */
+			nil,        /* { */
+			reduce(14), /* }, reduce: ExprArg */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -6981,7 +7239,7 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(11), /* $, reduce: Expr */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -6991,8 +7249,9 @@ var actionTab = actionTable{
 			reduce(11), /* ?, reduce: Expr */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(11), /* else, reduce: Expr */
+			nil,        /* { */
+			reduce(11), /* }, reduce: Expr */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -7018,7 +7277,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			shift(174), /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			shift(183), /* doublequotes_string */
 			shift(184), /* singlequote_string */
@@ -7035,17 +7295,18 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(21), /* $, reduce: Statement */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
 			nil,        /* operator_charactor */
-			shift(29),  /* ? */
+			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			shift(275), /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -7062,17 +7323,18 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(22), /* $, reduce: Statement */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			nil,        /* operator_charactor */
+			reduce(12), /* operator_charactor, reduce: ExprArg */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			reduce(12), /* {, reduce: ExprArg */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -7088,45 +7350,47 @@ var actionTab = actionTable{
 	actionRow{ // S262
 		canRecover: false,
 		actions: [numSymbols]action{
-			nil,       /* INVALID */
-			nil,       /* $ */
-			shift(59), /* function_name */
-			shift(9),  /* ( */
-			nil,       /* ) */
-			nil,       /* () */
-			nil,       /* , */
-			nil,       /* operator_charactor */
-			nil,       /* ? */
-			nil,       /* : */
-			nil,       /* if */
-			nil,       /* then */
-			nil,       /* else */
-			shift(68), /* doublequotes_string */
-			shift(69), /* singlequote_string */
-			shift(70), /* number */
-			shift(71), /* argument */
-			shift(72), /* true */
-			shift(73), /* false */
-			shift(74), /* float */
-			shift(75), /* nil */
-			shift(76), /* null */
+			nil,        /* INVALID */
+			nil,        /* $ */
+			nil,        /* function_name */
+			nil,        /* ( */
+			shift(276), /* ) */
+			nil,        /* () */
+			shift(141), /* , */
+			nil,        /* operator_charactor */
+			nil,        /* ? */
+			nil,        /* : */
+			nil,        /* if */
+			nil,        /* { */
+			nil,        /* } */
+			nil,        /* else */
+			nil,        /* doublequotes_string */
+			nil,        /* singlequote_string */
+			nil,        /* number */
+			nil,        /* argument */
+			nil,        /* true */
+			nil,        /* false */
+			nil,        /* float */
+			nil,        /* nil */
+			nil,        /* null */
 		},
 	},
 	actionRow{ // S263
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(18), /* $, reduce: IfExpr */
+			reduce(24), /* $, reduce: ExprParam */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			nil,        /* operator_charactor */
+			reduce(24), /* operator_charactor, reduce: ExprParam */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -7143,17 +7407,18 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			nil,        /* $ */
+			reduce(13), /* $, reduce: ExprArg */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			reduce(12), /* operator_charactor, reduce: ExprArg */
+			reduce(13), /* operator_charactor, reduce: ExprArg */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			reduce(12), /* then, reduce: ExprArg */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -7170,17 +7435,18 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			nil,        /* $ */
+			reduce(23), /* $, reduce: ExprParam */
 			nil,        /* function_name */
 			nil,        /* ( */
-			shift(279), /* ) */
+			nil,        /* ) */
 			nil,        /* () */
-			shift(141), /* , */
-			nil,        /* operator_charactor */
+			nil,        /* , */
+			reduce(23), /* operator_charactor, reduce: ExprParam */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -7196,45 +7462,47 @@ var actionTab = actionTable{
 	actionRow{ // S266
 		canRecover: false,
 		actions: [numSymbols]action{
-			nil,        /* INVALID */
-			reduce(24), /* $, reduce: ExprParam */
-			nil,        /* function_name */
-			nil,        /* ( */
-			nil,        /* ) */
-			nil,        /* () */
-			nil,        /* , */
-			reduce(24), /* operator_charactor, reduce: ExprParam */
-			nil,        /* ? */
-			nil,        /* : */
-			nil,        /* if */
-			nil,        /* then */
-			nil,        /* else */
-			nil,        /* doublequotes_string */
-			nil,        /* singlequote_string */
-			nil,        /* number */
-			nil,        /* argument */
-			nil,        /* true */
-			nil,        /* false */
-			nil,        /* float */
-			nil,        /* nil */
-			nil,        /* null */
+			nil,       /* INVALID */
+			nil,       /* $ */
+			shift(35), /* function_name */
+			shift(9),  /* ( */
+			nil,       /* ) */
+			nil,       /* () */
+			nil,       /* , */
+			nil,       /* operator_charactor */
+			nil,       /* ? */
+			nil,       /* : */
+			nil,       /* if */
+			nil,       /* { */
+			nil,       /* } */
+			nil,       /* else */
+			shift(44), /* doublequotes_string */
+			shift(45), /* singlequote_string */
+			shift(46), /* number */
+			shift(47), /* argument */
+			shift(48), /* true */
+			shift(49), /* false */
+			shift(50), /* float */
+			shift(51), /* nil */
+			shift(52), /* null */
 		},
 	},
 	actionRow{ // S267
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(13), /* $, reduce: ExprArg */
+			reduce(14), /* $, reduce: ExprArg */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			reduce(13), /* operator_charactor, reduce: ExprArg */
+			reduce(14), /* operator_charactor, reduce: ExprArg */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -7251,17 +7519,18 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(23), /* $, reduce: ExprParam */
+			reduce(11), /* $, reduce: Expr */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			reduce(23), /* operator_charactor, reduce: ExprParam */
+			shift(54),  /* operator_charactor */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -7277,87 +7546,6 @@ var actionTab = actionTable{
 	actionRow{ // S269
 		canRecover: false,
 		actions: [numSymbols]action{
-			nil,       /* INVALID */
-			nil,       /* $ */
-			shift(35), /* function_name */
-			shift(9),  /* ( */
-			nil,       /* ) */
-			nil,       /* () */
-			nil,       /* , */
-			nil,       /* operator_charactor */
-			nil,       /* ? */
-			nil,       /* : */
-			nil,       /* if */
-			nil,       /* then */
-			nil,       /* else */
-			shift(44), /* doublequotes_string */
-			shift(45), /* singlequote_string */
-			shift(46), /* number */
-			shift(47), /* argument */
-			shift(48), /* true */
-			shift(49), /* false */
-			shift(50), /* float */
-			shift(51), /* nil */
-			shift(52), /* null */
-		},
-	},
-	actionRow{ // S270
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        /* INVALID */
-			reduce(14), /* $, reduce: ExprArg */
-			nil,        /* function_name */
-			nil,        /* ( */
-			nil,        /* ) */
-			nil,        /* () */
-			nil,        /* , */
-			reduce(14), /* operator_charactor, reduce: ExprArg */
-			nil,        /* ? */
-			nil,        /* : */
-			nil,        /* if */
-			nil,        /* then */
-			nil,        /* else */
-			nil,        /* doublequotes_string */
-			nil,        /* singlequote_string */
-			nil,        /* number */
-			nil,        /* argument */
-			nil,        /* true */
-			nil,        /* false */
-			nil,        /* float */
-			nil,        /* nil */
-			nil,        /* null */
-		},
-	},
-	actionRow{ // S271
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        /* INVALID */
-			reduce(11), /* $, reduce: Expr */
-			nil,        /* function_name */
-			nil,        /* ( */
-			nil,        /* ) */
-			nil,        /* () */
-			nil,        /* , */
-			shift(54),  /* operator_charactor */
-			nil,        /* ? */
-			nil,        /* : */
-			nil,        /* if */
-			nil,        /* then */
-			nil,        /* else */
-			nil,        /* doublequotes_string */
-			nil,        /* singlequote_string */
-			nil,        /* number */
-			nil,        /* argument */
-			nil,        /* true */
-			nil,        /* false */
-			nil,        /* float */
-			nil,        /* nil */
-			nil,        /* null */
-		},
-	},
-	actionRow{ // S272
-		canRecover: false,
-		actions: [numSymbols]action{
 			nil,        /* INVALID */
 			nil,        /* $ */
 			nil,        /* function_name */
@@ -7369,7 +7557,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			reduce(12), /* :, reduce: ExprArg */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -7382,7 +7571,7 @@ var actionTab = actionTable{
 			nil,        /* null */
 		},
 	},
-	actionRow{ // S273
+	actionRow{ // S270
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,       /* INVALID */
@@ -7396,7 +7585,8 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
+			nil,       /* { */
+			nil,       /* } */
 			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
@@ -7409,12 +7599,12 @@ var actionTab = actionTable{
 			nil,       /* null */
 		},
 	},
-	actionRow{ // S274
+	actionRow{ // S271
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
 			nil,        /* $ */
-			shift(285), /* function_name */
+			shift(282), /* function_name */
 			shift(9),   /* ( */
 			nil,        /* ) */
 			nil,        /* () */
@@ -7423,24 +7613,25 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
-			shift(294), /* doublequotes_string */
-			shift(295), /* singlequote_string */
-			shift(296), /* number */
-			shift(297), /* argument */
-			shift(298), /* true */
-			shift(299), /* false */
-			shift(300), /* float */
-			shift(301), /* nil */
-			shift(302), /* null */
+			shift(291), /* doublequotes_string */
+			shift(292), /* singlequote_string */
+			shift(293), /* number */
+			shift(294), /* argument */
+			shift(295), /* true */
+			shift(296), /* false */
+			shift(297), /* float */
+			shift(298), /* nil */
+			shift(299), /* null */
 		},
 	},
-	actionRow{ // S275
+	actionRow{ // S272
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,       /* INVALID */
-			reduce(7), /* $, reduce: Func */
+			nil,       /* $ */
 			nil,       /* function_name */
 			nil,       /* ( */
 			nil,       /* ) */
@@ -7450,8 +7641,9 @@ var actionTab = actionTable{
 			reduce(7), /* ?, reduce: Func */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
-			reduce(7), /* else, reduce: Func */
+			nil,       /* { */
+			reduce(7), /* }, reduce: Func */
+			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
 			nil,       /* number */
@@ -7463,7 +7655,119 @@ var actionTab = actionTable{
 			nil,       /* null */
 		},
 	},
+	actionRow{ // S273
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			nil,        /* $ */
+			nil,        /* function_name */
+			nil,        /* ( */
+			shift(300), /* ) */
+			nil,        /* () */
+			nil,        /* , */
+			reduce(13), /* operator_charactor, reduce: ExprArg */
+			nil,        /* ? */
+			nil,        /* : */
+			nil,        /* if */
+			nil,        /* { */
+			nil,        /* } */
+			nil,        /* else */
+			nil,        /* doublequotes_string */
+			nil,        /* singlequote_string */
+			nil,        /* number */
+			nil,        /* argument */
+			nil,        /* true */
+			nil,        /* false */
+			nil,        /* float */
+			nil,        /* nil */
+			nil,        /* null */
+		},
+	},
+	actionRow{ // S274
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			nil,        /* $ */
+			nil,        /* function_name */
+			nil,        /* ( */
+			nil,        /* ) */
+			nil,        /* () */
+			nil,        /* , */
+			nil,        /* operator_charactor */
+			nil,        /* ? */
+			nil,        /* : */
+			nil,        /* if */
+			nil,        /* { */
+			shift(301), /* } */
+			nil,        /* else */
+			nil,        /* doublequotes_string */
+			nil,        /* singlequote_string */
+			nil,        /* number */
+			nil,        /* argument */
+			nil,        /* true */
+			nil,        /* false */
+			nil,        /* float */
+			nil,        /* nil */
+			nil,        /* null */
+		},
+	},
+	actionRow{ // S275
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			nil,        /* $ */
+			shift(172), /* function_name */
+			shift(9),   /* ( */
+			nil,        /* ) */
+			nil,        /* () */
+			nil,        /* , */
+			nil,        /* operator_charactor */
+			nil,        /* ? */
+			nil,        /* : */
+			shift(174), /* if */
+			nil,        /* { */
+			nil,        /* } */
+			nil,        /* else */
+			shift(183), /* doublequotes_string */
+			shift(184), /* singlequote_string */
+			shift(185), /* number */
+			shift(186), /* argument */
+			shift(187), /* true */
+			shift(188), /* false */
+			shift(189), /* float */
+			shift(190), /* nil */
+			shift(191), /* null */
+		},
+	},
 	actionRow{ // S276
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,       /* INVALID */
+			reduce(7), /* $, reduce: Func */
+			nil,       /* function_name */
+			nil,       /* ( */
+			nil,       /* ) */
+			nil,       /* () */
+			nil,       /* , */
+			reduce(7), /* operator_charactor, reduce: Func */
+			nil,       /* ? */
+			nil,       /* : */
+			nil,       /* if */
+			nil,       /* { */
+			nil,       /* } */
+			nil,       /* else */
+			nil,       /* doublequotes_string */
+			nil,       /* singlequote_string */
+			nil,       /* number */
+			nil,       /* argument */
+			nil,       /* true */
+			nil,       /* false */
+			nil,       /* float */
+			nil,       /* nil */
+			nil,       /* null */
+		},
+	},
+	actionRow{ // S277
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
@@ -7477,35 +7781,9 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
-			nil,        /* doublequotes_string */
-			nil,        /* singlequote_string */
-			nil,        /* number */
-			nil,        /* argument */
-			nil,        /* true */
-			nil,        /* false */
-			nil,        /* float */
-			nil,        /* nil */
-			nil,        /* null */
-		},
-	},
-	actionRow{ // S277
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        /* INVALID */
-			reduce(19), /* $, reduce: Statement */
-			nil,        /* function_name */
-			nil,        /* ( */
-			nil,        /* ) */
-			nil,        /* () */
-			nil,        /* , */
-			nil,        /* operator_charactor */
-			nil,        /* ? */
-			nil,        /* : */
-			nil,        /* if */
-			nil,        /* then */
-			shift(304), /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -7531,7 +7809,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			shift(305), /* then */
+			nil,        /* { */
+			reduce(16), /* }, reduce: TernaryExpr */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -7547,28 +7826,29 @@ var actionTab = actionTable{
 	actionRow{ // S279
 		canRecover: false,
 		actions: [numSymbols]action{
-			nil,       /* INVALID */
-			reduce(7), /* $, reduce: Func */
-			nil,       /* function_name */
-			nil,       /* ( */
-			nil,       /* ) */
-			nil,       /* () */
-			nil,       /* , */
-			reduce(7), /* operator_charactor, reduce: Func */
-			nil,       /* ? */
-			nil,       /* : */
-			nil,       /* if */
-			nil,       /* then */
-			nil,       /* else */
-			nil,       /* doublequotes_string */
-			nil,       /* singlequote_string */
-			nil,       /* number */
-			nil,       /* argument */
-			nil,       /* true */
-			nil,       /* false */
-			nil,       /* float */
-			nil,       /* nil */
-			nil,       /* null */
+			nil,        /* INVALID */
+			nil,        /* $ */
+			nil,        /* function_name */
+			nil,        /* ( */
+			nil,        /* ) */
+			nil,        /* () */
+			nil,        /* , */
+			reduce(24), /* operator_charactor, reduce: ExprParam */
+			nil,        /* ? */
+			nil,        /* : */
+			nil,        /* if */
+			nil,        /* { */
+			reduce(4),  /* }, reduce: BaseExpr */
+			nil,        /* else */
+			nil,        /* doublequotes_string */
+			nil,        /* singlequote_string */
+			nil,        /* number */
+			nil,        /* argument */
+			nil,        /* true */
+			nil,        /* false */
+			nil,        /* float */
+			nil,        /* nil */
+			nil,        /* null */
 		},
 	},
 	actionRow{ // S280
@@ -7578,14 +7858,15 @@ var actionTab = actionTable{
 			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
-			shift(306), /* ) */
+			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
 			reduce(13), /* operator_charactor, reduce: ExprArg */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			reduce(5),  /* }, reduce: BaseExpr */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -7602,18 +7883,19 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(16), /* $, reduce: TernaryExpr */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			nil,        /* operator_charactor */
+			reduce(23), /* operator_charactor, reduce: ExprParam */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(16), /* else, reduce: TernaryExpr */
+			nil,        /* { */
+			reduce(6),  /* }, reduce: BaseExpr */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -7629,18 +7911,19 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(4),  /* $, reduce: BaseExpr */
+			nil,        /* $ */
 			nil,        /* function_name */
-			nil,        /* ( */
+			shift(304), /* ( */
 			nil,        /* ) */
-			nil,        /* () */
+			shift(305), /* () */
 			nil,        /* , */
-			reduce(24), /* operator_charactor, reduce: ExprParam */
+			nil,        /* operator_charactor */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(4),  /* else, reduce: BaseExpr */
+			nil,        /* { */
+			nil,        /* } */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -7655,46 +7938,48 @@ var actionTab = actionTable{
 	actionRow{ // S283
 		canRecover: false,
 		actions: [numSymbols]action{
-			nil,        /* INVALID */
-			reduce(5),  /* $, reduce: BaseExpr */
-			nil,        /* function_name */
-			nil,        /* ( */
-			nil,        /* ) */
-			nil,        /* () */
-			nil,        /* , */
-			reduce(13), /* operator_charactor, reduce: ExprArg */
-			nil,        /* ? */
-			nil,        /* : */
-			nil,        /* if */
-			nil,        /* then */
-			reduce(5),  /* else, reduce: BaseExpr */
-			nil,        /* doublequotes_string */
-			nil,        /* singlequote_string */
-			nil,        /* number */
-			nil,        /* argument */
-			nil,        /* true */
-			nil,        /* false */
-			nil,        /* float */
-			nil,        /* nil */
-			nil,        /* null */
+			nil,       /* INVALID */
+			nil,       /* $ */
+			nil,       /* function_name */
+			nil,       /* ( */
+			nil,       /* ) */
+			nil,       /* () */
+			nil,       /* , */
+			shift(54), /* operator_charactor */
+			nil,       /* ? */
+			nil,       /* : */
+			nil,       /* if */
+			nil,       /* { */
+			nil,       /* } */
+			nil,       /* else */
+			nil,       /* doublequotes_string */
+			nil,       /* singlequote_string */
+			nil,       /* number */
+			nil,       /* argument */
+			nil,       /* true */
+			nil,       /* false */
+			nil,       /* float */
+			nil,       /* nil */
+			nil,       /* null */
 		},
 	},
 	actionRow{ // S284
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(6),  /* $, reduce: BaseExpr */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			reduce(23), /* operator_charactor, reduce: ExprParam */
+			reduce(25), /* operator_charactor, reduce: Param */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(6),  /* else, reduce: BaseExpr */
+			nil,        /* { */
+			reduce(25), /* }, reduce: Param */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -7712,15 +7997,16 @@ var actionTab = actionTable{
 			nil,        /* INVALID */
 			nil,        /* $ */
 			nil,        /* function_name */
-			shift(307), /* ( */
+			nil,        /* ( */
 			nil,        /* ) */
-			shift(308), /* () */
+			nil,        /* () */
 			nil,        /* , */
-			nil,        /* operator_charactor */
+			reduce(26), /* operator_charactor, reduce: Param */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			reduce(26), /* }, reduce: Param */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -7736,46 +8022,48 @@ var actionTab = actionTable{
 	actionRow{ // S286
 		canRecover: false,
 		actions: [numSymbols]action{
-			nil,       /* INVALID */
-			nil,       /* $ */
-			nil,       /* function_name */
-			nil,       /* ( */
-			nil,       /* ) */
-			nil,       /* () */
-			nil,       /* , */
-			shift(54), /* operator_charactor */
-			nil,       /* ? */
-			nil,       /* : */
-			nil,       /* if */
-			nil,       /* then */
-			nil,       /* else */
-			nil,       /* doublequotes_string */
-			nil,       /* singlequote_string */
-			nil,       /* number */
-			nil,       /* argument */
-			nil,       /* true */
-			nil,       /* false */
-			nil,       /* float */
-			nil,       /* nil */
-			nil,       /* null */
+			nil,        /* INVALID */
+			nil,        /* $ */
+			nil,        /* function_name */
+			nil,        /* ( */
+			nil,        /* ) */
+			nil,        /* () */
+			nil,        /* , */
+			reduce(27), /* operator_charactor, reduce: Param */
+			nil,        /* ? */
+			nil,        /* : */
+			nil,        /* if */
+			nil,        /* { */
+			reduce(27), /* }, reduce: Param */
+			nil,        /* else */
+			nil,        /* doublequotes_string */
+			nil,        /* singlequote_string */
+			nil,        /* number */
+			nil,        /* argument */
+			nil,        /* true */
+			nil,        /* false */
+			nil,        /* float */
+			nil,        /* nil */
+			nil,        /* null */
 		},
 	},
 	actionRow{ // S287
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(25), /* $, reduce: Param */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			reduce(25), /* operator_charactor, reduce: Param */
+			reduce(28), /* operator_charactor, reduce: Param */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(25), /* else, reduce: Param */
+			nil,        /* { */
+			reduce(28), /* }, reduce: Param */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -7791,18 +8079,19 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(26), /* $, reduce: Param */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			reduce(26), /* operator_charactor, reduce: Param */
+			reduce(29), /* operator_charactor, reduce: Param */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(26), /* else, reduce: Param */
+			nil,        /* { */
+			reduce(29), /* }, reduce: Param */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -7818,18 +8107,19 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(27), /* $, reduce: Param */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			reduce(27), /* operator_charactor, reduce: Param */
+			reduce(30), /* operator_charactor, reduce: Param */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(27), /* else, reduce: Param */
+			nil,        /* { */
+			reduce(30), /* }, reduce: Param */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -7845,18 +8135,19 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(28), /* $, reduce: Param */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			reduce(28), /* operator_charactor, reduce: Param */
+			reduce(31), /* operator_charactor, reduce: Param */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(28), /* else, reduce: Param */
+			nil,        /* { */
+			reduce(31), /* }, reduce: Param */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -7872,18 +8163,19 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(29), /* $, reduce: Param */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			reduce(29), /* operator_charactor, reduce: Param */
+			reduce(32), /* operator_charactor, reduce: DoubleQString */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(29), /* else, reduce: Param */
+			nil,        /* { */
+			reduce(32), /* }, reduce: DoubleQString */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -7899,18 +8191,19 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(30), /* $, reduce: Param */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			reduce(30), /* operator_charactor, reduce: Param */
+			reduce(33), /* operator_charactor, reduce: SingleQString */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(30), /* else, reduce: Param */
+			nil,        /* { */
+			reduce(33), /* }, reduce: SingleQString */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -7926,18 +8219,19 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(31), /* $, reduce: Param */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			reduce(31), /* operator_charactor, reduce: Param */
+			reduce(34), /* operator_charactor, reduce: Int */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(31), /* else, reduce: Param */
+			nil,        /* { */
+			reduce(34), /* }, reduce: Int */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -7953,18 +8247,19 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(32), /* $, reduce: DoubleQString */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			reduce(32), /* operator_charactor, reduce: DoubleQString */
+			reduce(35), /* operator_charactor, reduce: MappingRef */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(32), /* else, reduce: DoubleQString */
+			nil,        /* { */
+			reduce(35), /* }, reduce: MappingRef */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -7980,18 +8275,19 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(33), /* $, reduce: SingleQString */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			reduce(33), /* operator_charactor, reduce: SingleQString */
+			reduce(36), /* operator_charactor, reduce: Bool */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(33), /* else, reduce: SingleQString */
+			nil,        /* { */
+			reduce(36), /* }, reduce: Bool */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -8007,18 +8303,19 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(34), /* $, reduce: Int */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			reduce(34), /* operator_charactor, reduce: Int */
+			reduce(37), /* operator_charactor, reduce: Bool */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(34), /* else, reduce: Int */
+			nil,        /* { */
+			reduce(37), /* }, reduce: Bool */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -8034,18 +8331,19 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(35), /* $, reduce: MappingRef */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			reduce(35), /* operator_charactor, reduce: MappingRef */
+			reduce(38), /* operator_charactor, reduce: Float */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(35), /* else, reduce: MappingRef */
+			nil,        /* { */
+			reduce(38), /* }, reduce: Float */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -8061,18 +8359,19 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(36), /* $, reduce: Bool */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			reduce(36), /* operator_charactor, reduce: Bool */
+			reduce(39), /* operator_charactor, reduce: Nil */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(36), /* else, reduce: Bool */
+			nil,        /* { */
+			reduce(39), /* }, reduce: Nil */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -8088,18 +8387,19 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(37), /* $, reduce: Bool */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			reduce(37), /* operator_charactor, reduce: Bool */
+			reduce(40), /* operator_charactor, reduce: Nil */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(37), /* else, reduce: Bool */
+			nil,        /* { */
+			reduce(40), /* }, reduce: Nil */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -8115,18 +8415,19 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(38), /* $, reduce: Float */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			reduce(38), /* operator_charactor, reduce: Float */
-			nil,        /* ? */
+			reduce(12), /* operator_charactor, reduce: ExprArg */
+			reduce(12), /* ?, reduce: ExprArg */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(38), /* else, reduce: Float */
+			nil,        /* { */
+			reduce(12), /* }, reduce: ExprArg */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -8142,18 +8443,19 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(39), /* $, reduce: Nil */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			reduce(39), /* operator_charactor, reduce: Nil */
+			nil,        /* operator_charactor */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(39), /* else, reduce: Nil */
+			nil,        /* { */
+			reduce(19), /* }, reduce: Statement */
+			shift(307), /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -8169,18 +8471,19 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(40), /* $, reduce: Nil */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			reduce(40), /* operator_charactor, reduce: Nil */
+			nil,        /* operator_charactor */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(40), /* else, reduce: Nil */
+			nil,        /* { */
+			shift(308), /* } */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -8203,11 +8506,12 @@ var actionTab = actionTable{
 			nil,        /* () */
 			nil,        /* , */
 			reduce(12), /* operator_charactor, reduce: ExprArg */
-			reduce(12), /* ?, reduce: ExprArg */
+			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(12), /* else, reduce: ExprArg */
+			nil,        /* { */
+			nil,        /* } */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -8224,87 +8528,6 @@ var actionTab = actionTable{
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
 			nil,        /* $ */
-			shift(172), /* function_name */
-			shift(9),   /* ( */
-			nil,        /* ) */
-			nil,        /* () */
-			nil,        /* , */
-			nil,        /* operator_charactor */
-			nil,        /* ? */
-			nil,        /* : */
-			shift(174), /* if */
-			nil,        /* then */
-			nil,        /* else */
-			shift(183), /* doublequotes_string */
-			shift(184), /* singlequote_string */
-			shift(185), /* number */
-			shift(186), /* argument */
-			shift(187), /* true */
-			shift(188), /* false */
-			shift(189), /* float */
-			shift(190), /* nil */
-			shift(191), /* null */
-		},
-	},
-	actionRow{ // S305
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        /* INVALID */
-			nil,        /* $ */
-			shift(172), /* function_name */
-			shift(9),   /* ( */
-			nil,        /* ) */
-			nil,        /* () */
-			nil,        /* , */
-			nil,        /* operator_charactor */
-			nil,        /* ? */
-			nil,        /* : */
-			shift(174), /* if */
-			nil,        /* then */
-			nil,        /* else */
-			shift(183), /* doublequotes_string */
-			shift(184), /* singlequote_string */
-			shift(185), /* number */
-			shift(186), /* argument */
-			shift(187), /* true */
-			shift(188), /* false */
-			shift(189), /* float */
-			shift(190), /* nil */
-			shift(191), /* null */
-		},
-	},
-	actionRow{ // S306
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        /* INVALID */
-			reduce(12), /* $, reduce: ExprArg */
-			nil,        /* function_name */
-			nil,        /* ( */
-			nil,        /* ) */
-			nil,        /* () */
-			nil,        /* , */
-			reduce(12), /* operator_charactor, reduce: ExprArg */
-			nil,        /* ? */
-			nil,        /* : */
-			nil,        /* if */
-			nil,        /* then */
-			nil,        /* else */
-			nil,        /* doublequotes_string */
-			nil,        /* singlequote_string */
-			nil,        /* number */
-			nil,        /* argument */
-			nil,        /* true */
-			nil,        /* false */
-			nil,        /* float */
-			nil,        /* nil */
-			nil,        /* null */
-		},
-	},
-	actionRow{ // S307
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        /* INVALID */
-			nil,        /* $ */
 			shift(101), /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -8314,7 +8537,8 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
 			shift(111), /* doublequotes_string */
 			shift(112), /* singlequote_string */
@@ -8327,11 +8551,11 @@ var actionTab = actionTable{
 			shift(119), /* null */
 		},
 	},
-	actionRow{ // S308
+	actionRow{ // S305
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,       /* INVALID */
-			reduce(8), /* $, reduce: Func */
+			nil,       /* $ */
 			nil,       /* function_name */
 			nil,       /* ( */
 			nil,       /* ) */
@@ -8341,8 +8565,9 @@ var actionTab = actionTable{
 			nil,       /* ? */
 			nil,       /* : */
 			nil,       /* if */
-			nil,       /* then */
-			reduce(8), /* else, reduce: Func */
+			nil,       /* { */
+			reduce(8), /* }, reduce: Func */
+			nil,       /* else */
 			nil,       /* doublequotes_string */
 			nil,       /* singlequote_string */
 			nil,       /* number */
@@ -8354,13 +8579,13 @@ var actionTab = actionTable{
 			nil,       /* null */
 		},
 	},
-	actionRow{ // S309
+	actionRow{ // S306
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
 			nil,        /* $ */
-			shift(285), /* function_name */
-			shift(316), /* ( */
+			shift(282), /* function_name */
+			shift(313), /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
@@ -8368,24 +8593,25 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			nil,        /* } */
 			nil,        /* else */
-			shift(294), /* doublequotes_string */
-			shift(295), /* singlequote_string */
-			shift(296), /* number */
-			shift(297), /* argument */
-			shift(298), /* true */
-			shift(299), /* false */
-			shift(300), /* float */
-			shift(301), /* nil */
-			shift(302), /* null */
+			shift(291), /* doublequotes_string */
+			shift(292), /* singlequote_string */
+			shift(293), /* number */
+			shift(294), /* argument */
+			shift(295), /* true */
+			shift(296), /* false */
+			shift(297), /* float */
+			shift(298), /* nil */
+			shift(299), /* null */
 		},
 	},
-	actionRow{ // S310
+	actionRow{ // S307
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(20), /* $, reduce: Statement */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -8395,8 +8621,93 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(20), /* else, reduce: Statement */
+			shift(316), /* { */
+			nil,        /* } */
+			nil,        /* else */
+			nil,        /* doublequotes_string */
+			nil,        /* singlequote_string */
+			nil,        /* number */
+			nil,        /* argument */
+			nil,        /* true */
+			nil,        /* false */
+			nil,        /* float */
+			nil,        /* nil */
+			nil,        /* null */
+		},
+	},
+	actionRow{ // S308
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			reduce(18), /* $, reduce: IfExpr */
+			nil,        /* function_name */
+			nil,        /* ( */
+			nil,        /* ) */
+			nil,        /* () */
+			nil,        /* , */
+			nil,        /* operator_charactor */
+			nil,        /* ? */
+			nil,        /* : */
+			nil,        /* if */
+			nil,        /* { */
+			nil,        /* } */
+			nil,        /* else */
+			nil,        /* doublequotes_string */
+			nil,        /* singlequote_string */
+			nil,        /* number */
+			nil,        /* argument */
+			nil,        /* true */
+			nil,        /* false */
+			nil,        /* float */
+			nil,        /* nil */
+			nil,        /* null */
+		},
+	},
+	actionRow{ // S309
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			nil,        /* $ */
+			nil,        /* function_name */
+			nil,        /* ( */
+			shift(317), /* ) */
+			nil,        /* () */
+			shift(141), /* , */
+			nil,        /* operator_charactor */
+			nil,        /* ? */
+			nil,        /* : */
+			nil,        /* if */
+			nil,        /* { */
+			nil,        /* } */
+			nil,        /* else */
+			nil,        /* doublequotes_string */
+			nil,        /* singlequote_string */
+			nil,        /* number */
+			nil,        /* argument */
+			nil,        /* true */
+			nil,        /* false */
+			nil,        /* float */
+			nil,        /* nil */
+			nil,        /* null */
+		},
+	},
+	actionRow{ // S310
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			nil,        /* $ */
+			nil,        /* function_name */
+			nil,        /* ( */
+			nil,        /* ) */
+			nil,        /* () */
+			nil,        /* , */
+			reduce(24), /* operator_charactor, reduce: ExprParam */
+			nil,        /* ? */
+			nil,        /* : */
+			nil,        /* if */
+			nil,        /* { */
+			reduce(24), /* }, reduce: ExprParam */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -8412,18 +8723,19 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(19), /* $, reduce: Statement */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			nil,        /* operator_charactor */
+			reduce(13), /* operator_charactor, reduce: ExprArg */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			shift(319), /* else */
+			nil,        /* { */
+			reduce(13), /* }, reduce: ExprArg */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -8442,14 +8754,15 @@ var actionTab = actionTable{
 			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
-			shift(320), /* ) */
+			nil,        /* ) */
 			nil,        /* () */
-			shift(141), /* , */
-			nil,        /* operator_charactor */
+			nil,        /* , */
+			reduce(23), /* operator_charactor, reduce: ExprParam */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
+			nil,        /* { */
+			reduce(23), /* }, reduce: ExprParam */
 			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
@@ -8465,46 +8778,48 @@ var actionTab = actionTable{
 	actionRow{ // S313
 		canRecover: false,
 		actions: [numSymbols]action{
-			nil,        /* INVALID */
-			reduce(24), /* $, reduce: ExprParam */
-			nil,        /* function_name */
-			nil,        /* ( */
-			nil,        /* ) */
-			nil,        /* () */
-			nil,        /* , */
-			reduce(24), /* operator_charactor, reduce: ExprParam */
-			nil,        /* ? */
-			nil,        /* : */
-			nil,        /* if */
-			nil,        /* then */
-			reduce(24), /* else, reduce: ExprParam */
-			nil,        /* doublequotes_string */
-			nil,        /* singlequote_string */
-			nil,        /* number */
-			nil,        /* argument */
-			nil,        /* true */
-			nil,        /* false */
-			nil,        /* float */
-			nil,        /* nil */
-			nil,        /* null */
+			nil,       /* INVALID */
+			nil,       /* $ */
+			shift(35), /* function_name */
+			shift(9),  /* ( */
+			nil,       /* ) */
+			nil,       /* () */
+			nil,       /* , */
+			nil,       /* operator_charactor */
+			nil,       /* ? */
+			nil,       /* : */
+			nil,       /* if */
+			nil,       /* { */
+			nil,       /* } */
+			nil,       /* else */
+			shift(44), /* doublequotes_string */
+			shift(45), /* singlequote_string */
+			shift(46), /* number */
+			shift(47), /* argument */
+			shift(48), /* true */
+			shift(49), /* false */
+			shift(50), /* float */
+			shift(51), /* nil */
+			shift(52), /* null */
 		},
 	},
 	actionRow{ // S314
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(13), /* $, reduce: ExprArg */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			reduce(13), /* operator_charactor, reduce: ExprArg */
+			reduce(14), /* operator_charactor, reduce: ExprArg */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(13), /* else, reduce: ExprArg */
+			nil,        /* { */
+			reduce(14), /* }, reduce: ExprArg */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -8520,18 +8835,19 @@ var actionTab = actionTable{
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(23), /* $, reduce: ExprParam */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			reduce(23), /* operator_charactor, reduce: ExprParam */
+			shift(54),  /* operator_charactor */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(23), /* else, reduce: ExprParam */
+			nil,        /* { */
+			reduce(11), /* }, reduce: Expr */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -8546,73 +8862,76 @@ var actionTab = actionTable{
 	actionRow{ // S316
 		canRecover: false,
 		actions: [numSymbols]action{
-			nil,       /* INVALID */
-			nil,       /* $ */
-			shift(35), /* function_name */
-			shift(9),  /* ( */
-			nil,       /* ) */
-			nil,       /* () */
-			nil,       /* , */
-			nil,       /* operator_charactor */
-			nil,       /* ? */
-			nil,       /* : */
-			nil,       /* if */
-			nil,       /* then */
-			nil,       /* else */
-			shift(44), /* doublequotes_string */
-			shift(45), /* singlequote_string */
-			shift(46), /* number */
-			shift(47), /* argument */
-			shift(48), /* true */
-			shift(49), /* false */
-			shift(50), /* float */
-			shift(51), /* nil */
-			shift(52), /* null */
+			nil,        /* INVALID */
+			nil,        /* $ */
+			shift(172), /* function_name */
+			shift(9),   /* ( */
+			nil,        /* ) */
+			nil,        /* () */
+			nil,        /* , */
+			nil,        /* operator_charactor */
+			nil,        /* ? */
+			nil,        /* : */
+			shift(174), /* if */
+			nil,        /* { */
+			nil,        /* } */
+			nil,        /* else */
+			shift(183), /* doublequotes_string */
+			shift(184), /* singlequote_string */
+			shift(185), /* number */
+			shift(186), /* argument */
+			shift(187), /* true */
+			shift(188), /* false */
+			shift(189), /* float */
+			shift(190), /* nil */
+			shift(191), /* null */
 		},
 	},
 	actionRow{ // S317
 		canRecover: false,
 		actions: [numSymbols]action{
-			nil,        /* INVALID */
-			reduce(14), /* $, reduce: ExprArg */
-			nil,        /* function_name */
-			nil,        /* ( */
-			nil,        /* ) */
-			nil,        /* () */
-			nil,        /* , */
-			reduce(14), /* operator_charactor, reduce: ExprArg */
-			nil,        /* ? */
-			nil,        /* : */
-			nil,        /* if */
-			nil,        /* then */
-			reduce(14), /* else, reduce: ExprArg */
-			nil,        /* doublequotes_string */
-			nil,        /* singlequote_string */
-			nil,        /* number */
-			nil,        /* argument */
-			nil,        /* true */
-			nil,        /* false */
-			nil,        /* float */
-			nil,        /* nil */
-			nil,        /* null */
+			nil,       /* INVALID */
+			nil,       /* $ */
+			nil,       /* function_name */
+			nil,       /* ( */
+			nil,       /* ) */
+			nil,       /* () */
+			nil,       /* , */
+			reduce(7), /* operator_charactor, reduce: Func */
+			nil,       /* ? */
+			nil,       /* : */
+			nil,       /* if */
+			nil,       /* { */
+			reduce(7), /* }, reduce: Func */
+			nil,       /* else */
+			nil,       /* doublequotes_string */
+			nil,       /* singlequote_string */
+			nil,       /* number */
+			nil,       /* argument */
+			nil,       /* true */
+			nil,       /* false */
+			nil,       /* float */
+			nil,       /* nil */
+			nil,       /* null */
 		},
 	},
 	actionRow{ // S318
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(11), /* $, reduce: Expr */
+			nil,        /* $ */
 			nil,        /* function_name */
 			nil,        /* ( */
-			nil,        /* ) */
+			shift(320), /* ) */
 			nil,        /* () */
 			nil,        /* , */
-			shift(54),  /* operator_charactor */
+			reduce(13), /* operator_charactor, reduce: ExprArg */
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(11), /* else, reduce: Expr */
+			nil,        /* { */
+			nil,        /* } */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
@@ -8629,114 +8948,34 @@ var actionTab = actionTable{
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
 			nil,        /* $ */
-			shift(8),   /* function_name */
-			shift(9),   /* ( */
+			nil,        /* function_name */
+			nil,        /* ( */
 			nil,        /* ) */
 			nil,        /* () */
 			nil,        /* , */
 			nil,        /* operator_charactor */
 			nil,        /* ? */
 			nil,        /* : */
-			shift(262), /* if */
-			nil,        /* then */
+			nil,        /* if */
+			nil,        /* { */
+			shift(321), /* } */
 			nil,        /* else */
-			shift(20),  /* doublequotes_string */
-			shift(21),  /* singlequote_string */
-			shift(22),  /* number */
-			shift(23),  /* argument */
-			shift(24),  /* true */
-			shift(25),  /* false */
-			shift(26),  /* float */
-			shift(27),  /* nil */
-			shift(28),  /* null */
+			nil,        /* doublequotes_string */
+			nil,        /* singlequote_string */
+			nil,        /* number */
+			nil,        /* argument */
+			nil,        /* true */
+			nil,        /* false */
+			nil,        /* float */
+			nil,        /* nil */
+			nil,        /* null */
 		},
 	},
 	actionRow{ // S320
 		canRecover: false,
 		actions: [numSymbols]action{
-			nil,       /* INVALID */
-			reduce(7), /* $, reduce: Func */
-			nil,       /* function_name */
-			nil,       /* ( */
-			nil,       /* ) */
-			nil,       /* () */
-			nil,       /* , */
-			reduce(7), /* operator_charactor, reduce: Func */
-			nil,       /* ? */
-			nil,       /* : */
-			nil,       /* if */
-			nil,       /* then */
-			reduce(7), /* else, reduce: Func */
-			nil,       /* doublequotes_string */
-			nil,       /* singlequote_string */
-			nil,       /* number */
-			nil,       /* argument */
-			nil,       /* true */
-			nil,       /* false */
-			nil,       /* float */
-			nil,       /* nil */
-			nil,       /* null */
-		},
-	},
-	actionRow{ // S321
-		canRecover: false,
-		actions: [numSymbols]action{
 			nil,        /* INVALID */
 			nil,        /* $ */
-			nil,        /* function_name */
-			nil,        /* ( */
-			shift(323), /* ) */
-			nil,        /* () */
-			nil,        /* , */
-			reduce(13), /* operator_charactor, reduce: ExprArg */
-			nil,        /* ? */
-			nil,        /* : */
-			nil,        /* if */
-			nil,        /* then */
-			nil,        /* else */
-			nil,        /* doublequotes_string */
-			nil,        /* singlequote_string */
-			nil,        /* number */
-			nil,        /* argument */
-			nil,        /* true */
-			nil,        /* false */
-			nil,        /* float */
-			nil,        /* nil */
-			nil,        /* null */
-		},
-	},
-	actionRow{ // S322
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        /* INVALID */
-			reduce(20), /* $, reduce: Statement */
-			nil,        /* function_name */
-			nil,        /* ( */
-			nil,        /* ) */
-			nil,        /* () */
-			nil,        /* , */
-			nil,        /* operator_charactor */
-			nil,        /* ? */
-			nil,        /* : */
-			nil,        /* if */
-			nil,        /* then */
-			nil,        /* else */
-			nil,        /* doublequotes_string */
-			nil,        /* singlequote_string */
-			nil,        /* number */
-			nil,        /* argument */
-			nil,        /* true */
-			nil,        /* false */
-			nil,        /* float */
-			nil,        /* nil */
-			nil,        /* null */
-		},
-	},
-	actionRow{ // S323
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        /* INVALID */
-			reduce(12), /* $, reduce: ExprArg */
 			nil,        /* function_name */
 			nil,        /* ( */
 			nil,        /* ) */
@@ -8746,8 +8985,37 @@ var actionTab = actionTable{
 			nil,        /* ? */
 			nil,        /* : */
 			nil,        /* if */
-			nil,        /* then */
-			reduce(12), /* else, reduce: ExprArg */
+			nil,        /* { */
+			reduce(12), /* }, reduce: ExprArg */
+			nil,        /* else */
+			nil,        /* doublequotes_string */
+			nil,        /* singlequote_string */
+			nil,        /* number */
+			nil,        /* argument */
+			nil,        /* true */
+			nil,        /* false */
+			nil,        /* float */
+			nil,        /* nil */
+			nil,        /* null */
+		},
+	},
+	actionRow{ // S321
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			nil,        /* $ */
+			nil,        /* function_name */
+			nil,        /* ( */
+			nil,        /* ) */
+			nil,        /* () */
+			nil,        /* , */
+			nil,        /* operator_charactor */
+			nil,        /* ? */
+			nil,        /* : */
+			nil,        /* if */
+			nil,        /* { */
+			reduce(20), /* }, reduce: Statement */
+			nil,        /* else */
 			nil,        /* doublequotes_string */
 			nil,        /* singlequote_string */
 			nil,        /* number */
