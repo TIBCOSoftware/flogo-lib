@@ -105,18 +105,6 @@ TernaryExpr
     : BaseExpr "?" BaseExpr ":" BaseExpr     <<direction.NewTernaryExpression($0, $2, $4)>>
     ;
 
-/*
- What would be if function possible looks like
- if Expr ("123") elseif Expr("123") elseif Expr else ("123")
-
-If Expr then Statement else Statement
-
-Statement:
-    If Expr then Statement
-    If Expr then Statement else Statement
-    Flogo
- */
-
 IfExpr
     : "if" BaseExpr "{" Statement "}"                            <<direction.NewIFF($1, $3)>>
     | "if" BaseExpr "{" Statement "}" "else" "{" Statement "}"   <<direction.NewIFFElse($1, $3, $7)>>
