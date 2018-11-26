@@ -17,7 +17,7 @@ var log = logger.GetLogger("json")
 func GetPathValue(value interface{}, refPath string) (interface{}, error) {
 	mappingField, err := field.ParseMappingField(refPath)
 	if err != nil {
-		return nil, fmt.Errorf("parse mapping path [%s] failed, due to %s", err.Error())
+		return nil, fmt.Errorf("parse mapping path [%s] failed, due to %s", refPath, err.Error())
 	}
 
 	if mappingField == nil || len(mappingField.Getfields()) <= 0 {

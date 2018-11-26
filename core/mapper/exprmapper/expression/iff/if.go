@@ -92,23 +92,23 @@ func (iff *iff) EvalWithData(value interface{}, inputScope data.Scope, resolver 
 	}
 }
 
-type iffLiteral struct {
+type IfValueProvider struct {
 	V interface{}
 }
 
-func NewIffExpr(v interface{}) *iffLiteral {
-	return &iffLiteral{V: v}
+func NewIfValueProvider(v interface{}) *IfValueProvider {
+	return &IfValueProvider{V: v}
 }
 
-func (iffl *iffLiteral) EvalWithScope(inputScope data.Scope, resolver data.Resolver) (interface{}, error) {
+func (iffl *IfValueProvider) EvalWithScope(inputScope data.Scope, resolver data.Resolver) (interface{}, error) {
 	return iffl.V, nil
 }
 
-func (iffl *iffLiteral) Eval() (interface{}, error) {
+func (iffl *IfValueProvider) Eval() (interface{}, error) {
 	return iffl.V, nil
 }
 
-func (iffl *iffLiteral) EvalWithData(value interface{}, inputScope data.Scope, resolver data.Resolver) (interface{}, error) {
+func (iffl *IfValueProvider) EvalWithData(value interface{}, inputScope data.Scope, resolver data.Resolver) (interface{}, error) {
 	return iffl.V, nil
 
 }

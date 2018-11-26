@@ -285,14 +285,14 @@ func NewIFF(ifExpr Attribute, statement Attribute) (interface{}, error) {
 	case expr.Expr:
 		ifE = t
 	default:
-		ifE = iff.NewIffExpr(t)
+		ifE = iff.NewIfValueProvider(t)
 	}
 
 	switch t := statement.(type) {
 	case expr.Expr:
 		statementE = t
 	default:
-		statementE = iff.NewIffExpr(t)
+		statementE = iff.NewIfValueProvider(t)
 	}
 
 	return iff.NewIff(ifE, statementE), nil
@@ -304,21 +304,21 @@ func NewIFFElse(ifExpr Attribute, statement, elseS Attribute) (interface{}, erro
 	case expr.Expr:
 		ifE = t
 	default:
-		ifE = iff.NewIffExpr(t)
+		ifE = iff.NewIfValueProvider(t)
 	}
 
 	switch t := statement.(type) {
 	case expr.Expr:
 		statementE = t
 	default:
-		statementE = iff.NewIffExpr(t)
+		statementE = iff.NewIfValueProvider(t)
 	}
 
 	switch t := elseS.(type) {
 	case expr.Expr:
 		elseE = t
 	default:
-		elseE = iff.NewIffExpr(t)
+		elseE = iff.NewIfValueProvider(t)
 
 	}
 
