@@ -91,24 +91,3 @@ func (iff *iff) EvalWithData(value interface{}, inputScope data.Scope, resolver 
 		return nil, nil
 	}
 }
-
-type IfValueProvider struct {
-	V interface{}
-}
-
-func NewIfValueProvider(v interface{}) *IfValueProvider {
-	return &IfValueProvider{V: v}
-}
-
-func (iffl *IfValueProvider) EvalWithScope(inputScope data.Scope, resolver data.Resolver) (interface{}, error) {
-	return iffl.V, nil
-}
-
-func (iffl *IfValueProvider) Eval() (interface{}, error) {
-	return iffl.V, nil
-}
-
-func (iffl *IfValueProvider) EvalWithData(value interface{}, inputScope data.Scope, resolver data.Resolver) (interface{}, error) {
-	return iffl.V, nil
-
-}
