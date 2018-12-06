@@ -43,6 +43,14 @@ func TestIFfExprStatmentNestIf(t *testing.T) {
 	assert.Equal(t, "yes", v)
 }
 
+func TestIFElseStatmentNestIf(t *testing.T) {
+	e, err := ParseExpression(`if 2>3 { "No"} else if 3>2 {"Yes"}`)
+	assert.Nil(t, err)
+	v, err := e.Eval()
+	assert.Nil(t, err)
+	assert.Equal(t, "Yes", v)
+}
+
 func TestIFfElse(t *testing.T) {
 	e, err := ParseExpression(`if 1>2 { "yes" } else { "no" }`)
 	assert.Nil(t, err)

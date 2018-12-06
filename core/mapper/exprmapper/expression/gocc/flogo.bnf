@@ -106,8 +106,17 @@ TernaryExpr
     ;
 
 IfExpr
-    : "if" BaseExpr "{" Statement "}"                            <<direction.NewIFF($1, $3)>>
-    | "if" BaseExpr "{" Statement "}" "else" "{" Statement "}"   <<direction.NewIFFElse($1, $3, $7)>>
+    : "if" BaseExpr Block                             <<direction.NewIFF($1, $2)>>
+    | "if" BaseExpr Block ElseStatement               <<direction.NewIFFElse($1, $2, $3)>>
+    ;
+
+Block
+    : "{" Statement "}"                             <<direction.NewStatement($1)>>
+    ;
+
+ElseStatement
+    : "else" IfExpr                              <<direction.NewStatement($1)>>
+    | "else" Block                               <<direction.NewStatement($1)>>
     ;
 
 Statement
