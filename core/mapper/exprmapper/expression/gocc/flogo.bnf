@@ -55,6 +55,7 @@ argument : '$' _flogostring ;
 Flogo
     : Expr
     | TernaryExpr
+    | IfExpr
     ;
 
 Expr
@@ -111,8 +112,8 @@ TernaryExpr
 
 
 IfExpr
-    : "if" BaseExpr Block                             <<direction.NewIFF($1, $2)>>
-    | "if" BaseExpr Block ElseStatement               <<direction.NewIFFElse($1, $2, $3)>>
+    : "if" Expr Block                             <<direction.NewIFF($1, $2)>>
+    | "if" Expr Block ElseStatement               <<direction.NewIFFElse($1, $2, $3)>>
     ;
 
 Block
@@ -126,7 +127,7 @@ ElseStatement
 
 Statement
     : IfExpr
-    | BaseExpr
+    | Expr
     | TernaryExpr
     ;
 

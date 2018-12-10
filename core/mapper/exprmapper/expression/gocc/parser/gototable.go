@@ -2,7 +2,7 @@
 
 package parser
 
-const numNTSymbols = 24
+const numNTSymbols = 28
 
 type (
 	gotoTable [numStates]gotoRow
@@ -14,27 +14,31 @@ var gotoTab = gotoTable{
 		-1, // S'
 		1,  // Flogo
 		2,  // Expr
-		4,  // OrExpr
-		5,  // AndExpr
-		6,  // ConditionalExpr
-		7,  // AddExpr
-		8,  // MulExpr
-		9,  // ParenthesesExpr
+		5,  // OrExpr
+		6,  // AndExpr
+		7,  // ConditionalExpr
+		8,  // AddExpr
+		9,  // MulExpr
+		10, // ParenthesesExpr
 		-1, // RelOp
 		-1, // AddOp
 		-1, // MulOp
-		12, // Func
+		13, // Func
 		-1, // ArgsList
+		11, // ExprLiteral
 		3,  // TernaryExpr
-		10, // ExprLiteral
-		14, // Literal
-		18, // DoubleQString
-		19, // SingleQString
-		15, // Int
-		20, // MappingRef
-		17, // Bool
-		16, // Float
-		21, // Nil
+		4,  // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		15, // Literal
+		20, // DoubleQString
+		21, // SingleQString
+		17, // Int
+		22, // MappingRef
+		19, // Bool
+		18, // Float
+		23, // Nil
 	},
 	gotoRow{ // S1
 		-1, // S'
@@ -51,8 +55,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -77,8 +85,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -103,8 +115,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -129,8 +145,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -155,8 +175,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -176,13 +200,17 @@ var gotoTab = gotoTable{
 		-1, // AddExpr
 		-1, // MulExpr
 		-1, // ParenthesesExpr
-		34, // RelOp
+		-1, // RelOp
 		-1, // AddOp
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -202,13 +230,17 @@ var gotoTab = gotoTable{
 		-1, // AddExpr
 		-1, // MulExpr
 		-1, // ParenthesesExpr
-		-1, // RelOp
-		41, // AddOp
+		36, // RelOp
+		-1, // AddOp
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -229,12 +261,16 @@ var gotoTab = gotoTable{
 		-1, // MulExpr
 		-1, // ParenthesesExpr
 		-1, // RelOp
-		-1, // AddOp
-		44, // MulOp
+		43, // AddOp
+		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -256,11 +292,15 @@ var gotoTab = gotoTable{
 		-1, // ParenthesesExpr
 		-1, // RelOp
 		-1, // AddOp
-		-1, // MulOp
+		46, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -285,8 +325,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -297,32 +341,6 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S11
-		-1, // S'
-		-1, // Flogo
-		48, // Expr
-		49, // OrExpr
-		50, // AndExpr
-		51, // ConditionalExpr
-		52, // AddExpr
-		53, // MulExpr
-		54, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		57, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		55, // ExprLiteral
-		59, // Literal
-		63, // DoubleQString
-		64, // SingleQString
-		60, // Int
-		65, // MappingRef
-		62, // Bool
-		61, // Float
-		66, // Nil
-	},
-	gotoRow{ // S12
 		-1, // S'
 		-1, // Flogo
 		-1, // Expr
@@ -337,8 +355,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -347,6 +369,36 @@ var gotoTab = gotoTable{
 		-1, // Bool
 		-1, // Float
 		-1, // Nil
+	},
+	gotoRow{ // S12
+		-1, // S'
+		-1, // Flogo
+		50, // Expr
+		51, // OrExpr
+		52, // AndExpr
+		53, // ConditionalExpr
+		54, // AddExpr
+		55, // MulExpr
+		56, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		59, // Func
+		-1, // ArgsList
+		57, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		61, // Literal
+		65, // DoubleQString
+		66, // SingleQString
+		62, // Int
+		67, // MappingRef
+		64, // Bool
+		63, // Float
+		68, // Nil
 	},
 	gotoRow{ // S13
 		-1, // S'
@@ -363,8 +415,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -389,8 +445,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -415,8 +475,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -429,28 +493,32 @@ var gotoTab = gotoTable{
 	gotoRow{ // S16
 		-1, // S'
 		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
+		80, // Expr
+		81, // OrExpr
+		82, // AndExpr
+		83, // ConditionalExpr
+		84, // AddExpr
+		85, // MulExpr
+		86, // ParenthesesExpr
 		-1, // RelOp
 		-1, // AddOp
 		-1, // MulOp
-		-1, // Func
+		89, // Func
 		-1, // ArgsList
+		87, // ExprLiteral
 		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		91, // Literal
+		95, // DoubleQString
+		96, // SingleQString
+		92, // Int
+		97, // MappingRef
+		94, // Bool
+		93, // Float
+		98, // Nil
 	},
 	gotoRow{ // S17
 		-1, // S'
@@ -467,8 +535,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -493,8 +565,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -519,8 +595,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -545,8 +625,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -571,8 +655,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -597,8 +685,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -623,8 +715,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -649,8 +745,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -675,8 +775,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -701,8 +805,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -727,8 +835,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -753,8 +865,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -779,8 +895,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -805,8 +925,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -819,158 +943,182 @@ var gotoTab = gotoTable{
 	gotoRow{ // S31
 		-1, // S'
 		-1, // Flogo
-		78, // Expr
-		79, // OrExpr
-		80, // AndExpr
-		81, // ConditionalExpr
-		82, // AddExpr
-		83, // MulExpr
-		84, // ParenthesesExpr
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
 		-1, // RelOp
 		-1, // AddOp
 		-1, // MulOp
-		87, // Func
+		-1, // Func
 		-1, // ArgsList
+		-1, // ExprLiteral
 		-1, // TernaryExpr
-		85, // ExprLiteral
-		89, // Literal
-		93, // DoubleQString
-		94, // SingleQString
-		90, // Int
-		95, // MappingRef
-		92, // Bool
-		91, // Float
-		96, // Nil
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S32
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		106, // AndExpr
-		6,   // ConditionalExpr
-		7,   // AddExpr
-		8,   // MulExpr
-		9,   // ParenthesesExpr
-		-1,  // RelOp
-		-1,  // AddOp
-		-1,  // MulOp
-		12,  // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		10,  // ExprLiteral
-		14,  // Literal
-		18,  // DoubleQString
-		19,  // SingleQString
-		15,  // Int
-		20,  // MappingRef
-		17,  // Bool
-		16,  // Float
-		21,  // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S33
 		-1,  // S'
 		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		107, // ConditionalExpr
-		7,   // AddExpr
-		8,   // MulExpr
-		9,   // ParenthesesExpr
+		108, // Expr
+		109, // OrExpr
+		110, // AndExpr
+		111, // ConditionalExpr
+		112, // AddExpr
+		113, // MulExpr
+		114, // ParenthesesExpr
 		-1,  // RelOp
 		-1,  // AddOp
 		-1,  // MulOp
-		12,  // Func
+		117, // Func
 		-1,  // ArgsList
+		115, // ExprLiteral
 		-1,  // TernaryExpr
-		10,  // ExprLiteral
-		14,  // Literal
-		18,  // DoubleQString
-		19,  // SingleQString
-		15,  // Int
-		20,  // MappingRef
-		17,  // Bool
-		16,  // Float
-		21,  // Nil
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		119, // Literal
+		123, // DoubleQString
+		124, // SingleQString
+		120, // Int
+		125, // MappingRef
+		122, // Bool
+		121, // Float
+		126, // Nil
 	},
 	gotoRow{ // S34
 		-1,  // S'
 		-1,  // Flogo
 		-1,  // Expr
 		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		108, // AddExpr
-		8,   // MulExpr
-		9,   // ParenthesesExpr
+		136, // AndExpr
+		7,   // ConditionalExpr
+		8,   // AddExpr
+		9,   // MulExpr
+		10,  // ParenthesesExpr
 		-1,  // RelOp
 		-1,  // AddOp
 		-1,  // MulOp
-		12,  // Func
+		13,  // Func
 		-1,  // ArgsList
+		11,  // ExprLiteral
 		-1,  // TernaryExpr
-		10,  // ExprLiteral
-		14,  // Literal
-		18,  // DoubleQString
-		19,  // SingleQString
-		15,  // Int
-		20,  // MappingRef
-		17,  // Bool
-		16,  // Float
-		21,  // Nil
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		15,  // Literal
+		20,  // DoubleQString
+		21,  // SingleQString
+		17,  // Int
+		22,  // MappingRef
+		19,  // Bool
+		18,  // Float
+		23,  // Nil
 	},
 	gotoRow{ // S35
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		137, // ConditionalExpr
+		8,   // AddExpr
+		9,   // MulExpr
+		10,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		13,  // Func
+		-1,  // ArgsList
+		11,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		15,  // Literal
+		20,  // DoubleQString
+		21,  // SingleQString
+		17,  // Int
+		22,  // MappingRef
+		19,  // Bool
+		18,  // Float
+		23,  // Nil
 	},
 	gotoRow{ // S36
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		138, // AddExpr
+		9,   // MulExpr
+		10,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		13,  // Func
+		-1,  // ArgsList
+		11,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		15,  // Literal
+		20,  // DoubleQString
+		21,  // SingleQString
+		17,  // Int
+		22,  // MappingRef
+		19,  // Bool
+		18,  // Float
+		23,  // Nil
 	},
 	gotoRow{ // S37
 		-1, // S'
@@ -987,8 +1135,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1013,8 +1165,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1039,8 +1195,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1065,8 +1225,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1077,30 +1241,34 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S41
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		-1,  // AddExpr
-		109, // MulExpr
-		9,   // ParenthesesExpr
-		-1,  // RelOp
-		-1,  // AddOp
-		-1,  // MulOp
-		12,  // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		10,  // ExprLiteral
-		14,  // Literal
-		18,  // DoubleQString
-		19,  // SingleQString
-		15,  // Int
-		20,  // MappingRef
-		17,  // Bool
-		16,  // Float
-		21,  // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S42
 		-1, // S'
@@ -1117,8 +1285,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1129,6 +1301,36 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S43
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		139, // MulExpr
+		10,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		13,  // Func
+		-1,  // ArgsList
+		11,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		15,  // Literal
+		20,  // DoubleQString
+		21,  // SingleQString
+		17,  // Int
+		22,  // MappingRef
+		19,  // Bool
+		18,  // Float
+		23,  // Nil
+	},
+	gotoRow{ // S44
 		-1, // S'
 		-1, // Flogo
 		-1, // Expr
@@ -1143,8 +1345,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1153,32 +1359,6 @@ var gotoTab = gotoTable{
 		-1, // Bool
 		-1, // Float
 		-1, // Nil
-	},
-	gotoRow{ // S44
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		-1,  // AddExpr
-		-1,  // MulExpr
-		110, // ParenthesesExpr
-		-1,  // RelOp
-		-1,  // AddOp
-		-1,  // MulOp
-		12,  // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		10,  // ExprLiteral
-		14,  // Literal
-		18,  // DoubleQString
-		19,  // SingleQString
-		15,  // Int
-		20,  // MappingRef
-		17,  // Bool
-		16,  // Float
-		21,  // Nil
 	},
 	gotoRow{ // S45
 		-1, // S'
@@ -1195,8 +1375,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1207,30 +1391,34 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S46
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		140, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		13,  // Func
+		-1,  // ArgsList
+		11,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		15,  // Literal
+		20,  // DoubleQString
+		21,  // SingleQString
+		17,  // Int
+		22,  // MappingRef
+		19,  // Bool
+		18,  // Float
+		23,  // Nil
 	},
 	gotoRow{ // S47
 		-1, // S'
@@ -1247,8 +1435,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1273,8 +1465,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1299,8 +1495,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1325,8 +1525,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1337,56 +1541,64 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S51
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		-1,  // AddExpr
-		-1,  // MulExpr
-		-1,  // ParenthesesExpr
-		114, // RelOp
-		-1,  // AddOp
-		-1,  // MulOp
-		-1,  // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		-1,  // ExprLiteral
-		-1,  // Literal
-		-1,  // DoubleQString
-		-1,  // SingleQString
-		-1,  // Int
-		-1,  // MappingRef
-		-1,  // Bool
-		-1,  // Float
-		-1,  // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S52
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		-1,  // AddExpr
-		-1,  // MulExpr
-		-1,  // ParenthesesExpr
-		-1,  // RelOp
-		115, // AddOp
-		-1,  // MulOp
-		-1,  // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		-1,  // ExprLiteral
-		-1,  // Literal
-		-1,  // DoubleQString
-		-1,  // SingleQString
-		-1,  // Int
-		-1,  // MappingRef
-		-1,  // Bool
-		-1,  // Float
-		-1,  // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S53
 		-1,  // S'
@@ -1398,13 +1610,17 @@ var gotoTab = gotoTable{
 		-1,  // AddExpr
 		-1,  // MulExpr
 		-1,  // ParenthesesExpr
-		-1,  // RelOp
+		144, // RelOp
 		-1,  // AddOp
-		116, // MulOp
+		-1,  // MulOp
 		-1,  // Func
 		-1,  // ArgsList
-		-1,  // TernaryExpr
 		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
 		-1,  // Literal
 		-1,  // DoubleQString
 		-1,  // SingleQString
@@ -1415,82 +1631,94 @@ var gotoTab = gotoTable{
 		-1,  // Nil
 	},
 	gotoRow{ // S54
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
-	},
-	gotoRow{ // S55
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
-	},
-	gotoRow{ // S56
 		-1,  // S'
 		-1,  // Flogo
-		117, // Expr
-		49,  // OrExpr
-		50,  // AndExpr
-		51,  // ConditionalExpr
-		52,  // AddExpr
-		53,  // MulExpr
-		54,  // ParenthesesExpr
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		145, // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S55
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
 		-1,  // RelOp
 		-1,  // AddOp
-		-1,  // MulOp
-		57,  // Func
+		146, // MulOp
+		-1,  // Func
 		-1,  // ArgsList
+		-1,  // ExprLiteral
 		-1,  // TernaryExpr
-		55,  // ExprLiteral
-		59,  // Literal
-		63,  // DoubleQString
-		64,  // SingleQString
-		60,  // Int
-		65,  // MappingRef
-		62,  // Bool
-		61,  // Float
-		66,  // Nil
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S56
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S57
 		-1, // S'
@@ -1507,8 +1735,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1519,30 +1751,34 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S58
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		147, // Expr
+		51,  // OrExpr
+		52,  // AndExpr
+		53,  // ConditionalExpr
+		54,  // AddExpr
+		55,  // MulExpr
+		56,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		59,  // Func
+		-1,  // ArgsList
+		57,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		61,  // Literal
+		65,  // DoubleQString
+		66,  // SingleQString
+		62,  // Int
+		67,  // MappingRef
+		64,  // Bool
+		63,  // Float
+		68,  // Nil
 	},
 	gotoRow{ // S59
 		-1, // S'
@@ -1559,8 +1795,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1585,8 +1825,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1611,8 +1855,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1637,8 +1885,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1663,8 +1915,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1689,8 +1945,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1715,8 +1975,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1741,8 +2005,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1767,8 +2035,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1793,8 +2065,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1819,8 +2095,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1845,8 +2125,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1871,8 +2155,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1897,8 +2185,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1923,8 +2215,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1949,8 +2245,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1975,8 +2275,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -1987,30 +2291,34 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S76
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		-1,  // AddExpr
-		-1,  // MulExpr
-		-1,  // ParenthesesExpr
-		-1,  // RelOp
-		-1,  // AddOp
-		-1,  // MulOp
-		121, // Func
-		123, // ArgsList
-		-1,  // TernaryExpr
-		120, // ExprLiteral
-		124, // Literal
-		128, // DoubleQString
-		129, // SingleQString
-		125, // Int
-		130, // MappingRef
-		127, // Bool
-		126, // Float
-		131, // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S77
 		-1, // S'
@@ -2027,8 +2335,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2039,30 +2351,34 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S78
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		151, // Func
+		153, // ArgsList
+		150, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		154, // Literal
+		158, // DoubleQString
+		159, // SingleQString
+		155, // Int
+		160, // MappingRef
+		157, // Bool
+		156, // Float
+		161, // Nil
 	},
 	gotoRow{ // S79
 		-1, // S'
@@ -2079,8 +2395,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2091,6 +2411,36 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S80
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		171, // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S81
 		-1, // S'
 		-1, // Flogo
 		-1, // Expr
@@ -2105,8 +2455,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2116,57 +2470,35 @@ var gotoTab = gotoTable{
 		-1, // Float
 		-1, // Nil
 	},
-	gotoRow{ // S81
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		-1,  // AddExpr
-		-1,  // MulExpr
-		-1,  // ParenthesesExpr
-		144, // RelOp
-		-1,  // AddOp
-		-1,  // MulOp
-		-1,  // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		-1,  // ExprLiteral
-		-1,  // Literal
-		-1,  // DoubleQString
-		-1,  // SingleQString
-		-1,  // Int
-		-1,  // MappingRef
-		-1,  // Bool
-		-1,  // Float
-		-1,  // Nil
-	},
 	gotoRow{ // S82
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		-1,  // AddExpr
-		-1,  // MulExpr
-		-1,  // ParenthesesExpr
-		-1,  // RelOp
-		145, // AddOp
-		-1,  // MulOp
-		-1,  // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		-1,  // ExprLiteral
-		-1,  // Literal
-		-1,  // DoubleQString
-		-1,  // SingleQString
-		-1,  // Int
-		-1,  // MappingRef
-		-1,  // Bool
-		-1,  // Float
-		-1,  // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S83
 		-1,  // S'
@@ -2178,13 +2510,17 @@ var gotoTab = gotoTable{
 		-1,  // AddExpr
 		-1,  // MulExpr
 		-1,  // ParenthesesExpr
-		-1,  // RelOp
+		175, // RelOp
 		-1,  // AddOp
-		146, // MulOp
+		-1,  // MulOp
 		-1,  // Func
 		-1,  // ArgsList
-		-1,  // TernaryExpr
 		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
 		-1,  // Literal
 		-1,  // DoubleQString
 		-1,  // SingleQString
@@ -2195,82 +2531,94 @@ var gotoTab = gotoTable{
 		-1,  // Nil
 	},
 	gotoRow{ // S84
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
-	},
-	gotoRow{ // S85
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
-	},
-	gotoRow{ // S86
 		-1,  // S'
 		-1,  // Flogo
-		147, // Expr
-		49,  // OrExpr
-		50,  // AndExpr
-		51,  // ConditionalExpr
-		52,  // AddExpr
-		53,  // MulExpr
-		54,  // ParenthesesExpr
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		176, // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S85
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
 		-1,  // RelOp
 		-1,  // AddOp
-		-1,  // MulOp
-		57,  // Func
+		177, // MulOp
+		-1,  // Func
 		-1,  // ArgsList
+		-1,  // ExprLiteral
 		-1,  // TernaryExpr
-		55,  // ExprLiteral
-		59,  // Literal
-		63,  // DoubleQString
-		64,  // SingleQString
-		60,  // Int
-		65,  // MappingRef
-		62,  // Bool
-		61,  // Float
-		66,  // Nil
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S86
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S87
 		-1, // S'
@@ -2287,8 +2635,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2299,30 +2651,34 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S88
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		178, // Expr
+		51,  // OrExpr
+		52,  // AndExpr
+		53,  // ConditionalExpr
+		54,  // AddExpr
+		55,  // MulExpr
+		56,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		59,  // Func
+		-1,  // ArgsList
+		57,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		61,  // Literal
+		65,  // DoubleQString
+		66,  // SingleQString
+		62,  // Int
+		67,  // MappingRef
+		64,  // Bool
+		63,  // Float
+		68,  // Nil
 	},
 	gotoRow{ // S89
 		-1, // S'
@@ -2339,8 +2695,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2365,8 +2725,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2391,8 +2755,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2417,8 +2785,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2443,8 +2815,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2469,8 +2845,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2495,8 +2875,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2521,8 +2905,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2547,8 +2935,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2573,8 +2965,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2599,8 +2995,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2625,8 +3025,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2651,8 +3055,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2677,8 +3085,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2703,8 +3115,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2729,8 +3145,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2755,8 +3175,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2781,8 +3205,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2802,13 +3230,17 @@ var gotoTab = gotoTable{
 		-1, // AddExpr
 		-1, // MulExpr
 		-1, // ParenthesesExpr
-		34, // RelOp
+		-1, // RelOp
 		-1, // AddOp
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2829,12 +3261,16 @@ var gotoTab = gotoTable{
 		-1, // MulExpr
 		-1, // ParenthesesExpr
 		-1, // RelOp
-		41, // AddOp
+		-1, // AddOp
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2856,11 +3292,15 @@ var gotoTab = gotoTable{
 		-1, // ParenthesesExpr
 		-1, // RelOp
 		-1, // AddOp
-		44, // MulOp
+		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2885,8 +3325,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2897,6 +3341,96 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S111
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		184, // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S112
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		185, // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S113
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		186, // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S114
 		-1, // S'
 		-1, // Flogo
 		-1, // Expr
@@ -2911,8 +3445,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -2922,135 +3460,65 @@ var gotoTab = gotoTable{
 		-1, // Float
 		-1, // Nil
 	},
-	gotoRow{ // S112
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		150, // AndExpr
-		51,  // ConditionalExpr
-		52,  // AddExpr
-		53,  // MulExpr
-		54,  // ParenthesesExpr
-		-1,  // RelOp
-		-1,  // AddOp
-		-1,  // MulOp
-		57,  // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		55,  // ExprLiteral
-		59,  // Literal
-		63,  // DoubleQString
-		64,  // SingleQString
-		60,  // Int
-		65,  // MappingRef
-		62,  // Bool
-		61,  // Float
-		66,  // Nil
-	},
-	gotoRow{ // S113
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		151, // ConditionalExpr
-		52,  // AddExpr
-		53,  // MulExpr
-		54,  // ParenthesesExpr
-		-1,  // RelOp
-		-1,  // AddOp
-		-1,  // MulOp
-		57,  // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		55,  // ExprLiteral
-		59,  // Literal
-		63,  // DoubleQString
-		64,  // SingleQString
-		60,  // Int
-		65,  // MappingRef
-		62,  // Bool
-		61,  // Float
-		66,  // Nil
-	},
-	gotoRow{ // S114
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		152, // AddExpr
-		53,  // MulExpr
-		54,  // ParenthesesExpr
-		-1,  // RelOp
-		-1,  // AddOp
-		-1,  // MulOp
-		57,  // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		55,  // ExprLiteral
-		59,  // Literal
-		63,  // DoubleQString
-		64,  // SingleQString
-		60,  // Int
-		65,  // MappingRef
-		62,  // Bool
-		61,  // Float
-		66,  // Nil
-	},
 	gotoRow{ // S115
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		-1,  // AddExpr
-		153, // MulExpr
-		54,  // ParenthesesExpr
-		-1,  // RelOp
-		-1,  // AddOp
-		-1,  // MulOp
-		57,  // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		55,  // ExprLiteral
-		59,  // Literal
-		63,  // DoubleQString
-		64,  // SingleQString
-		60,  // Int
-		65,  // MappingRef
-		62,  // Bool
-		61,  // Float
-		66,  // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S116
 		-1,  // S'
 		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		-1,  // AddExpr
-		-1,  // MulExpr
-		154, // ParenthesesExpr
+		187, // Expr
+		51,  // OrExpr
+		52,  // AndExpr
+		53,  // ConditionalExpr
+		54,  // AddExpr
+		55,  // MulExpr
+		56,  // ParenthesesExpr
 		-1,  // RelOp
 		-1,  // AddOp
 		-1,  // MulOp
-		57,  // Func
+		59,  // Func
 		-1,  // ArgsList
+		57,  // ExprLiteral
 		-1,  // TernaryExpr
-		55,  // ExprLiteral
-		59,  // Literal
-		63,  // DoubleQString
-		64,  // SingleQString
-		60,  // Int
-		65,  // MappingRef
-		62,  // Bool
-		61,  // Float
-		66,  // Nil
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		61,  // Literal
+		65,  // DoubleQString
+		66,  // SingleQString
+		62,  // Int
+		67,  // MappingRef
+		64,  // Bool
+		63,  // Float
+		68,  // Nil
 	},
 	gotoRow{ // S117
 		-1, // S'
@@ -3067,8 +3535,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3079,30 +3551,34 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S118
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		-1,  // AddExpr
-		-1,  // MulExpr
-		-1,  // ParenthesesExpr
-		-1,  // RelOp
-		-1,  // AddOp
-		-1,  // MulOp
-		121, // Func
-		156, // ArgsList
-		-1,  // TernaryExpr
-		120, // ExprLiteral
-		124, // Literal
-		128, // DoubleQString
-		129, // SingleQString
-		125, // Int
-		130, // MappingRef
-		127, // Bool
-		126, // Float
-		131, // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S119
 		-1, // S'
@@ -3119,8 +3595,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3145,8 +3625,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3171,8 +3655,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3197,8 +3685,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3223,8 +3715,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3249,8 +3745,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3275,8 +3775,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3301,8 +3805,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3327,8 +3835,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3353,8 +3865,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3379,8 +3895,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3405,8 +3925,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3431,8 +3955,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3457,8 +3985,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3483,8 +4015,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3509,8 +4045,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3535,8 +4075,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3561,8 +4105,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3582,13 +4130,17 @@ var gotoTab = gotoTable{
 		-1, // AddExpr
 		-1, // MulExpr
 		-1, // ParenthesesExpr
-		-1, // RelOp
+		36, // RelOp
 		-1, // AddOp
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3609,12 +4161,16 @@ var gotoTab = gotoTable{
 		-1, // MulExpr
 		-1, // ParenthesesExpr
 		-1, // RelOp
-		-1, // AddOp
+		43, // AddOp
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3636,11 +4192,15 @@ var gotoTab = gotoTable{
 		-1, // ParenthesesExpr
 		-1, // RelOp
 		-1, // AddOp
-		-1, // MulOp
+		46, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3665,8 +4225,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3677,56 +4241,64 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S141
-		-1,  // S'
-		-1,  // Flogo
-		161, // Expr
-		162, // OrExpr
-		163, // AndExpr
-		164, // ConditionalExpr
-		165, // AddExpr
-		166, // MulExpr
-		167, // ParenthesesExpr
-		-1,  // RelOp
-		-1,  // AddOp
-		-1,  // MulOp
-		170, // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		168, // ExprLiteral
-		172, // Literal
-		176, // DoubleQString
-		177, // SingleQString
-		173, // Int
-		178, // MappingRef
-		175, // Bool
-		174, // Float
-		179, // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S142
 		-1,  // S'
 		-1,  // Flogo
 		-1,  // Expr
 		-1,  // OrExpr
-		189, // AndExpr
-		81,  // ConditionalExpr
-		82,  // AddExpr
-		83,  // MulExpr
-		84,  // ParenthesesExpr
+		190, // AndExpr
+		53,  // ConditionalExpr
+		54,  // AddExpr
+		55,  // MulExpr
+		56,  // ParenthesesExpr
 		-1,  // RelOp
 		-1,  // AddOp
 		-1,  // MulOp
-		87,  // Func
+		59,  // Func
 		-1,  // ArgsList
+		57,  // ExprLiteral
 		-1,  // TernaryExpr
-		85,  // ExprLiteral
-		89,  // Literal
-		93,  // DoubleQString
-		94,  // SingleQString
-		90,  // Int
-		95,  // MappingRef
-		92,  // Bool
-		91,  // Float
-		96,  // Nil
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		61,  // Literal
+		65,  // DoubleQString
+		66,  // SingleQString
+		62,  // Int
+		67,  // MappingRef
+		64,  // Bool
+		63,  // Float
+		68,  // Nil
 	},
 	gotoRow{ // S143
 		-1,  // S'
@@ -3734,25 +4306,29 @@ var gotoTab = gotoTable{
 		-1,  // Expr
 		-1,  // OrExpr
 		-1,  // AndExpr
-		190, // ConditionalExpr
-		82,  // AddExpr
-		83,  // MulExpr
-		84,  // ParenthesesExpr
+		191, // ConditionalExpr
+		54,  // AddExpr
+		55,  // MulExpr
+		56,  // ParenthesesExpr
 		-1,  // RelOp
 		-1,  // AddOp
 		-1,  // MulOp
-		87,  // Func
+		59,  // Func
 		-1,  // ArgsList
+		57,  // ExprLiteral
 		-1,  // TernaryExpr
-		85,  // ExprLiteral
-		89,  // Literal
-		93,  // DoubleQString
-		94,  // SingleQString
-		90,  // Int
-		95,  // MappingRef
-		92,  // Bool
-		91,  // Float
-		96,  // Nil
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		61,  // Literal
+		65,  // DoubleQString
+		66,  // SingleQString
+		62,  // Int
+		67,  // MappingRef
+		64,  // Bool
+		63,  // Float
+		68,  // Nil
 	},
 	gotoRow{ // S144
 		-1,  // S'
@@ -3761,24 +4337,28 @@ var gotoTab = gotoTable{
 		-1,  // OrExpr
 		-1,  // AndExpr
 		-1,  // ConditionalExpr
-		191, // AddExpr
-		83,  // MulExpr
-		84,  // ParenthesesExpr
+		192, // AddExpr
+		55,  // MulExpr
+		56,  // ParenthesesExpr
 		-1,  // RelOp
 		-1,  // AddOp
 		-1,  // MulOp
-		87,  // Func
+		59,  // Func
 		-1,  // ArgsList
+		57,  // ExprLiteral
 		-1,  // TernaryExpr
-		85,  // ExprLiteral
-		89,  // Literal
-		93,  // DoubleQString
-		94,  // SingleQString
-		90,  // Int
-		95,  // MappingRef
-		92,  // Bool
-		91,  // Float
-		96,  // Nil
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		61,  // Literal
+		65,  // DoubleQString
+		66,  // SingleQString
+		62,  // Int
+		67,  // MappingRef
+		64,  // Bool
+		63,  // Float
+		68,  // Nil
 	},
 	gotoRow{ // S145
 		-1,  // S'
@@ -3788,23 +4368,27 @@ var gotoTab = gotoTable{
 		-1,  // AndExpr
 		-1,  // ConditionalExpr
 		-1,  // AddExpr
-		192, // MulExpr
-		84,  // ParenthesesExpr
+		193, // MulExpr
+		56,  // ParenthesesExpr
 		-1,  // RelOp
 		-1,  // AddOp
 		-1,  // MulOp
-		87,  // Func
+		59,  // Func
 		-1,  // ArgsList
+		57,  // ExprLiteral
 		-1,  // TernaryExpr
-		85,  // ExprLiteral
-		89,  // Literal
-		93,  // DoubleQString
-		94,  // SingleQString
-		90,  // Int
-		95,  // MappingRef
-		92,  // Bool
-		91,  // Float
-		96,  // Nil
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		61,  // Literal
+		65,  // DoubleQString
+		66,  // SingleQString
+		62,  // Int
+		67,  // MappingRef
+		64,  // Bool
+		63,  // Float
+		68,  // Nil
 	},
 	gotoRow{ // S146
 		-1,  // S'
@@ -3815,22 +4399,26 @@ var gotoTab = gotoTable{
 		-1,  // ConditionalExpr
 		-1,  // AddExpr
 		-1,  // MulExpr
-		193, // ParenthesesExpr
+		194, // ParenthesesExpr
 		-1,  // RelOp
 		-1,  // AddOp
 		-1,  // MulOp
-		87,  // Func
+		59,  // Func
 		-1,  // ArgsList
+		57,  // ExprLiteral
 		-1,  // TernaryExpr
-		85,  // ExprLiteral
-		89,  // Literal
-		93,  // DoubleQString
-		94,  // SingleQString
-		90,  // Int
-		95,  // MappingRef
-		92,  // Bool
-		91,  // Float
-		96,  // Nil
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		61,  // Literal
+		65,  // DoubleQString
+		66,  // SingleQString
+		62,  // Int
+		67,  // MappingRef
+		64,  // Bool
+		63,  // Float
+		68,  // Nil
 	},
 	gotoRow{ // S147
 		-1, // S'
@@ -3847,8 +4435,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3871,18 +4463,22 @@ var gotoTab = gotoTable{
 		-1,  // RelOp
 		-1,  // AddOp
 		-1,  // MulOp
-		121, // Func
-		195, // ArgsList
+		151, // Func
+		196, // ArgsList
+		150, // ExprLiteral
 		-1,  // TernaryExpr
-		120, // ExprLiteral
-		124, // Literal
-		128, // DoubleQString
-		129, // SingleQString
-		125, // Int
-		130, // MappingRef
-		127, // Bool
-		126, // Float
-		131, // Nil
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		154, // Literal
+		158, // DoubleQString
+		159, // SingleQString
+		155, // Int
+		160, // MappingRef
+		157, // Bool
+		156, // Float
+		161, // Nil
 	},
 	gotoRow{ // S149
 		-1, // S'
@@ -3899,8 +4495,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3925,8 +4525,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -3937,82 +4541,94 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S151
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		-1,  // AddExpr
-		-1,  // MulExpr
-		-1,  // ParenthesesExpr
-		114, // RelOp
-		-1,  // AddOp
-		-1,  // MulOp
-		-1,  // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		-1,  // ExprLiteral
-		-1,  // Literal
-		-1,  // DoubleQString
-		-1,  // SingleQString
-		-1,  // Int
-		-1,  // MappingRef
-		-1,  // Bool
-		-1,  // Float
-		-1,  // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S152
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		-1,  // AddExpr
-		-1,  // MulExpr
-		-1,  // ParenthesesExpr
-		-1,  // RelOp
-		115, // AddOp
-		-1,  // MulOp
-		-1,  // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		-1,  // ExprLiteral
-		-1,  // Literal
-		-1,  // DoubleQString
-		-1,  // SingleQString
-		-1,  // Int
-		-1,  // MappingRef
-		-1,  // Bool
-		-1,  // Float
-		-1,  // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S153
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		-1,  // AddExpr
-		-1,  // MulExpr
-		-1,  // ParenthesesExpr
-		-1,  // RelOp
-		-1,  // AddOp
-		116, // MulOp
-		-1,  // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		-1,  // ExprLiteral
-		-1,  // Literal
-		-1,  // DoubleQString
-		-1,  // SingleQString
-		-1,  // Int
-		-1,  // MappingRef
-		-1,  // Bool
-		-1,  // Float
-		-1,  // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S154
 		-1, // S'
@@ -4029,8 +4645,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -4055,8 +4675,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -4081,8 +4705,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -4093,30 +4721,34 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S157
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		-1,  // AddExpr
-		-1,  // MulExpr
-		-1,  // ParenthesesExpr
-		-1,  // RelOp
-		-1,  // AddOp
-		-1,  // MulOp
-		121, // Func
-		197, // ArgsList
-		-1,  // TernaryExpr
-		120, // ExprLiteral
-		124, // Literal
-		128, // DoubleQString
-		129, // SingleQString
-		125, // Int
-		130, // MappingRef
-		127, // Bool
-		126, // Float
-		131, // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S158
 		-1, // S'
@@ -4133,8 +4765,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -4159,8 +4795,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -4171,30 +4811,34 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S160
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		-1,  // AddExpr
-		-1,  // MulExpr
-		-1,  // ParenthesesExpr
-		-1,  // RelOp
-		-1,  // AddOp
-		-1,  // MulOp
-		121, // Func
-		198, // ArgsList
-		-1,  // TernaryExpr
-		120, // ExprLiteral
-		124, // Literal
-		128, // DoubleQString
-		129, // SingleQString
-		125, // Int
-		130, // MappingRef
-		127, // Bool
-		126, // Float
-		131, // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S161
 		-1, // S'
@@ -4211,8 +4855,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -4237,8 +4885,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -4263,8 +4915,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -4275,82 +4931,94 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S164
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		-1,  // AddExpr
-		-1,  // MulExpr
-		-1,  // ParenthesesExpr
-		201, // RelOp
-		-1,  // AddOp
-		-1,  // MulOp
-		-1,  // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		-1,  // ExprLiteral
-		-1,  // Literal
-		-1,  // DoubleQString
-		-1,  // SingleQString
-		-1,  // Int
-		-1,  // MappingRef
-		-1,  // Bool
-		-1,  // Float
-		-1,  // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S165
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		-1,  // AddExpr
-		-1,  // MulExpr
-		-1,  // ParenthesesExpr
-		-1,  // RelOp
-		202, // AddOp
-		-1,  // MulOp
-		-1,  // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		-1,  // ExprLiteral
-		-1,  // Literal
-		-1,  // DoubleQString
-		-1,  // SingleQString
-		-1,  // Int
-		-1,  // MappingRef
-		-1,  // Bool
-		-1,  // Float
-		-1,  // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S166
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		-1,  // AddExpr
-		-1,  // MulExpr
-		-1,  // ParenthesesExpr
-		-1,  // RelOp
-		-1,  // AddOp
-		203, // MulOp
-		-1,  // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		-1,  // ExprLiteral
-		-1,  // Literal
-		-1,  // DoubleQString
-		-1,  // SingleQString
-		-1,  // Int
-		-1,  // MappingRef
-		-1,  // Bool
-		-1,  // Float
-		-1,  // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S167
 		-1, // S'
@@ -4367,8 +5035,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -4393,8 +5065,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -4405,30 +5081,34 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S169
-		-1,  // S'
-		-1,  // Flogo
-		204, // Expr
-		49,  // OrExpr
-		50,  // AndExpr
-		51,  // ConditionalExpr
-		52,  // AddExpr
-		53,  // MulExpr
-		54,  // ParenthesesExpr
-		-1,  // RelOp
-		-1,  // AddOp
-		-1,  // MulOp
-		57,  // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		55,  // ExprLiteral
-		59,  // Literal
-		63,  // DoubleQString
-		64,  // SingleQString
-		60,  // Int
-		65,  // MappingRef
-		62,  // Bool
-		61,  // Float
-		66,  // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S170
 		-1, // S'
@@ -4445,8 +5125,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -4457,186 +5141,214 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S171
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		201, // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
 	},
 	gotoRow{ // S172
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		203, // Expr
+		206, // OrExpr
+		207, // AndExpr
+		208, // ConditionalExpr
+		209, // AddExpr
+		210, // MulExpr
+		211, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		214, // Func
+		-1,  // ArgsList
+		212, // ExprLiteral
+		204, // TernaryExpr
+		205, // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		218, // Statement
+		216, // Literal
+		222, // DoubleQString
+		223, // SingleQString
+		219, // Int
+		224, // MappingRef
+		221, // Bool
+		220, // Float
+		225, // Nil
 	},
 	gotoRow{ // S173
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		235, // AndExpr
+		83,  // ConditionalExpr
+		84,  // AddExpr
+		85,  // MulExpr
+		86,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		89,  // Func
+		-1,  // ArgsList
+		87,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		91,  // Literal
+		95,  // DoubleQString
+		96,  // SingleQString
+		92,  // Int
+		97,  // MappingRef
+		94,  // Bool
+		93,  // Float
+		98,  // Nil
 	},
 	gotoRow{ // S174
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		236, // ConditionalExpr
+		84,  // AddExpr
+		85,  // MulExpr
+		86,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		89,  // Func
+		-1,  // ArgsList
+		87,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		91,  // Literal
+		95,  // DoubleQString
+		96,  // SingleQString
+		92,  // Int
+		97,  // MappingRef
+		94,  // Bool
+		93,  // Float
+		98,  // Nil
 	},
 	gotoRow{ // S175
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		237, // AddExpr
+		85,  // MulExpr
+		86,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		89,  // Func
+		-1,  // ArgsList
+		87,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		91,  // Literal
+		95,  // DoubleQString
+		96,  // SingleQString
+		92,  // Int
+		97,  // MappingRef
+		94,  // Bool
+		93,  // Float
+		98,  // Nil
 	},
 	gotoRow{ // S176
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		238, // MulExpr
+		86,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		89,  // Func
+		-1,  // ArgsList
+		87,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		91,  // Literal
+		95,  // DoubleQString
+		96,  // SingleQString
+		92,  // Int
+		97,  // MappingRef
+		94,  // Bool
+		93,  // Float
+		98,  // Nil
 	},
 	gotoRow{ // S177
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		239, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		89,  // Func
+		-1,  // ArgsList
+		87,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		91,  // Literal
+		95,  // DoubleQString
+		96,  // SingleQString
+		92,  // Int
+		97,  // MappingRef
+		94,  // Bool
+		93,  // Float
+		98,  // Nil
 	},
 	gotoRow{ // S178
 		-1, // S'
@@ -4653,8 +5365,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -4665,30 +5381,34 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S179
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		151, // Func
+		241, // ArgsList
+		150, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		154, // Literal
+		158, // DoubleQString
+		159, // SingleQString
+		155, // Int
+		160, // MappingRef
+		157, // Bool
+		156, // Float
+		161, // Nil
 	},
 	gotoRow{ // S180
 		-1, // S'
@@ -4705,8 +5425,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -4717,160 +5441,184 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S181
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		242, // Expr
+		243, // OrExpr
+		244, // AndExpr
+		245, // ConditionalExpr
+		246, // AddExpr
+		247, // MulExpr
+		248, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		251, // Func
+		-1,  // ArgsList
+		249, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		253, // Literal
+		257, // DoubleQString
+		258, // SingleQString
+		254, // Int
+		259, // MappingRef
+		256, // Bool
+		255, // Float
+		260, // Nil
 	},
 	gotoRow{ // S182
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		270, // AndExpr
+		111, // ConditionalExpr
+		112, // AddExpr
+		113, // MulExpr
+		114, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		117, // Func
+		-1,  // ArgsList
+		115, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		119, // Literal
+		123, // DoubleQString
+		124, // SingleQString
+		120, // Int
+		125, // MappingRef
+		122, // Bool
+		121, // Float
+		126, // Nil
 	},
 	gotoRow{ // S183
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		271, // ConditionalExpr
+		112, // AddExpr
+		113, // MulExpr
+		114, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		117, // Func
+		-1,  // ArgsList
+		115, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		119, // Literal
+		123, // DoubleQString
+		124, // SingleQString
+		120, // Int
+		125, // MappingRef
+		122, // Bool
+		121, // Float
+		126, // Nil
 	},
 	gotoRow{ // S184
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		272, // AddExpr
+		113, // MulExpr
+		114, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		117, // Func
+		-1,  // ArgsList
+		115, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		119, // Literal
+		123, // DoubleQString
+		124, // SingleQString
+		120, // Int
+		125, // MappingRef
+		122, // Bool
+		121, // Float
+		126, // Nil
 	},
 	gotoRow{ // S185
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		273, // MulExpr
+		114, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		117, // Func
+		-1,  // ArgsList
+		115, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		119, // Literal
+		123, // DoubleQString
+		124, // SingleQString
+		120, // Int
+		125, // MappingRef
+		122, // Bool
+		121, // Float
+		126, // Nil
 	},
 	gotoRow{ // S186
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		274, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		117, // Func
+		-1,  // ArgsList
+		115, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		119, // Literal
+		123, // DoubleQString
+		124, // SingleQString
+		120, // Int
+		125, // MappingRef
+		122, // Bool
+		121, // Float
+		126, // Nil
 	},
 	gotoRow{ // S187
 		-1, // S'
@@ -4887,8 +5635,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -4899,30 +5651,34 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S188
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		151, // Func
+		276, // ArgsList
+		150, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		154, // Literal
+		158, // DoubleQString
+		159, // SingleQString
+		155, // Int
+		160, // MappingRef
+		157, // Bool
+		156, // Float
+		161, // Nil
 	},
 	gotoRow{ // S189
 		-1, // S'
@@ -4939,8 +5695,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -4951,6 +5711,36 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S190
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S191
 		-1,  // S'
 		-1,  // Flogo
 		-1,  // Expr
@@ -4965,34 +5755,12 @@ var gotoTab = gotoTable{
 		-1,  // MulOp
 		-1,  // Func
 		-1,  // ArgsList
-		-1,  // TernaryExpr
 		-1,  // ExprLiteral
-		-1,  // Literal
-		-1,  // DoubleQString
-		-1,  // SingleQString
-		-1,  // Int
-		-1,  // MappingRef
-		-1,  // Bool
-		-1,  // Float
-		-1,  // Nil
-	},
-	gotoRow{ // S191
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		-1,  // AddExpr
-		-1,  // MulExpr
-		-1,  // ParenthesesExpr
-		-1,  // RelOp
-		145, // AddOp
-		-1,  // MulOp
-		-1,  // Func
-		-1,  // ArgsList
 		-1,  // TernaryExpr
-		-1,  // ExprLiteral
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
 		-1,  // Literal
 		-1,  // DoubleQString
 		-1,  // SingleQString
@@ -5013,12 +5781,16 @@ var gotoTab = gotoTable{
 		-1,  // MulExpr
 		-1,  // ParenthesesExpr
 		-1,  // RelOp
-		-1,  // AddOp
-		146, // MulOp
+		145, // AddOp
+		-1,  // MulOp
 		-1,  // Func
 		-1,  // ArgsList
-		-1,  // TernaryExpr
 		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
 		-1,  // Literal
 		-1,  // DoubleQString
 		-1,  // SingleQString
@@ -5029,30 +5801,34 @@ var gotoTab = gotoTable{
 		-1,  // Nil
 	},
 	gotoRow{ // S193
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		146, // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
 	},
 	gotoRow{ // S194
 		-1, // S'
@@ -5069,8 +5845,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -5095,8 +5875,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -5121,8 +5905,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -5133,30 +5921,34 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S197
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		151, // Func
+		278, // ArgsList
+		150, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		154, // Literal
+		158, // DoubleQString
+		159, // SingleQString
+		155, // Int
+		160, // MappingRef
+		157, // Bool
+		156, // Float
+		161, // Nil
 	},
 	gotoRow{ // S198
 		-1, // S'
@@ -5173,8 +5965,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -5185,30 +5981,34 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S199
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		209, // AndExpr
-		164, // ConditionalExpr
-		165, // AddExpr
-		166, // MulExpr
-		167, // ParenthesesExpr
-		-1,  // RelOp
-		-1,  // AddOp
-		-1,  // MulOp
-		170, // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		168, // ExprLiteral
-		172, // Literal
-		176, // DoubleQString
-		177, // SingleQString
-		173, // Int
-		178, // MappingRef
-		175, // Bool
-		174, // Float
-		179, // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S200
 		-1,  // S'
@@ -5216,51 +6016,59 @@ var gotoTab = gotoTable{
 		-1,  // Expr
 		-1,  // OrExpr
 		-1,  // AndExpr
-		210, // ConditionalExpr
-		165, // AddExpr
-		166, // MulExpr
-		167, // ParenthesesExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
 		-1,  // RelOp
 		-1,  // AddOp
 		-1,  // MulOp
-		170, // Func
-		-1,  // ArgsList
+		151, // Func
+		279, // ArgsList
+		150, // ExprLiteral
 		-1,  // TernaryExpr
-		168, // ExprLiteral
-		172, // Literal
-		176, // DoubleQString
-		177, // SingleQString
-		173, // Int
-		178, // MappingRef
-		175, // Bool
-		174, // Float
-		179, // Nil
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		154, // Literal
+		158, // DoubleQString
+		159, // SingleQString
+		155, // Int
+		160, // MappingRef
+		157, // Bool
+		156, // Float
+		161, // Nil
 	},
 	gotoRow{ // S201
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		211, // AddExpr
-		166, // MulExpr
-		167, // ParenthesesExpr
-		-1,  // RelOp
-		-1,  // AddOp
-		-1,  // MulOp
-		170, // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		168, // ExprLiteral
-		172, // Literal
-		176, // DoubleQString
-		177, // SingleQString
-		173, // Int
-		178, // MappingRef
-		175, // Bool
-		174, // Float
-		179, // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S202
 		-1,  // S'
@@ -5270,49 +6078,57 @@ var gotoTab = gotoTable{
 		-1,  // AndExpr
 		-1,  // ConditionalExpr
 		-1,  // AddExpr
-		212, // MulExpr
-		167, // ParenthesesExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
 		-1,  // RelOp
 		-1,  // AddOp
 		-1,  // MulOp
-		170, // Func
+		-1,  // Func
 		-1,  // ArgsList
+		-1,  // ExprLiteral
 		-1,  // TernaryExpr
-		168, // ExprLiteral
-		172, // Literal
-		176, // DoubleQString
-		177, // SingleQString
-		173, // Int
-		178, // MappingRef
-		175, // Bool
-		174, // Float
-		179, // Nil
+		280, // IfExpr
+		281, // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
 	},
 	gotoRow{ // S203
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		-1,  // AddExpr
-		-1,  // MulExpr
-		213, // ParenthesesExpr
-		-1,  // RelOp
-		-1,  // AddOp
-		-1,  // MulOp
-		170, // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		168, // ExprLiteral
-		172, // Literal
-		176, // DoubleQString
-		177, // SingleQString
-		173, // Int
-		178, // MappingRef
-		175, // Bool
-		174, // Float
-		179, // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S204
 		-1, // S'
@@ -5329,8 +6145,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -5341,30 +6161,34 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S205
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		-1,  // AddExpr
-		-1,  // MulExpr
-		-1,  // ParenthesesExpr
-		-1,  // RelOp
-		-1,  // AddOp
-		-1,  // MulOp
-		121, // Func
-		215, // ArgsList
-		-1,  // TernaryExpr
-		120, // ExprLiteral
-		124, // Literal
-		128, // DoubleQString
-		129, // SingleQString
-		125, // Int
-		130, // MappingRef
-		127, // Bool
-		126, // Float
-		131, // Nil
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
 	},
 	gotoRow{ // S206
 		-1, // S'
@@ -5381,8 +6205,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -5407,8 +6235,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -5419,56 +6251,64 @@ var gotoTab = gotoTable{
 		-1, // Nil
 	},
 	gotoRow{ // S208
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		286, // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
 	},
 	gotoRow{ // S209
-		-1, // S'
-		-1, // Flogo
-		-1, // Expr
-		-1, // OrExpr
-		-1, // AndExpr
-		-1, // ConditionalExpr
-		-1, // AddExpr
-		-1, // MulExpr
-		-1, // ParenthesesExpr
-		-1, // RelOp
-		-1, // AddOp
-		-1, // MulOp
-		-1, // Func
-		-1, // ArgsList
-		-1, // TernaryExpr
-		-1, // ExprLiteral
-		-1, // Literal
-		-1, // DoubleQString
-		-1, // SingleQString
-		-1, // Int
-		-1, // MappingRef
-		-1, // Bool
-		-1, // Float
-		-1, // Nil
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		287, // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
 	},
 	gotoRow{ // S210
 		-1,  // S'
@@ -5480,13 +6320,17 @@ var gotoTab = gotoTable{
 		-1,  // AddExpr
 		-1,  // MulExpr
 		-1,  // ParenthesesExpr
-		201, // RelOp
+		-1,  // RelOp
 		-1,  // AddOp
-		-1,  // MulOp
+		288, // MulOp
 		-1,  // Func
 		-1,  // ArgsList
-		-1,  // TernaryExpr
 		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
 		-1,  // Literal
 		-1,  // DoubleQString
 		-1,  // SingleQString
@@ -5497,58 +6341,6 @@ var gotoTab = gotoTable{
 		-1,  // Nil
 	},
 	gotoRow{ // S211
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		-1,  // AddExpr
-		-1,  // MulExpr
-		-1,  // ParenthesesExpr
-		-1,  // RelOp
-		202, // AddOp
-		-1,  // MulOp
-		-1,  // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		-1,  // ExprLiteral
-		-1,  // Literal
-		-1,  // DoubleQString
-		-1,  // SingleQString
-		-1,  // Int
-		-1,  // MappingRef
-		-1,  // Bool
-		-1,  // Float
-		-1,  // Nil
-	},
-	gotoRow{ // S212
-		-1,  // S'
-		-1,  // Flogo
-		-1,  // Expr
-		-1,  // OrExpr
-		-1,  // AndExpr
-		-1,  // ConditionalExpr
-		-1,  // AddExpr
-		-1,  // MulExpr
-		-1,  // ParenthesesExpr
-		-1,  // RelOp
-		-1,  // AddOp
-		203, // MulOp
-		-1,  // Func
-		-1,  // ArgsList
-		-1,  // TernaryExpr
-		-1,  // ExprLiteral
-		-1,  // Literal
-		-1,  // DoubleQString
-		-1,  // SingleQString
-		-1,  // Int
-		-1,  // MappingRef
-		-1,  // Bool
-		-1,  // Float
-		-1,  // Nil
-	},
-	gotoRow{ // S213
 		-1, // S'
 		-1, // Flogo
 		-1, // Expr
@@ -5563,8 +6355,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -5573,6 +6369,66 @@ var gotoTab = gotoTable{
 		-1, // Bool
 		-1, // Float
 		-1, // Nil
+	},
+	gotoRow{ // S212
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S213
+		-1,  // S'
+		-1,  // Flogo
+		289, // Expr
+		51,  // OrExpr
+		52,  // AndExpr
+		53,  // ConditionalExpr
+		54,  // AddExpr
+		55,  // MulExpr
+		56,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		59,  // Func
+		-1,  // ArgsList
+		57,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		61,  // Literal
+		65,  // DoubleQString
+		66,  // SingleQString
+		62,  // Int
+		67,  // MappingRef
+		64,  // Bool
+		63,  // Float
+		68,  // Nil
 	},
 	gotoRow{ // S214
 		-1, // S'
@@ -5589,8 +6445,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -5615,8 +6475,12 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
@@ -5641,8 +6505,4902 @@ var gotoTab = gotoTable{
 		-1, // MulOp
 		-1, // Func
 		-1, // ArgsList
-		-1, // TernaryExpr
 		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S217
+		-1,  // S'
+		-1,  // Flogo
+		292, // Expr
+		81,  // OrExpr
+		82,  // AndExpr
+		83,  // ConditionalExpr
+		84,  // AddExpr
+		85,  // MulExpr
+		86,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		89,  // Func
+		-1,  // ArgsList
+		87,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		91,  // Literal
+		95,  // DoubleQString
+		96,  // SingleQString
+		92,  // Int
+		97,  // MappingRef
+		94,  // Bool
+		93,  // Float
+		98,  // Nil
+	},
+	gotoRow{ // S218
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S219
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S220
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S221
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S222
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S223
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S224
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S225
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S226
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S227
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S228
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S229
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S230
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S231
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S232
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S233
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S234
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S235
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S236
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		175, // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S237
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		176, // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S238
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		177, // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S239
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S240
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S241
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S242
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S243
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S244
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S245
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		297, // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S246
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		298, // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S247
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		299, // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S248
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S249
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S250
+		-1,  // S'
+		-1,  // Flogo
+		300, // Expr
+		51,  // OrExpr
+		52,  // AndExpr
+		53,  // ConditionalExpr
+		54,  // AddExpr
+		55,  // MulExpr
+		56,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		59,  // Func
+		-1,  // ArgsList
+		57,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		61,  // Literal
+		65,  // DoubleQString
+		66,  // SingleQString
+		62,  // Int
+		67,  // MappingRef
+		64,  // Bool
+		63,  // Float
+		68,  // Nil
+	},
+	gotoRow{ // S251
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S252
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S253
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S254
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S255
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S256
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S257
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S258
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S259
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S260
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S261
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S262
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S263
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S264
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S265
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S266
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S267
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S268
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S269
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S270
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S271
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		184, // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S272
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		185, // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S273
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		186, // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S274
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S275
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S276
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S277
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S278
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S279
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S280
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S281
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S282
+		-1,  // S'
+		-1,  // Flogo
+		203, // Expr
+		206, // OrExpr
+		207, // AndExpr
+		208, // ConditionalExpr
+		209, // AddExpr
+		210, // MulExpr
+		211, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		214, // Func
+		-1,  // ArgsList
+		212, // ExprLiteral
+		204, // TernaryExpr
+		205, // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		305, // Statement
+		216, // Literal
+		222, // DoubleQString
+		223, // SingleQString
+		219, // Int
+		224, // MappingRef
+		221, // Bool
+		220, // Float
+		225, // Nil
+	},
+	gotoRow{ // S283
+		-1,  // S'
+		-1,  // Flogo
+		306, // Expr
+		109, // OrExpr
+		110, // AndExpr
+		111, // ConditionalExpr
+		112, // AddExpr
+		113, // MulExpr
+		114, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		117, // Func
+		-1,  // ArgsList
+		115, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		119, // Literal
+		123, // DoubleQString
+		124, // SingleQString
+		120, // Int
+		125, // MappingRef
+		122, // Bool
+		121, // Float
+		126, // Nil
+	},
+	gotoRow{ // S284
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		307, // AndExpr
+		208, // ConditionalExpr
+		209, // AddExpr
+		210, // MulExpr
+		211, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		214, // Func
+		-1,  // ArgsList
+		212, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		216, // Literal
+		222, // DoubleQString
+		223, // SingleQString
+		219, // Int
+		224, // MappingRef
+		221, // Bool
+		220, // Float
+		225, // Nil
+	},
+	gotoRow{ // S285
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		308, // ConditionalExpr
+		209, // AddExpr
+		210, // MulExpr
+		211, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		214, // Func
+		-1,  // ArgsList
+		212, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		216, // Literal
+		222, // DoubleQString
+		223, // SingleQString
+		219, // Int
+		224, // MappingRef
+		221, // Bool
+		220, // Float
+		225, // Nil
+	},
+	gotoRow{ // S286
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		309, // AddExpr
+		210, // MulExpr
+		211, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		214, // Func
+		-1,  // ArgsList
+		212, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		216, // Literal
+		222, // DoubleQString
+		223, // SingleQString
+		219, // Int
+		224, // MappingRef
+		221, // Bool
+		220, // Float
+		225, // Nil
+	},
+	gotoRow{ // S287
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		310, // MulExpr
+		211, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		214, // Func
+		-1,  // ArgsList
+		212, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		216, // Literal
+		222, // DoubleQString
+		223, // SingleQString
+		219, // Int
+		224, // MappingRef
+		221, // Bool
+		220, // Float
+		225, // Nil
+	},
+	gotoRow{ // S288
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		311, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		214, // Func
+		-1,  // ArgsList
+		212, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		216, // Literal
+		222, // DoubleQString
+		223, // SingleQString
+		219, // Int
+		224, // MappingRef
+		221, // Bool
+		220, // Float
+		225, // Nil
+	},
+	gotoRow{ // S289
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S290
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		151, // Func
+		313, // ArgsList
+		150, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		154, // Literal
+		158, // DoubleQString
+		159, // SingleQString
+		155, // Int
+		160, // MappingRef
+		157, // Bool
+		156, // Float
+		161, // Nil
+	},
+	gotoRow{ // S291
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S292
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		314, // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S293
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S294
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S295
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		316, // AndExpr
+		245, // ConditionalExpr
+		246, // AddExpr
+		247, // MulExpr
+		248, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		251, // Func
+		-1,  // ArgsList
+		249, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		253, // Literal
+		257, // DoubleQString
+		258, // SingleQString
+		254, // Int
+		259, // MappingRef
+		256, // Bool
+		255, // Float
+		260, // Nil
+	},
+	gotoRow{ // S296
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		317, // ConditionalExpr
+		246, // AddExpr
+		247, // MulExpr
+		248, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		251, // Func
+		-1,  // ArgsList
+		249, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		253, // Literal
+		257, // DoubleQString
+		258, // SingleQString
+		254, // Int
+		259, // MappingRef
+		256, // Bool
+		255, // Float
+		260, // Nil
+	},
+	gotoRow{ // S297
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		318, // AddExpr
+		247, // MulExpr
+		248, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		251, // Func
+		-1,  // ArgsList
+		249, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		253, // Literal
+		257, // DoubleQString
+		258, // SingleQString
+		254, // Int
+		259, // MappingRef
+		256, // Bool
+		255, // Float
+		260, // Nil
+	},
+	gotoRow{ // S298
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		319, // MulExpr
+		248, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		251, // Func
+		-1,  // ArgsList
+		249, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		253, // Literal
+		257, // DoubleQString
+		258, // SingleQString
+		254, // Int
+		259, // MappingRef
+		256, // Bool
+		255, // Float
+		260, // Nil
+	},
+	gotoRow{ // S299
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		320, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		251, // Func
+		-1,  // ArgsList
+		249, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		253, // Literal
+		257, // DoubleQString
+		258, // SingleQString
+		254, // Int
+		259, // MappingRef
+		256, // Bool
+		255, // Float
+		260, // Nil
+	},
+	gotoRow{ // S300
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S301
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		151, // Func
+		322, // ArgsList
+		150, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		154, // Literal
+		158, // DoubleQString
+		159, // SingleQString
+		155, // Int
+		160, // MappingRef
+		157, // Bool
+		156, // Float
+		161, // Nil
+	},
+	gotoRow{ // S302
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S303
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S304
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S305
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S306
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S307
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S308
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		286, // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S309
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		287, // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S310
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		288, // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S311
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S312
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S313
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S314
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		326, // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S315
+		-1,  // S'
+		-1,  // Flogo
+		203, // Expr
+		206, // OrExpr
+		207, // AndExpr
+		208, // ConditionalExpr
+		209, // AddExpr
+		210, // MulExpr
+		211, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		214, // Func
+		-1,  // ArgsList
+		212, // ExprLiteral
+		204, // TernaryExpr
+		205, // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		328, // Statement
+		216, // Literal
+		222, // DoubleQString
+		223, // SingleQString
+		219, // Int
+		224, // MappingRef
+		221, // Bool
+		220, // Float
+		225, // Nil
+	},
+	gotoRow{ // S316
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S317
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		297, // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S318
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		298, // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S319
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		299, // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S320
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S321
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S322
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S323
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S324
+		-1,  // S'
+		-1,  // Flogo
+		330, // Expr
+		331, // OrExpr
+		332, // AndExpr
+		333, // ConditionalExpr
+		334, // AddExpr
+		335, // MulExpr
+		336, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		339, // Func
+		-1,  // ArgsList
+		337, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		341, // Literal
+		345, // DoubleQString
+		346, // SingleQString
+		342, // Int
+		347, // MappingRef
+		344, // Bool
+		343, // Float
+		348, // Nil
+	},
+	gotoRow{ // S325
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S326
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S327
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		358, // IfExpr
+		359, // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S328
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S329
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S330
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S331
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S332
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S333
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		364, // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S334
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		365, // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S335
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		366, // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S336
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S337
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S338
+		-1,  // S'
+		-1,  // Flogo
+		367, // Expr
+		51,  // OrExpr
+		52,  // AndExpr
+		53,  // ConditionalExpr
+		54,  // AddExpr
+		55,  // MulExpr
+		56,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		59,  // Func
+		-1,  // ArgsList
+		57,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		61,  // Literal
+		65,  // DoubleQString
+		66,  // SingleQString
+		62,  // Int
+		67,  // MappingRef
+		64,  // Bool
+		63,  // Float
+		68,  // Nil
+	},
+	gotoRow{ // S339
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S340
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S341
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S342
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S343
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S344
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S345
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S346
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S347
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S348
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S349
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S350
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S351
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S352
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S353
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S354
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S355
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S356
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S357
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S358
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S359
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S360
+		-1,  // S'
+		-1,  // Flogo
+		203, // Expr
+		206, // OrExpr
+		207, // AndExpr
+		208, // ConditionalExpr
+		209, // AddExpr
+		210, // MulExpr
+		211, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		214, // Func
+		-1,  // ArgsList
+		212, // ExprLiteral
+		204, // TernaryExpr
+		205, // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		370, // Statement
+		216, // Literal
+		222, // DoubleQString
+		223, // SingleQString
+		219, // Int
+		224, // MappingRef
+		221, // Bool
+		220, // Float
+		225, // Nil
+	},
+	gotoRow{ // S361
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S362
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		371, // AndExpr
+		333, // ConditionalExpr
+		334, // AddExpr
+		335, // MulExpr
+		336, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		339, // Func
+		-1,  // ArgsList
+		337, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		341, // Literal
+		345, // DoubleQString
+		346, // SingleQString
+		342, // Int
+		347, // MappingRef
+		344, // Bool
+		343, // Float
+		348, // Nil
+	},
+	gotoRow{ // S363
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		372, // ConditionalExpr
+		334, // AddExpr
+		335, // MulExpr
+		336, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		339, // Func
+		-1,  // ArgsList
+		337, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		341, // Literal
+		345, // DoubleQString
+		346, // SingleQString
+		342, // Int
+		347, // MappingRef
+		344, // Bool
+		343, // Float
+		348, // Nil
+	},
+	gotoRow{ // S364
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		373, // AddExpr
+		335, // MulExpr
+		336, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		339, // Func
+		-1,  // ArgsList
+		337, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		341, // Literal
+		345, // DoubleQString
+		346, // SingleQString
+		342, // Int
+		347, // MappingRef
+		344, // Bool
+		343, // Float
+		348, // Nil
+	},
+	gotoRow{ // S365
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		374, // MulExpr
+		336, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		339, // Func
+		-1,  // ArgsList
+		337, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		341, // Literal
+		345, // DoubleQString
+		346, // SingleQString
+		342, // Int
+		347, // MappingRef
+		344, // Bool
+		343, // Float
+		348, // Nil
+	},
+	gotoRow{ // S366
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		375, // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		339, // Func
+		-1,  // ArgsList
+		337, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		341, // Literal
+		345, // DoubleQString
+		346, // SingleQString
+		342, // Int
+		347, // MappingRef
+		344, // Bool
+		343, // Float
+		348, // Nil
+	},
+	gotoRow{ // S367
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S368
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		151, // Func
+		377, // ArgsList
+		150, // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		154, // Literal
+		158, // DoubleQString
+		159, // SingleQString
+		155, // Int
+		160, // MappingRef
+		157, // Bool
+		156, // Float
+		161, // Nil
+	},
+	gotoRow{ // S369
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S370
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S371
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S372
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		364, // RelOp
+		-1,  // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S373
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		365, // AddOp
+		-1,  // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S374
+		-1,  // S'
+		-1,  // Flogo
+		-1,  // Expr
+		-1,  // OrExpr
+		-1,  // AndExpr
+		-1,  // ConditionalExpr
+		-1,  // AddExpr
+		-1,  // MulExpr
+		-1,  // ParenthesesExpr
+		-1,  // RelOp
+		-1,  // AddOp
+		366, // MulOp
+		-1,  // Func
+		-1,  // ArgsList
+		-1,  // ExprLiteral
+		-1,  // TernaryExpr
+		-1,  // IfExpr
+		-1,  // Block
+		-1,  // ElseStatement
+		-1,  // Statement
+		-1,  // Literal
+		-1,  // DoubleQString
+		-1,  // SingleQString
+		-1,  // Int
+		-1,  // MappingRef
+		-1,  // Bool
+		-1,  // Float
+		-1,  // Nil
+	},
+	gotoRow{ // S375
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S376
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S377
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S378
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
+		-1, // Literal
+		-1, // DoubleQString
+		-1, // SingleQString
+		-1, // Int
+		-1, // MappingRef
+		-1, // Bool
+		-1, // Float
+		-1, // Nil
+	},
+	gotoRow{ // S379
+		-1, // S'
+		-1, // Flogo
+		-1, // Expr
+		-1, // OrExpr
+		-1, // AndExpr
+		-1, // ConditionalExpr
+		-1, // AddExpr
+		-1, // MulExpr
+		-1, // ParenthesesExpr
+		-1, // RelOp
+		-1, // AddOp
+		-1, // MulOp
+		-1, // Func
+		-1, // ArgsList
+		-1, // ExprLiteral
+		-1, // TernaryExpr
+		-1, // IfExpr
+		-1, // Block
+		-1, // ElseStatement
+		-1, // Statement
 		-1, // Literal
 		-1, // DoubleQString
 		-1, // SingleQString
