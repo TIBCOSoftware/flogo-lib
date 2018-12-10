@@ -27,3 +27,5 @@ func NewMapperDefFromAnyArray(mappings []interface{}) (*data.MapperDef, error) {
 
 	return &data.MapperDef{Mappings: mappingDefs}, nil
 }
+
+

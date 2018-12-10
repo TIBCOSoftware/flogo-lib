@@ -104,6 +104,19 @@ func TestGetMapValueExpression(t *testing.T) {
 
 }
 
+func TestOperatorPriority(t *testing.T) {
+
+	v, err := expressMap(`string.concat(123,$activity[a1].field.id) == "123d" && $activity[a1].field.id =="d"`, "field", GetTestResolver())
+	assert.Nil(t, err)
+	assert.Equal(t, "true", v)
+
+	v, err = expressMap(`string.concat(123,$activity[a1].field.id) == "123d" && $activity[a1].field.id !="d"`, "field", GetTestResolver())
+	assert.Nil(t, err)
+
+	assert.Equal(t, "false", v)
+
+}
+
 func getSimpleScope(name, value string, fieldType data.Type) data.Scope {
 	a, _ := data.NewAttribute(name, fieldType, value)
 	maps := make(map[string]*data.Attribute)

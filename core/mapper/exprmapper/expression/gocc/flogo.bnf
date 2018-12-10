@@ -15,32 +15,14 @@ _negnumber : ('-' _number);
 _float_exp  : ( 'e' | 'E' ) [ '+' | '-' ] _number ;
 
 _float_lit : ( _number '.' _number _float_exp )
-	| ( _number '.' ( _number | _float_exp ) )
-	| ( '.' ( _number | _float_exp ) )
-	| ( _number _float_exp )
-	;
+   | ( _number '.' ( _number | _float_exp ) )
+   | ( '.' ( _number | _float_exp ) )
+   | ( _number _float_exp )
+   ;
 
 float : (_float_lit);
 number : (_number) | (_negnumber);
 _function_name:  'a'-'z' | 'A'-'Z' | '0'-'9' | '.' | '_' | '-';
-
-/*Expression Operator*/
-/*
-    Expression which support operators so far
-        eq          -> ==
-       	or          -> ||
-       	and         -> &&
-       	ne          -> !=
-       	gt          -> >
-       	lt          -> <
-       	ge          -> >=
-       	le          -> <=
-       	+           -> +
-       	-           -> -
-       	*           -> *
-*/
-_operator_charactor : '>' | '<' | '|' | '&' | '!' | '=' | '+' | '-' | '*' | '/';
-operator_charactor : {_operator_charactor} ;
 
 _refbracket : '[' {.} ']';
 _ref : 'a'-'z' | 'A'-'Z' | '.' | '0'-'9' | '-' | '[' | ']' | '_' | ' ' | '$' | '{' | '}' | _refbracket;
@@ -69,41 +51,64 @@ argument : '$' _flogostring ;
         2. concat("Beijing",String(number(Len("lixingwang"))))
            Result: Beijing10
  */
+
 Flogo
-    : BaseExpr
+    : Expr
     | TernaryExpr
-    | IfExpr
-    ;
-
-BaseExpr
-    : Func
-    | Expr
-    | Param
-    ;
-Func
-	: function_name "(" Args ")"                 << direction.NewFunction($0, $2) >>
-	| function_name "()"                         << direction.NewFunction($0, "") >>
-
-	;
-Args
-	: ExprParam                                  <<direction.NewArgument($0)>>
-	| Args "," Args                              <<direction.NewArguments($0, $2)>>
     ;
 
 Expr
-    : ExprArg Operator ExprArg                   <<direction.NewExpression($0, $1, $2) >>
+    : OrExpr
+  ;
+OrExpr
+    : OrExpr "||" AndExpr                                        <<direction.NewExpression($0, $1, $2) >>
+    | AndExpr
     ;
-ExprArg
-    : "(" Expr ")"                               <<direction.NewExpressionField($1) >>
-    | Expr                                       <<direction.NewExpressionField($0) >>
-    | ExprParam                                  <<direction.NewExpressionField($0)>>
+AndExpr
+    : AndExpr "&&" ConditionalExpr                               <<direction.NewExpression($0, $1, $2) >>
+    | ConditionalExpr
     ;
-Operator
-    : operator_charactor
+ConditionalExpr
+    : ConditionalExpr RelOp AddExpr                              <<direction.NewExpression($0, $1, $2) >>
+    | AddExpr
     ;
+AddExpr
+    : AddExpr AddOp MulExpr                                      <<direction.NewExpression($0, $1, $2) >>
+    | MulExpr
+    ;
+MulExpr
+    : MulExpr MulOp ParenthesesExpr                              <<direction.NewExpression($0, $1, $2) >>
+    | ParenthesesExpr
+    ;
+ParenthesesExpr
+    : ExprLiteral
+    | "(" Expr ")"                                               <<direction.NewExpressionField($1)>>
+    ;
+
+RelOp : "==" | "!=" | "<" | "<=" | ">" | ">=";
+AddOp : "+" | "-";
+MulOp : "*" | "/" | "%";
+
+
+Func
+   : function_name "(" ArgsList ")"             << direction.NewFunction($0, $2) >>
+   | function_name "()"                         << direction.NewFunction($0, "") >>
+   ;
+
+ArgsList
+   : ExprLiteral                                <<direction.NewArgument($0)>>
+   | ArgsList "," ArgsList                      <<direction.NewArguments($0, $2)>>
+    ;
+
+ExprLiteral
+    : Literal                                    <<direction.NewLiteralExpr($0)>>
+    | Func
+    ;
+
 TernaryExpr
-    : BaseExpr "?" BaseExpr ":" BaseExpr     <<direction.NewTernaryExpression($0, $2, $4)>>
+    : Expr "?" Expr ":" Expr                    <<direction.NewTernaryExpression($0, $2, $4)>>
     ;
+
 
 IfExpr
     : "if" BaseExpr Block                             <<direction.NewIFF($1, $2)>>
@@ -123,42 +128,38 @@ Statement
     : IfExpr
     | BaseExpr
     | TernaryExpr
-;
-
-ExprParam
-    : Param                                      <<direction.NewExpressionField($0)>>
-    | Func                                       <<direction.NewExpressionField($0)>>
     ;
-Param
-     : Int
-     | Float
-     | Bool
-     | DoubleQString
-     | SingleQString
-     | MappingRef
-     | Nil
+
+Literal
+     : Int                          <<direction.NewIntLit($0)>>
+     | Float                        <<direction.NewFloatLit($0)>>
+     | Bool                         <<direction.NewBool($0)>>
+     | DoubleQString                <<direction.NewDoubleQuoteStringLit($0)>>
+     | SingleQString                <<direction.NewSingleQuoteStringLit($0)>>
+     | MappingRef                   <<direction.NewMappingRef($0)>>
+     | Nil                          <<direction.NewNilLit($0)>>
      ;
 
 DoubleQString
-    : doublequotes_string                        <<direction.NewDoubleQuoteStringLit($0)>>
+    : doublequotes_string
     ;
 SingleQString
-    : singlequote_string                         <<direction.NewSingleQuoteStringLit($0)>>
+    : singlequote_string
     ;
 Int
-    : number                                     <<direction.NewIntLit($0)>>
+    : number
     ;
 MappingRef
-    : argument                                   <<direction.NewMappingRef($0)>>
+    : argument
     ;
 Bool
-    : "true"                                     <<direction.NewBool($0)>>
-    | "false"                                    <<direction.NewBool($0)>>
+    : "true"
+    | "false"
     ;
 Float
-    : float                                      <<direction.NewFloatLit($0)>>
+    : float
     ;
 Nil
-    : "nil"                                      <<direction.NewNilLit($0)>>
-    | "null"                                     <<direction.NewNilLit($0)>>
+    : "nil"
+    | "null"
     ;

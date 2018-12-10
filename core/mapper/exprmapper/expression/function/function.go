@@ -1,19 +1,13 @@
 package function
 
 import (
-	"bytes"
-	"encoding/json"
 	"errors"
+	"fmt"
+	"github.com/TIBCOSoftware/flogo-lib/core/data"
+	"github.com/TIBCOSoftware/flogo-lib/core/mapper/exprmapper/expression/expr"
+	"github.com/TIBCOSoftware/flogo-lib/logger"
 	"reflect"
 	"runtime/debug"
-	"strings"
-
-	"fmt"
-
-	"github.com/TIBCOSoftware/flogo-lib/core/data"
-	"github.com/TIBCOSoftware/flogo-lib/core/mapper/exprmapper/funcexprtype"
-	"github.com/TIBCOSoftware/flogo-lib/core/mapper/exprmapper/ref"
-	"github.com/TIBCOSoftware/flogo-lib/logger"
 )
 
 var logrus = logger.GetLogger("function")
@@ -29,51 +23,7 @@ type FunctionExp struct {
 }
 
 type Parameter struct {
-	Function *FunctionExp      `json:"function"`
-	Type     funcexprtype.Type `json:"type"`
-	Value    interface{}       `json:"value"`
-}
-
-func (p *Parameter) UnmarshalJSON(paramData []byte) error {
-	ser := &struct {
-		Function *FunctionExp      `json:"function"`
-		Type     funcexprtype.Type `json:"type"`
-		Value    interface{}       `json:"value"`
-	}{}
-
-	if err := json.Unmarshal(paramData, ser); err != nil {
-		return err
-	}
-
-	p.Function = ser.Function
-	p.Type = ser.Type
-
-	v, err := ConvertToValue(ser.Value, ser.Type)
-	if err != nil {
-		return err
-	}
-
-	p.Value = v
-
-	return nil
-}
-
-func (p *Parameter) IsEmtpy() bool {
-	if p.Function != nil {
-		if p.Function.Name == "" && p.Type == 0 && p.Value == nil && len(p.Function.Params) <= 0 {
-			return true
-		}
-	} else {
-		if p.Type == 0 && p.Value == nil {
-			return true
-		}
-	}
-
-	return false
-}
-
-func (p *Parameter) IsFunction() bool {
-	return funcexprtype.FUNCTION == p.Type
+	Value expr.Expr `json:"value"`
 }
 
 func (f *FunctionExp) Eval() (interface{}, error) {
@@ -152,18 +102,6 @@ func (f *FunctionExp) getMethod() (reflect.Value, error) {
 	return method, nil
 }
 
-func (f *FunctionExp) Tostring() string {
-	var buffer bytes.Buffer
-
-	buffer.WriteString(fmt.Sprintf("function name [%s] ", f.Name))
-	for i, param := range f.Params {
-		if param != nil {
-			buffer.WriteString(fmt.Sprintf(" parameter [%d]'s type [%s] and value [%+v]", i, param.Type, param.Value))
-		}
-	}
-	return buffer.String()
-}
-
 func (f *FunctionExp) callFunction(fdata interface{}, inputScope data.Scope, resolver data.Resolver) (results reflect.Value, err error) {
 	defer func() {
 		if r := recover(); r != nil {
@@ -178,95 +116,14 @@ func (f *FunctionExp) callFunction(fdata interface{}, inputScope data.Scope, res
 	}
 
 	inputs := []reflect.Value{}
-	for i, p := range f.Params {
-		if p.IsFunction() {
-			result, err := p.Function.callFunction(fdata, inputScope, resolver)
-			if err != nil {
-				return reflect.Value{}, err
-			}
-			logrus.Debugf("function [%s] [%d]'s argument type [%s] and value [%+v]", f.Name, i, p.Type, result)
-			inputs = append(inputs, result)
-		} else {
-			if !p.IsEmtpy() {
-				if p.Type == funcexprtype.REF {
-					var field *ref.MappingRef
-					switch p.Value.(type) {
-					case string:
-						field = ref.NewMappingRef(p.Value.(string))
-					case *ref.MappingRef:
-						field = p.Value.(*ref.MappingRef)
-					}
-					if inputScope == nil {
-						p.Value = field.GetRef()
-					} else {
-
-						v, err := field.Eval(inputScope, resolver)
-						if err != nil {
-							return reflect.Value{}, err
-						}
-						p.Value = v
-					}
-
-				} else if p.Type == funcexprtype.ARRAYREF {
-					var field *ref.ArrayRef
-					switch p.Value.(type) {
-					case string:
-						field = ref.NewArrayRef(p.Value.(string))
-					case *ref.ArrayRef:
-						field = p.Value.(*ref.ArrayRef)
-					}
-					if inputScope == nil {
-						p.Value = field.GetRef()
-					} else {
-						if fdata == nil {
-							//Array mapping should not go here for today, take is as get current scope.
-							//TODO how to know it is array mapping or get current scope
-							ref := ref.NewMappingRef(field.GetRef())
-							v, err := ref.Eval(inputScope, resolver)
-							if err != nil {
-								return reflect.Value{}, err
-							}
-							p.Value = v
-
-						} else {
-							v, err := field.EvalFromData(fdata)
-							if err != nil {
-								return reflect.Value{}, err
-							}
-							p.Value = v
-
-						}
-
-					}
-				}
-
-				logrus.Debugf("function [%s] [%d]'s argument type [%s] and value [%+v]", f.Name, i, p.Type, p.Value)
-				if p.Value != nil {
-					inputs = append(inputs, reflect.ValueOf(p.Value))
-				} else {
-					t := method.Type().In(i)
-					funcStr := method.Type().String()
-					if strings.Contains(funcStr, "...") {
-						parameterNum := method.Type().NumIn()
-						if parameterNum > 1 {
-							//2. Variadic as latest parameter
-							//func(name string, id int, ids ...string)
-							if i == parameterNum-1 {
-								inputs = append(inputs, reflect.Zero(t.Elem()))
-							} else {
-								inputs = append(inputs, reflect.Zero(t))
-							}
-						} else {
-							//1. only one variadic parameter
-							//func(...string)
-							inputs = append(inputs, reflect.Zero(t.Elem()))
-						}
-					} else {
-						inputs = append(inputs, reflect.Zero(t))
-					}
-				}
-			}
+	for _, p := range f.Params {
+		result, err := p.Value.EvalWithData(fdata, inputScope, resolver)
+		if err != nil {
+			return reflect.Value{}, err
 		}
+
+		logrus.Debugf("function [%s] [%d]'s argument value [%+v]", f.Name, result)
+		inputs = append(inputs, reflect.ValueOf(result))
 	}
 
 	logrus.Debugf("Input Parameters: %+v", inputs)
@@ -315,15 +172,21 @@ func ensureArguments(method reflect.Value, in []reflect.Value) ([]reflect.Value,
 		elem := methodType.In(n - 1).Elem()
 		for j := 0; j < m; j++ {
 			x := in[n+j]
-			if xt := x.Type(); !xt.AssignableTo(elem) {
-				v, err := convertArgs(elem, x)
-				if err != nil {
-					return nil, fmt.Errorf("argument type mismatch. Can not convert type %s to type %s. ", xt.String(), elem.String())
-				}
-				retInputs = append(retInputs, reflect.ValueOf(v))
+			emtpy := reflect.Value{}
+			if x == emtpy {
+				retInputs = append(retInputs, reflect.Zero(elem))
 			} else {
-				retInputs = append(retInputs, x)
+				if xt := x.Type(); !xt.AssignableTo(elem) {
+					v, err := convertArgs(elem, x)
+					if err != nil {
+						return nil, fmt.Errorf("argument type mismatch. Can not convert type %s to type %s. ", xt.String(), elem.String())
+					}
+					retInputs = append(retInputs, reflect.ValueOf(v))
+				} else {
+					retInputs = append(retInputs, x)
+				}
 			}
+
 		}
 	}
 

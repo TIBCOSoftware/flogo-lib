@@ -23,7 +23,7 @@ func TestConcurrentGetLoggerOk(t *testing.T) {
 			defer func() {
 				if r := recover(); r != nil {
 					recovered = r
-					fmt.Println(recovered)
+					t.Fatal(recovered)
 				}
 			}()
 			loggerName := fmt.Sprintf("logger%f", math.Mod(float64(i), 5))
