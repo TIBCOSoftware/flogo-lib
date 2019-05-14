@@ -1,3 +1,5 @@
+**This repository has been replaced with Project Flogo [0.9.0 Core](https://github.com/project-flogo/core). Project Flogo 0.5.8 (this repository) will be placed in maintaince mode and only critical issues fixed.**
+
 # Flogo Lib
 
 [![Build Status](https://travis-ci.org/TIBCOSoftware/flogo-lib.svg?branch=master)](https://travis-ci.org/TIBCOSoftware/flogo-lib.svg?branch=master)
