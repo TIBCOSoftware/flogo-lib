@@ -8,6 +8,13 @@ type Error struct {
 	errorData    interface{}
 }
 
+type ActivityError interface {
+	Error() string
+	ActivityName() string
+	Data() interface{}
+	Code() string
+}
+
 func NewError(errorText string, code string, errorData interface{}) *Error {
 	return &Error{errorStr: errorText, errorData: errorData, errorCode: code}
 }
