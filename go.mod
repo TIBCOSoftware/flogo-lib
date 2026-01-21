@@ -3,7 +3,7 @@ module github.com/TIBCOSoftware/flogo-lib
 go 1.18
 
 require (
-	github.com/sirupsen/logrus v1.9.0
+	github.com/sirupsen/logrus v1.9.1
 	github.com/stretchr/testify v1.8.2
 	go.uber.org/zap v1.24.0
 )
